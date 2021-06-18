@@ -1,0 +1,212 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - welcome
+  - start
+  - respuestas
+  - respuestaSector
+  - respuestas2
+  - respuestas3
+
+entities:
+#determinantes
+  - vista #listo
+  - par #listo
+  - reflejo #pendiente, sin ejemplos
+  - forma
+  - movimiento_humano
+  - mov_animal
+  - mov_inanimado
+  - color_cromatico #listo
+  - color_acromatico #listo
+  - textura #pendiente, sin ejemplos
+  #- popular
+#contenidos
+
+slots:
+  vista:
+    type: text #listo
+    #initial_value: "false"
+  par:
+    type: text #listo
+    #initial_value: "false"
+  reflejo:
+    type: text #listo
+    #initial_value: "false"
+  forma:
+    type: text #listo
+    #initial_value: "false"
+  movimiento: #hago solo movimiento y en action detecto si es humano o animal de acuerdo a contenido. pendiente
+    type: text
+    #initial_value: "false"
+  #mov_humano:
+  #  type: bool
+  #mov_animal:
+  #  type: bool
+  #mov_inanimado:
+  #  type: bool
+  color_cromatico: #listo
+    type: text
+    #initial_value: "false"
+  color_acromatico: #listo
+    type: text
+    #initial_value: "false"
+  textura:
+    type: text 
+    #initial_value: "false"
+  sombreado:
+    type: text #pendiente, sin ejemplos
+    #initial_value: "false"
+  
+  
+  
+  #aparte respuestas populares
+  #popular:
+  #  type: bool
+  #populares
+  #insecto:
+   # type: text
+
+actions:
+  - action_imprimir_slot
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_welcome:
+  - text:   "Se le mostrarán tres manchas, en forma sucesiva, esto es, una a una. Usted deberá mirarlas\n
+            y responder sólo a la primera pregunta que aparece en el protocolo, es decir, responder\n
+            a **¿Qué podría ser esto?**. Debe escribir todo lo que podría ser cada mancha, tratando\n
+            siempre de dar la mayor cantidad de respuestas posibles. Puede dar todas las respuestas\n
+            que quiera o que se le ocurran. También puede mirar la mancha en forma total o sólo por\n
+            partes eso queda a su criterio. Recuerde que la imagen no representa nada preciso y por\n
+            lo tanto, no existen respuestas malas o buenas, asi que toda respuesta es válida. Pero\n
+            antes de comenzar, nos vamos a poner de acuerdo en la manera que usted deberá escribir \n
+            las respuestas.\n
+            Escribirá la respuesta que considere y presionará la tecla enter.\n
+            Si comprendió escriba la palabra listo" 
+  #- text:   "Antes de comenzar a realizar el test es importante que usted se encuentre en un ambiente que\n
+   #         cumpla los siguientes requisitos:\n
+    #          - Debe ser un espacio cerrado\n
+     #         - Dicho espacio debe ser tranquilo y libre de distracciones\n
+      #        - Debe estar bien iluminado\n
+       #       - Asegúrese de estar cómodo\n
+        #    Cuando considere que está listo para comenzar el test introduzca la palabra listo."
+
+  utter_start:
+  - text:   "¿Qué podría ser esto?"
+    image: "https://imgur.com/a/Pd6NDCA"
+  
+  utter_Lamina2:
+  - text: "¿Qué podría ser esto?"
+    image: "https://imgur.com/a/4UoY6KR"
+
+  utter_Lamina3:
+  - text: "¿Qué podría ser esto?"
+    image: "https://imgur.com/a/1ou8ala"
+
+  utter_Lamina1Sectorizada:
+  - text:  "Bien, ahora vamos a volver a revisar las láminas, ya que quiero ver lo que usted dijo que ha visto,\n
+            para estar seguro de que lo veo igual que usted. Lo haremos lámina a lámina. En cada una de ellas, yo\n
+            voy a leer lo que ha dicho y después quiero que usted me indique en qué parte de la mancha está y, luego,\n
+            quiero que me diga qué hay ahí que ha hecho que le parezca eso. Todo esto, para que yo también pueda verlo\n
+            tal como usted lo vió. Para indicar la zona por favor elija la letra correspondiente.\n
+            Aquí Usted ha dicho.....respuestas Lámina1."
+    image: "https://imgur.com/a/KgYlVd5"
+
+  utter_Lamina2Sectorizada:
+  - text: "Aquí Usted ha dicho.....respuestas Lámina2."
+    image: "https://imgur.com/a/A99h6YV"
+
+  utter_Lamina3Sectorizada:
+  - text: "Aquí Usted ha dicho.....respuestas Lámina3."
+    image: "https://imgur.com/a/VqVSMcK"
+
+  utter_par:
+  - text: "hay par"
+
+  utter_no_par:
+  - text: "no hay par"
+
+  utter_vista:
+  - text: "hay vista"
+
+  utter_no_vista:
+  - text: "no hay vista"
+
+  
+  utter_color_cromatico:
+  - text: "hay color cromático"
+
+  utter_no_color_cromatico:
+  - text: "no hay color cromático"
+
+  
+  utter_color_acromatico:
+  - text: "hay color acromático"
+
+  utter_no_color_acromatico:
+  - text: "no hay color acromático"
+  
+  utter_forma_humana:
+  - text: "hay forma humana"
+
+  utter_forma_animal:
+  - text: "hay forma animal"
+
+  utter_forma_inaminada:
+  - text: "hay forma inanimada"
+
+  utter_no_forma:
+  - text: "no hay forma"
+
+  utter_movimiento_humano:
+  - text: "hay movimiento humano M"
+
+  utter_movimiento_inanimado:
+  - text: "hay movimiento inanimado m"
+
+  utter_movimiento_indefinido:
+  - text: "hay movimiento indefinido"
+  
+  
+  utter_textura:
+  - text: "hay textura"
+
+  utter_no_textura:
+  - text: "no hay textura"
+
+  
+  utter_reflejo:
+  - text: "hay reflejo"
+
+  utter_no_reflejo:
+  - text: "no hay reflejo"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
