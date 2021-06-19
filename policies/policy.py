@@ -43,7 +43,7 @@ class TestPolicy(Policy):
         pass
 
     def predict_action_probabilities(
-            self, dispatcher: CollectingDispatcher,
+            self, 
             tracker: DialogueStateTracker,
             domain: Domain,
             interpreter: NaturalLanguageInterpreter,
@@ -66,11 +66,13 @@ class TestPolicy(Policy):
                     else:
                         if self._contador == 3:
                             self._respuesta3 = tracker
+                print(self._contador)
                 if self._contador < 4:
                     return[self._prediction(confidence_scores_for("action_imprimir_slot", 1.0, domain))]
         # If rasa latest action isn't "action_listen", it means the last thing
         # rasa did was send a response, so now we need to listen again so the
         # user can talk to us.
+        print(self._contador)
         return self._prediction(confidence_scores_for(
             "action_listen", 1.0, domain
         ))
@@ -80,6 +82,6 @@ class TestPolicy(Policy):
             "priority": 2
         }
 
-    # @classmethod
-    # def _metadata_filename(cls) -> Text:
-    #     return "tour_policy.json"
+    @classmethod
+    def _metadata_filename(cls) -> Text:
+        return "test_policy.json"

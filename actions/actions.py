@@ -29,6 +29,7 @@ from rasa_sdk.events import SlotSet,AllSlotsReset
 class imprimirSlot(Action):
     def name(self) -> Text:
         return "action_imprimir_slot"
+        
     def run(self, dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
