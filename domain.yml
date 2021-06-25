@@ -21,6 +21,7 @@ entities:
   - par #listo
   - reflejo #pendiente, sin ejemplos
   - forma
+  - movimiento
   - movimiento_humano
   - mov_animal
   - mov_inanimado
@@ -64,9 +65,30 @@ slots:
   sombreado:
     type: text #pendiente, sin ejemplos
     #initial_value: "false"
+
+  ######## ESTE SLOT LO AGREGO BELEN ###########
+  # Es para guardar las rtas que va a dar el bot
+  response:
+    type: text
+  
+  # Es para guardar las rtas de las laminas que ingresa el usuario
+  respuestaLamina1:
+    type: text
+  respuestaLamina2:
+    type: text
+  respuestaLamina3:
+    type: text
   
   
+  # Es para guardar las razones de las respuestas de laslaminas que ingresa el usuario
+  razonesLamina1:
+    type: text
+  razonezLamina2:
+    type: text
+  razonesLamina3:
+    type: text
   
+
   #aparte respuestas populares
   #popular:
   #  type: bool
@@ -75,7 +97,7 @@ slots:
    # type: text
 
 actions:
-  - action_imprimir_slot
+  - action_imprimir_determinantes
 
 responses:
   utter_greet:
@@ -98,17 +120,18 @@ responses:
   - text: "I am a bot, powered by Rasa."
 
   utter_welcome:
-  - text:   "Se le mostrarán tres manchas, en forma sucesiva, esto es, una a una. Usted deberá mirarlas\n
-            y responder sólo a la primera pregunta que aparece en el protocolo, es decir, responder\n
-            a **¿Qué podría ser esto?**. Debe escribir todo lo que podría ser cada mancha, tratando\n
-            siempre de dar la mayor cantidad de respuestas posibles. Puede dar todas las respuestas\n
-            que quiera o que se le ocurran. También puede mirar la mancha en forma total o sólo por\n
-            partes eso queda a su criterio. Recuerde que la imagen no representa nada preciso y por\n
-            lo tanto, no existen respuestas malas o buenas, asi que toda respuesta es válida. Pero\n
-            antes de comenzar, nos vamos a poner de acuerdo en la manera que usted deberá escribir \n
-            las respuestas.\n
-            Escribirá la respuesta que considere y presionará la tecla enter.\n
-            Si comprendió escriba la palabra listo" 
+  - text: "Se le mostrarán tres manchas, en forma sucesiva, esto es, una a una. Usted deberá mirarlas
+          \ny responder sólo a la primera pregunta que aparece en el protocolo, es decir, responder
+          \na **¿Qué podría ser esto?**. Debe escribir todo lo que podría ser cada mancha, tratando
+          \nsiempre de dar la mayor cantidad de respuestas posibles. Puede dar todas las respuestas
+          \nque quiera o que se le ocurran. También puede mirar la mancha en forma total o sólo por
+          \npartes eso queda a su criterio. Recuerde que la imagen no representa nada preciso y por
+          \nlo tanto, no existen respuestas malas o buenas, asi que toda respuesta es válida. Pero
+          \nantes de comenzar, nos vamos a poner de acuerdo en la manera que usted deberá escribir
+          \nlas respuestas.
+          \nEscribirá la respuesta que considere y presionará la tecla enter.
+          \nSi comprendió escriba la palabra listo" 
+
   #- text:   "Antes de comenzar a realizar el test es importante que usted se encuentre en un ambiente que\n
    #         cumpla los siguientes requisitos:\n
     #          - Debe ser un espacio cerrado\n
@@ -129,22 +152,26 @@ responses:
   - text: "¿Qué podría ser esto?"
     image: "https://imgur.com/a/1ou8ala"
 
-  utter_Lamina1Sectorizada:
-  - text:  "Bien, ahora vamos a volver a revisar las láminas, ya que quiero ver lo que usted dijo que ha visto,\n
-            para estar seguro de que lo veo igual que usted. Lo haremos lámina a lámina. En cada una de ellas, yo\n
-            voy a leer lo que ha dicho y después quiero que usted me indique en qué parte de la mancha está y, luego,\n
-            quiero que me diga qué hay ahí que ha hecho que le parezca eso. Todo esto, para que yo también pueda verlo\n
-            tal como usted lo vió. Para indicar la zona por favor elija la letra correspondiente.\n
-            Aquí Usted ha dicho.....respuestas Lámina1."
-    image: "https://imgur.com/a/KgYlVd5"
+  utter_Lamina1Razones:
+  - text: "Bien, usted escribió todo lo que la mancha podría ser, es decir, respondieron a la PRIMERA pregunta.
+          \nAhora, vamos a respomnder a la SEGUNDA pregunta que aparece más arriba en el protocolo. Esto tiene el propósito
+          \nde que YO vea, tal como usted vio, cada una de sus respuestas. Para esto, volveré a mostrar las láminas, comenzando 
+          \npor la N°1 y usted, leerá sus respuestas y contestará a **¿QUE HAY EN LA MANCHA QUE HACE QUE PAREZCA LO QUE SE ANOTO?**.
+          \nTomará una a una sus respuestas, sin saltarse ninguna, y así, para la respuesta 1, respoderá a la pregunta y redactará
+          \no explicará lo que corresponde. Luego tomará su respuesta 2 y respondera de igual forma a la misma pregunta; luego se
+          \nhará lo mismo para la respuesta 3 y de igual manera para todas las respuestas que usted haya escrito, sin dejar ninguna 
+          \nsin responder. Recuerde que la pregunta es **¿QUE HAY EN LA MANCHA QUE HACE QUE PAREZCA LO QUE SE VIO?** y no confundir con
+          \n¿donde está ubicado lo que anotaron?. Eso se hará mas adelante. Tenga cuidado con esa diferencia.
+          \nSu respuesta:'{respuestaLamina1}'." ##### ACÁ AGREGUE UN SLOT CON LA RTA DEL USUARIO ######
+    image: "https://imgur.com/a/Pd6NDCA"
 
-  utter_Lamina2Sectorizada:
-  - text: "Aquí Usted ha dicho.....respuestas Lámina2."
-    image: "https://imgur.com/a/A99h6YV"
+  utter_Lamina2Razones:
+  - text: "Aquí Usted ha dicho '{respuestaLamina2}'." ##### ACÁ AGREGUE UN SLOT CON LA RTA DEL USUARIO (PROBAR!!)######
+    image: "https://imgur.com/a/4UoY6KR"
 
-  utter_Lamina3Sectorizada:
-  - text: "Aquí Usted ha dicho.....respuestas Lámina3."
-    image: "https://imgur.com/a/VqVSMcK"
+  utter_Lamina3Razones:
+  - text: "Aquí Usted ha dicho '{respuestaLamina3}'." ##### ACÁ AGREGUE UN SLOT CON LA RTA DEL USUARIO (PROBAR!!) ######
+    image: "https://imgur.com/a/1ou8ala"
 
   utter_par:
   - text: "hay par"
