@@ -255,21 +255,6 @@ nlu:
     - [dos]{"entity":"par","value": "true"} [hombres]{"entity":"forma","value": "humana"} con [lamparas]{"entity":"forma","value": "true"} [enfrentados]{"entity":"movimiento","value": "true"}
     - [dos]{"entity":"par","value": "true"} [hombres]{"entity":"forma","value": "humana"} [vistos]{"entity":"vista","value": "true"} desde arriba
     - una [cueva]{"entity":"forma","value": "inanimada"} con el sol [reflejado]{"entity":"reflejo","value": "true"}  en el agua del piso y postes de luz a los costados
-
-
-- intent: respuestaSector
-  examples: |
-    - A
-    - B
-    - C
-    - D
-    - E
-    - F
-    - G
-    - H
-
-- intent: razones
-  examples: |
     - Puedo observar una [simetria]{"entity":"par","value": "true"} vertical. Veo en la parte de arriba partes que podrian ser como parte de la boca. Observo patas a los costados y atras. La froma rara como con pelos me hace pensar que es un ser microscopico
     - La forma de la imagen
     - El sombreado
@@ -382,3 +367,18 @@ nlu:
     - cada mancha [negra]{"entity":"color_acromatico","value": "true"} seria un hombre, arriba parece una cara [vista]{"entity":"vista","value": "true"} de perfil con un gorro raro y nariz. Las cosas [negras]{"entity":"color_acromatico","value": "true"} que salen para los costados serian brazos que estan llevando una cosa [roja]{"entity":"color_cromatico","value": "true"} colgada. Esa cosa [roja]{"entity":"color_cromatico","value": "true"} la llevan como si fueran faroles, y el [rojo]{"entity":"color_cromatico","value": "true"} da idea del fuego que ilumina dentro del farol
     - Las manchas [negras]{"entity":"color_acromatico","value": "true"} serian las paredes, la mancha [roja]{"entity":"color_cromatico","value": "true"} en el piso seria un [reflejo]{"entity":"reflejo","value": "true"}, tiene que ser agua para que se [refleje]{"entity":"reflejo","value": "true"} y puse el sol porque el [rojo]{"entity":"color_cromatico","value": "true"} me recuerda a eso. Las luces a los costados son las cosas [rojas]{"entity":"color_cromatico","value": "true"} del costado
      
+
+- intent: respuestaSector
+  examples: |
+    - A
+    - B
+    - C
+    - D
+    - E
+    - F
+    - G
+    - H
+
+#- intent: razones
+#  examples: |
+    

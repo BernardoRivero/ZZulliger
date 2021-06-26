@@ -83,7 +83,7 @@ slots:
   # Es para guardar las razones de las respuestas de laslaminas que ingresa el usuario
   razonesLamina1:
     type: text
-  razonezLamina2:
+  razonesLamina2:
     type: text
   razonesLamina3:
     type: text

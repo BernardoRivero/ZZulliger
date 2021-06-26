@@ -43,7 +43,7 @@ class imprimirSlot(Action):
         #5 Experiencia humana
         _Hx = {"amor","amar","ama","amamos","amo","odio","odia","odiamos","odiar","depresión","deprimido","deprimida","deprimidos","deprimidas","feliz","felices","alegre","alegres","felicidad","alegria","ruido","ruidoso","sonido","suena","olor","huele","oloroso","miedo","temor","miedoso","contento","contenta","contentos","contentas"}
         #6 Figura animal completa
-        _A = {"escarabajo","escarabajos","bicho","bichos","araña","arañas","cucaracha","cucarachas","mariposa","mariposas","mantis","mosca","mosquito","moscas","mosquitos","pulga","pulgas","águila","águilas","avestruz","ballena","bisonte","búfalo","búhos","buitre","burro","caballo","cabra","camaleón","camello","canario","castor","cebra","cerdo","chancho","ciervo","cobra","colibrí","comadreja","cóndor","conejo","delfín","elefante","faisan","flamenco","foca","gallina","gallo","gato","gorila","guepardo","hámster","hiena","hipopótamo","jabalí","jaguar","jirafa","koala","lagarto","león","lobo","loro","manatí","mapache","mono","murciélago","nutria","ñandú","orcas","oso","pájaro","paloma","panda","pato","pavo","pelícano","perro","pingüino","puercoespín","puma","rana","ratón","reno","rinoceronte","salamandra","sapo","serpiente","tapir","tejon","tiburón","tigre","topo","toro","tucán","vaca","vicuña","zorrino","zorro","águila","avestruces","ballenas","bisontes","búfalos","búho","buitres","burros","caballos","cabras","camaleones","camellos","canarios","castores","cebras","cerdos","chanchos","ciervos","cobras","colibries","comadrejas","cóndores","conejos","delfines","elefantes","faisanes","flamencos","focas","gallinas","gallos","gatos","gorilas","guepardos","hámsters","hienas","hipopótamos","jabalies","jaguares","jirafas","koalas","lagartos","leones","lobos","loros","manaties","mapaches","monos","murciélagos","nutrias","ñandues","orca","osos","pájaros","palomas","pandas","patos","pavos","pelícanos","perros","pingüinos","puercoespines","pumas","ranas","ratones","renos","rinocerontes","salamandras","sapos","serpientes","tapires","tiburones","tigres","topos","toros","tucanes","vacas","víbora","víboras","vicuñas","zorrinos","zorros"}
+        _A = {"escarabajo","escarabajos","bicho","bichos","araña","arañas","cucaracha","cucarachas","mariposa","mariposas","mantis","mosca","mosquito","moscas","mosquitos","murcielago","murciélago","murciélagos","pulga","pulgas","águila","águilas","avestruz","ballena","bisonte","búfalo","búhos","buitre","burro","caballo","cabra","camaleón","camello","canario","castor","cebra","cerdo","chancho","ciervo","cobra","colibrí","comadreja","cóndor","conejo","delfín","elefante","faisan","flamenco","foca","gallina","gallo","gato","gorila","guepardo","hámster","hiena","hipopótamo","jabalí","jaguar","jirafa","koala","lagarto","león","lobo","loro","manatí","mapache","mono","murciélago","nutria","ñandú","orcas","oso","pájaro","paloma","panda","pato","pavo","pelícano","perro","pingüino","puercoespín","puma","rana","ratón","reno","rinoceronte","salamandra","sapo","serpiente","tapir","tejon","tiburón","tigre","topo","toro","tucán","vaca","vicuña","zorrino","zorro","águila","avestruces","ballenas","bisontes","búfalos","búho","buitres","burros","caballos","cabras","camaleones","camellos","canarios","castores","cebras","cerdos","chanchos","ciervos","cobras","colibries","comadrejas","cóndores","conejos","delfines","elefantes","faisanes","flamencos","focas","gallinas","gallos","gatos","gorilas","guepardos","hámsters","hienas","hipopótamos","jabalies","jaguares","jirafas","koalas","lagartos","leones","lobos","loros","manaties","mapaches","monos","murciélagos","nutrias","ñandues","orca","osos","pájaros","palomas","pandas","patos","pavos","pelícanos","perros","pingüinos","puercoespines","pumas","ranas","ratones","renos","rinocerontes","salamandras","sapos","serpientes","tapires","tiburones","tigres","topos","toros","tucanes","vacas","víbora","víboras","vicuñas","zorrinos","zorros"}
         #7 Figura animal completa irreal, de ficción o mitológica
         _ParentesisA = {"unicornio","unicornios","dragón","dragon","dragones","minotauro","minotauros"}
         #8 Figura animal incompleta
@@ -80,8 +80,11 @@ class imprimirSlot(Action):
         _Sx = {"pene","penes","verga","vergas","pito","pitos","vagina","vaginas","concha","conchas","nalgas","cachas","pechos","teta","tetas","testículos","huevos","bolas","menstruación","aborto","abortar","coito","coger","garchar","cogiendo","teniendo sexo","garchando"}
         #26 Radiografía
         _Xy = {"radiografía","radiografia","placa","placas","rayos x"}
-
-    
+        #27 Popular1
+        _Po1 = {"escarabajo","escarabajos","bicho","bichos","araña","arañas","cucaracha","cucarachas","mariposa","mariposas","mantis","mosca","mosquito","moscas","mosquitos","insecto","insectos","gusano"}
+        #28 Popular3
+        _Po3 = {"persona","humano","hombre","mujer","niño","niña","chico","chica","señor","señora","personas","humanos","hombres","mujeres","niños","niñas","chicos","chicas","señores","señoras","payaso","payasos","hada","hadas","bruja","brujas","fantasma","fantasmas","enano","enanos","enana","enanas","demonio","demonios","ángel","ángeles","humanoide","humanoides","caricaturas","caricatura","monstruo","monstruos","duende","duendes"}
+        #IMAGEN 2 NO TIENE RESPUESTAS POPULARES
 
         slot_paridad = tracker.get_slot("par")
         slot_vista = tracker.get_slot("vista")
@@ -92,16 +95,136 @@ class imprimirSlot(Action):
         slot_textura = tracker.get_slot("textura")
         slot_reflejo = tracker.get_slot("reflejo")       
         respuesta = tracker.latest_message['text']
-        while _H:
-            s = _H.pop()
-            if s in respuesta:
+        dispatcher.utter_message(text="CONTENIDOS:")
+        while _H:#1
+            subconjunto = _H.pop()
+            if subconjunto in respuesta:
                 dispatcher.utter_message(text="Hay figura humana completa(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _ParentesisH:#2
+            subconjunto = _ParentesisH.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay figura completa irreal, de ficción o mitológica(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Hd: #3
+            subconjunto = _Hd.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay detalle humano(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Hx: #5
+            subconjunto = _Hx.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay experiencia humana(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _A: #6
+            subconjunto = _A.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay figura animal completa(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _ParentesisA: #7
+            subconjunto = _ParentesisA.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay figura animal completa irreal, de ficción o mitológica(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Ad: #8
+            subconjunto = _Ad.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay figura animal incompleta(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _An: #10
+            subconjunto = _An.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay anatomía(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Art: #11
+            subconjunto = _Art.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay arte(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Bl: #13
+            subconjunto = _Bl.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay sangre(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Bt: #14
+            subconjunto = _Bt.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay botánica(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Cg: #15
+            subconjunto = _Cg.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay vestidos(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Cl: #16
+            subconjunto = _Cl.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay nubes(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Ex: #17
+            subconjunto = _Ex.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay explosión(contenido)")        
+                #agrgear setear un slot en true para usar al final
+        while _Fi: #18
+            subconjunto = _Fi.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay fuego(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Fd: #19
+            subconjunto = _Fd.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay comida(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Ge: #20
+            subconjunto = _Ge.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay geografía(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Hh: #21
+            subconjunto = _Hh.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay hogar(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Na: #23
+            subconjunto = _Na.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay naturaleza(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Sc: #24
+            subconjunto = _Sc.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay ciencia(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Sx: #25
+            subconjunto = _Sx.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay sexo(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Xy: #26
+            subconjunto = _Xy.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay radiografía(contenido)")        
+                #agregar setear un slot en true para usar al final
+        while _Po1: #27 populares
+            subconjunto = _Po1.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay respuesta popular de imagen 1(contenido)")        
+                #agregar setear un slot en true para usar al final
+
+        #IMAGEN 2 NO TIENE RESPUESTAS POPULARES
+
+        while _Po3: #28 populares
+            subconjunto = _Po3.pop()
+            if subconjunto in respuesta:
+                dispatcher.utter_message(text="Hay respuesta popular de imagen 3(contenido)")        
                 #agregar setear un slot en true para usar al final
 
         #####comprobar populares al final según orden de las respuestas
 
         ##todo lo que no entra en un conjunto es contenido ideográfico "Id"
         sender = tracker.sender_id
+        dispatcher.utter_message(text="DETERMINANTES:")
         if slot_paridad == "true":
             dispatcher.utter_message(text="Hay par(determinante)")
         else:
@@ -133,7 +256,7 @@ class imprimirSlot(Action):
         else:
             if slot_movimiento == "true" and slot_forma == 'inanimada':
                 dispatcher.utter_message(text="Hay movimiento inanimado m(determinante)")
-            else:
+            elif slot_movimiento == "true":
                 dispatcher.utter_message(text="Hay movimiento indefinido(determinante)")
         if slot_textura == "true":
             dispatcher.utter_message(text="Hay textura(determinante)")
