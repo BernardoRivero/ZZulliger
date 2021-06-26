@@ -6,7 +6,6 @@
 
 
 # This is a simple example for a custom action which utters "Hello World!"
-
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -33,6 +32,13 @@ class imprimirSlot(Action):
     def run(self, dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        planilla = pd.DataFrame({'Id': [1, 3, 2, 4],
+                   'Nombre': ['Juan', 'Eva', 'María', 'Pablo'],
+                   'Apellido': ['Méndez', 'López', 'Tito', 'Hernández']})
+        planilla = planilla[['Id', 'Nombre', 'Apellido']]
+        writer = ExcelWriter('C:/Users/Bernardo/Desktop/Zulliger/planillaZulliger.xlsx')
+        planilla.to_excel(writer, 'Hoja de datos', index=False)
+        writer.save()
         #contenidos:
         #1 figura humana completa
         _H = {"persona","humano","hombre","mujer","niño","niña","chico","chica","señor","señora","personas","humanos","hombres","mujeres","niños","niñas","chicos","chicas","señores","señoras"}
@@ -258,6 +264,8 @@ class imprimirSlot(Action):
                 dispatcher.utter_message(text="Hay movimiento inanimado m(determinante)")
             elif slot_movimiento == "true":
                 dispatcher.utter_message(text="Hay movimiento indefinido(determinante)")
+            else:
+                dispatcher.utter_message(text="No hay movimiento(determinante)")
         if slot_textura == "true":
             dispatcher.utter_message(text="Hay textura(determinante)")
         else:
