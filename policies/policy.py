@@ -112,17 +112,17 @@ class TestPolicy(Policy):
                     return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
                 elif self._contador < 7:
                     if self._contador == 4:
-                        tracker.update(SlotSet("contador", 1))
+                       # tracker.update(SlotSet("contador", 1))
                         self._razones1 = tracker.latest_message.text
                         tracker.update(SlotSet("razonesLamina1", self._respuesta3))
                         tracker.update(SlotSet("response", "utter_Lamina2Razones"))
                     elif self._contador == 5:
-                         tracker.update(SlotSet("contador", 2))
+                      #   tracker.update(SlotSet("contador", 2))
                          self._razones2 = tracker.latest_message.text
                          tracker.update(SlotSet("razonesLamina2", self._respuesta3))
                          tracker.update(SlotSet("response", "utter_Lamina3Razones"))
-                    else:
-                         tracker.update(SlotSet("contador", 3))
+                    #else:
+                     #    tracker.update(SlotSet("contador", 3))
                     return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
         # If rasa latest action isn't "action_listen", it means the last thing
         # rasa did was send a response, so now we need to listen again so the
