@@ -43,7 +43,8 @@ class imprimirSlot(Action):
         tracker: Tracker,
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        #contenidos:
+        ######CONTENIDOS######:
+        
         #1 figura humana completa
         _H = {"persona","humano","hombre","mujer","niño","niña","chico","chica","señor","señora","personas","humanos","hombres","mujeres","niños","niñas","chicos","chicas","señores","señoras"}
         #2 figura humana completa irreal, de ficción o mitológica
@@ -100,14 +101,6 @@ class imprimirSlot(Action):
         contenidos = ''
         popular = ''
         lamina = tracker.get_slot("contador")
-        slot_paridad = tracker.get_slot("par")
-        slot_vista = tracker.get_slot("vista")
-        slot_ccromatico = tracker.get_slot("color_cromatico")
-        slot_cacromatico = tracker.get_slot("color_acromatico")
-        slot_forma = tracker.get_slot("forma")
-        slot_movimiento = tracker.get_slot("movimiento")
-        slot_textura = tracker.get_slot("textura")
-        slot_reflejo = tracker.get_slot("reflejo")       
         respuesta = tracker.latest_message['text']
         dispatcher.utter_message(text="CONTENIDOS:")
         while _H:#1
@@ -268,6 +261,18 @@ class imprimirSlot(Action):
 
         ##todo lo que no entra en un conjunto es contenido ideográfico "Id"
         sender = tracker.sender_id
+
+
+        ######DETERMINANTES#####
+        slot_paridad = tracker.get_slot("par")
+        slot_vista = tracker.get_slot("vista")
+        slot_ccromatico = tracker.get_slot("color_cromatico")
+        slot_cacromatico = tracker.get_slot("color_acromatico")
+        slot_forma = tracker.get_slot("forma")
+        slot_movimiento = tracker.get_slot("movimiento")
+        slot_textura = tracker.get_slot("textura")
+        slot_reflejo = tracker.get_slot("reflejo")       
+        
         dispatcher.utter_message(text="DETERMINANTES:")
         if slot_paridad == "true":
             par = '2' 
@@ -374,12 +379,20 @@ class imprimirSlot(Action):
             ws.append([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?']) 
         else:
             if lamina == 4:
-                lamina == 1
+                #lamina == 1
+                vf2 = ws['F2'].value
+                ws['F2'] = str(vf2)  + determinantes #recortar repetidos y poner comas
+                ws['H2'] = par
+                vi2 = ws['I2'].value
+                ws['I2'] = str(vi2) + contenidos
+                vj2 = ws['J2'].value
+                ws['J2'] = str(vj2) + popular 
             elif lamina == 5:
                 lamina == 2
             elif lamina == 6:
                 lamina == 3
-            ws.append([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?']) ##necesito mergearlas no se como 
+            
+        #ws.append([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?']) ##necesito mergearlas no se como, o update de fila. 
         #ws.merge([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?'])
         wb.save('PlanillaZulliger.xlsx')
         wb.close()
