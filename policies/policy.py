@@ -34,19 +34,19 @@ class TestPolicy(Policy):
         self._respuesta2 = ""
         self._respuesta3 = ""
         
-        planilla = pd.DataFrame({'Lám': ['1', '2', '3'],
-                   'N°Rta': ['1', '1', '1'],
-                   'N°Loc': ['?', '?', '?'],
-                   'Loc': ['?', '?', '?'],
-                   'DQ': ['?', '?', '?'],
-                   'Determinantes': ['?', '?', '?'],
-                   'FQ': ['?', '?', '?'],
-                   '(2)': ['?', '?', '?'],
-                   'Contenidos': ['?', '?', '?'],
-                   'Pop': ['?', '?', '?'],
-                   'Pje Z': ['?', '?', '?'],
-                   'CCEE': ['?', '?', '?']})
-        planilla = planilla[['Lám', 'N°Rta', 'N°Loc','Loc','DQ','Determinantes','FQ','(2)','Contenidos','Pop','Pje Z','CCEE']]
+        planilla = pd.DataFrame({'Lám': [''],
+                   'N°Rta':[''],
+                   'N°Loc':[''],
+                   'Loc': [''],
+                   'DQ': [''],
+                   'Det': [''],
+                   'FQ': [''],
+                   '(2)': [''],
+                   'Cont': [''],
+                   'Pop': [''],
+                   'Pje Z': [''],
+                   'CCEE': ['']})
+        planilla = planilla[['Lám', 'N°Rta', 'N°Loc','Loc','DQ','Det','FQ','(2)','Cont','Pop','Pje Z','CCEE']]
         writer = ExcelWriter('C:/Users/Bernardo/Desktop/Zulliger/PlanillaZulliger.xlsx')
         planilla.to_excel(writer, 'Hoja de datos', index=False)
         writer.save()
@@ -83,7 +83,9 @@ class TestPolicy(Policy):
             # The user enters a response.
             if intent["name"] == "respuestas":
                 self._contador = self._contador + 1
+                tracker.update(SlotSet("contador", self._contador))
                 if self._contador == 1:
+                    
                     # Guarda en la variable "respuesta1" SOLO el texto que ingreso el usuario
                     self._respuesta1 = tracker.latest_message.text
 
@@ -100,27 +102,27 @@ class TestPolicy(Policy):
                     tracker.update(SlotSet("response", "utter_Lamina3"))
 
                 elif self._contador == 3:
+                    tracker.update(SlotSet("contador", 3))
                     self._respuesta3 = tracker.latest_message.text
                     tracker.update(SlotSet("respuestaLamina3", self._respuesta3))
                     
                     # Acá empieza la parte de revisión de las láminas 
                     tracker.update(SlotSet("response", "utter_Lamina1Razones"))
-                    
                 if self._contador < 4:
                     return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
                 elif self._contador < 7:
                     if self._contador == 4:
+                        tracker.update(SlotSet("contador", 1))
                         self._razones1 = tracker.latest_message.text
                         tracker.update(SlotSet("razonesLamina1", self._respuesta3))
-                        tracker.update(SlotSet("response", "utter_Lamina1Razones"))
+                        tracker.update(SlotSet("response", "utter_Lamina2Razones"))
                     elif self._contador == 5:
+                         tracker.update(SlotSet("contador", 2))
                          self._razones2 = tracker.latest_message.text
                          tracker.update(SlotSet("razonesLamina2", self._respuesta3))
-                         tracker.update(SlotSet("response", "utter_Lamina2Razones"))
-                    elif self._contador == 6:
-                         self._razones3 = tracker.latest_message.text
-                         tracker.update(SlotSet("razonesLamina3", self._respuesta3))
                          tracker.update(SlotSet("response", "utter_Lamina3Razones"))
+                    else:
+                         tracker.update(SlotSet("contador", 3))
                     return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
         # If rasa latest action isn't "action_listen", it means the last thing
         # rasa did was send a response, so now we need to listen again so the

@@ -88,6 +88,8 @@ slots:
   razonesLamina3:
     type: text
   
+  contador:
+    type: text
 
   #aparte respuestas populares
   #popular:
