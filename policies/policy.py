@@ -26,23 +26,30 @@ class TestPolicy(Policy):
             **kwargs: Any
     ) -> None:
         super().__init__(featurizer, priority, should_finetune, **kwargs)
+        
         #indicador de respuesta
         self._contador = 0
         #respuestas del entrevistado
         self._respuesta1 = ""
         self._respuesta2 = ""
         self._respuesta3 = ""
-        #contenidos:
-        #figura humana completa
-        self._H = {"persona","humano","hombre","mujer","niño","niña","chico","chica","señor","señora","personas","humanos","hombres","mujeres","niños","niñas","chicos","chicas","señores","señoras"}
-        #figura humana completa irreal, de ficción o mitológica
-        self._ParentesisH = {"payaso","payasos","hada","hadas","bruja","brujas","fantasma","fantasmas","enano","enanos","enana","enanas","demonio","demonios","ángel","ángeles","humanoide","humanoides","caricaturas","caricatura","monstruo","monstruos","duende","duendes"}
-        #Detalle humano
-        #self._Hd = {        
-        #Experiencia humana
-        self._Hx = {"amor","amar","ama","amamos","amo","odio","odia","odiamos","odiar","depresión","deprimido","deprimida","deprimidos","deprimidas","feliz","felices","alegre","alegres","felicidad","alegria","ruido","ruidoso","sonido","suena","olor","huele","oloroso","miedo","temor","miedoso","contento","contenta","contentos","contentas"}
-        #Figura animal completa
-        self._A = {"escarabajo","escarabajos","bicho","bichos","araña","arañas","cucaracha","cucarachas","mariposa","mariposas","mantis","mosca","mosquito","moscas","mosquitos","pulga","pulgas","águila","águilas","avestruz","ballena","bisonte","búfalo","búhos","buitre","burro","caballo","cabra","camaleón","camello","canario","castor","cebra","cerdo","chancho","ciervo","cobra","colibrí","comadreja","cóndor","conejo","delfín","elefante","faisan","flamenco","foca","gallina","gallo","gato","gorila","guepardo","hámster","hiena","hipopótamo","jabalí","jaguar","jirafa","koala","lagarto","león","llama","lobo","loro","manatí","mapache","mono","murciélago","nutria","ñandú","orcas","oso","pájaro","paloma","panda","pato","pavo","pelícano","perro","pingüino","puercoespín","puma","rana","ratón","reno","rinoceronte","salamandra","sapo","serpiente","tapir","tejon","tiburón","tigre","topo","toro","tucán","vaca","vicuña","zorrino","zorro","águila","avestruces","ballenas","bisontes","búfalos","búho","buitres","burros","caballos","cabras","camaleones","camellos","canarios","castores","cebras","cerdos","chanchos","ciervos","cobras","colibries","comadrejas","cóndores","conejos","delfines","elefantes","faisanes","flamencos","focas","gallinas","gallos","gatos","gorilas","guepardos","hámsters","hienas","hipopótamos","jabalies","jaguares","jirafas","koalas","lagartos","leones","llamas","lobos","loros","manaties","mapaches","monos","murciélagos","nutrias","ñandues","orca","osos","pájaros","palomas","pandas","patos","pavos","pelícanos","perros","pingüinos","puercoespines","pumas","ranas","ratones","renos","rinocerontes","salamandras","sapos","serpientes","tapires","tiburones","tigres","topos","toros","tucanes","vacas","víbora","víboras","vicuñas","zorrinos","zorros"}
+        
+        planilla = pd.DataFrame({'Lám': ['1', '2', '3'],
+                   'N°Rta': ['1', '1', '1'],
+                   'N°Loc': ['?', '?', '?'],
+                   'Loc': ['?', '?', '?'],
+                   'DQ': ['?', '?', '?'],
+                   'Determinantes': ['?', '?', '?'],
+                   'FQ': ['?', '?', '?'],
+                   '(2)': ['?', '?', '?'],
+                   'Contenidos': ['?', '?', '?'],
+                   'Pop': ['?', '?', '?'],
+                   'Pje Z': ['?', '?', '?'],
+                   'CCEE': ['?', '?', '?']})
+        planilla = planilla[['Lám', 'N°Rta', 'N°Loc','Loc','DQ','Determinantes','FQ','(2)','Contenidos','Pop','Pje Z','CCEE']]
+        writer = ExcelWriter('C:/Users/Bernardo/Desktop/Zulliger/PlanillaZulliger.xlsx')
+        planilla.to_excel(writer, 'Hoja de datos', index=False)
+        writer.save()
     def train(
             self,
             training_trackers: List[TrackerWithCachedStates],

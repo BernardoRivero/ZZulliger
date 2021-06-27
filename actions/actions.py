@@ -7,9 +7,18 @@
 
 # This is a simple example for a custom action which utters "Hello World!"
 from typing import Any, Text, Dict, List
+from pandas.io.pytables import AppendableFrameTable
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet,AllSlotsReset
+#from policies.policy import TestPolicy 
+import pandas as pd
+from pandas import ExcelWriter
+import openpyxl as op
+from openpyxl import load_workbook
+
+
+
 #
 #
 # class ActionHelloWorld(Action):
@@ -32,6 +41,7 @@ class imprimirSlot(Action):
     def run(self, dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
         #contenidos:
         #1 figura humana completa
         _H = {"persona","humano","hombre","mujer","niño","niña","chico","chica","señor","señora","personas","humanos","hombres","mujeres","niños","niñas","chicos","chicas","señores","señoras"}
@@ -84,7 +94,7 @@ class imprimirSlot(Action):
         #28 Popular3
         _Po3 = {"persona","humano","hombre","mujer","niño","niña","chico","chica","señor","señora","personas","humanos","hombres","mujeres","niños","niñas","chicos","chicas","señores","señoras","payaso","payasos","hada","hadas","bruja","brujas","fantasma","fantasmas","enano","enanos","enana","enanas","demonio","demonios","ángel","ángeles","humanoide","humanoides","caricaturas","caricatura","monstruo","monstruos","duende","duendes"}
         #IMAGEN 2 NO TIENE RESPUESTAS POPULARES
-
+        
         slot_paridad = tracker.get_slot("par")
         slot_vista = tracker.get_slot("vista")
         slot_ccromatico = tracker.get_slot("color_cromatico")
@@ -273,6 +283,11 @@ class imprimirSlot(Action):
         if next_response != "None":
             dispatcher.utter_message(response=next_response)  
 
+        wb = op.load_workbook('PlanillaZulliger.xlsx')
+        ws = wb.get_sheet_by_name('Hoja de datos')
+        ws.append(['2','2','2','2','2','2','2',])
+        wb.save('PlanillaZulliger.xlsx')
+        wb.close()
 
         return [SlotSet("par","false"),SlotSet("vista","false"),SlotSet("color_cromatico","false"),SlotSet("color_acromatico","false"),SlotSet("forma","false"),SlotSet("movimiento","false"),SlotSet("textura","false"),SlotSet("reflejo","false"),SlotSet("response", "None")]
 
