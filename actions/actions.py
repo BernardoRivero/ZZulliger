@@ -106,139 +106,139 @@ class imprimirSlot(Action):
         while _H:#1
             subconjunto = _H.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'H,'
+                contenidos = contenidos + ',H'
                 dispatcher.utter_message(text="Hay figura humana completa(contenido)")        
                 break   
         while _ParentesisH:#2
             subconjunto = _ParentesisH.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + '(H),'
+                contenidos = contenidos + ',(H)'
                 dispatcher.utter_message(text="Hay figura completa irreal, de ficción o mitológica(contenido)")        
                 break
         while _Hd: #3
             subconjunto = _Hd.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Hd,'
+                contenidos = contenidos + ',Hd'
                 dispatcher.utter_message(text="Hay detalle humano(contenido)")        
                 break
         while _Hx: #5
             subconjunto = _Hx.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Hx,'
+                contenidos = contenidos + ',Hx'
                 dispatcher.utter_message(text="Hay experiencia humana(contenido)")        
                 break
         while _A: #6
             subconjunto = _A.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'A,'
+                contenidos = contenidos + ',A'
                 dispatcher.utter_message(text="Hay figura animal completa(contenido)")        
                 break
         while _ParentesisA: #7
             subconjunto = _ParentesisA.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + '(A),'
+                contenidos = contenidos + ',(A)'
                 dispatcher.utter_message(text="Hay figura animal completa irreal, de ficción o mitológica(contenido)")        
                 break
         while _Ad: #8
             subconjunto = _Ad.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Ad,'
+                contenidos = contenidos + ',Ad'
                 dispatcher.utter_message(text="Hay figura animal incompleta(contenido)")        
                 break
         while _An: #10
             subconjunto = _An.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'An,'
+                contenidos = contenidos + ',An'
                 dispatcher.utter_message(text="Hay anatomía(contenido)")        
                 break
         while _Art: #11
             subconjunto = _Art.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Art,'
+                contenidos = contenidos + ',Art'
                 dispatcher.utter_message(text="Hay arte(contenido)")        
                 break
         while _Bl: #13
             subconjunto = _Bl.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Bl,'
+                contenidos = contenidos + ',Bl'
                 dispatcher.utter_message(text="Hay sangre(contenido)")        
                 break
         while _Bt: #14
             subconjunto = _Bt.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Bt,'
+                contenidos = contenidos + ',Bt'
                 dispatcher.utter_message(text="Hay botánica(contenido)")        
                 break
         while _Cg: #15
             subconjunto = _Cg.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Cg,'
+                contenidos = contenidos + ',Cg'
                 dispatcher.utter_message(text="Hay vestidos(contenido)")        
                 break
         while _Cl: #16
             subconjunto = _Cl.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Cl,'
+                contenidos = contenidos + ',Cl'
                 dispatcher.utter_message(text="Hay nubes(contenido)")        
                 break
         while _Ex: #17
             subconjunto = _Ex.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Ex,'
+                contenidos = contenidos + ',Ex'
                 dispatcher.utter_message(text="Hay explosión(contenido)")        
                 break
         while _Fi: #18
             subconjunto = _Fi.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Fi,'
+                contenidos = contenidos + ',Fi'
                 dispatcher.utter_message(text="Hay fuego(contenido)")        
                 break
         while _Fd: #19
             subconjunto = _Fd.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Fd,'
+                contenidos = contenidos + ',Fd'
                 dispatcher.utter_message(text="Hay comida(contenido)")        
                 break
         while _Ge: #20
             subconjunto = _Ge.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Ge,'
+                contenidos = contenidos + ',Ge'
                 dispatcher.utter_message(text="Hay geografía(contenido)")        
                 break
         while _Hh: #21
             subconjunto = _Hh.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Hh,'
+                contenidos = contenidos + ',Hh'
                 dispatcher.utter_message(text="Hay hogar(contenido)")        
                 break
         while _Na: #23
             subconjunto = _Na.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Na,'
+                contenidos = contenidos + ',Na'
                 dispatcher.utter_message(text="Hay naturaleza(contenido)")        
                 break
         while _Sc: #24
             subconjunto = _Sc.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Sc,'
+                contenidos = contenidos + ',Sc'
                 dispatcher.utter_message(text="Hay ciencia(contenido)")        
                 break
         while _Sx: #25
             subconjunto = _Sx.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Sx,'
+                contenidos = contenidos + ',Sx'
                 dispatcher.utter_message(text="Hay sexo(contenido)")        
                 break
         while _Xy: #26
             subconjunto = _Xy.pop()
             if subconjunto in respuesta:
-                contenidos = contenidos + 'Xy,'
+                contenidos = contenidos + ',Xy'
                 dispatcher.utter_message(text="Hay radiografía(contenido)")        
                 break
         while _Po1: #27 populares
             subconjunto = _Po1.pop()
             if subconjunto in respuesta:
-                if lamina == '1':#and zona corresponde
+                if lamina == 1 or lamina == 4:#and zona corresponde
                     popular = 'Po1' #hay que revisar si coincide con sector de la imagen
                     dispatcher.utter_message(text="Hay respuesta popular de imagen 1(contenido)")
                     break
@@ -251,7 +251,7 @@ class imprimirSlot(Action):
         while _Po3: #28 populares
             subconjunto = _Po3.pop()
             if subconjunto in respuesta:
-                if lamina == '3': #and zona corresponde
+                if lamina == 3 or lamina == 6: #and zona corresponde
                     popular = 'Po3' 
                     dispatcher.utter_message(text="Hay respuesta popular de imagen 3(contenido)")        
                     break
@@ -282,84 +282,84 @@ class imprimirSlot(Action):
             dispatcher.utter_message(text="No hay par(determinante)")
         if slot_vista == "true":
             if determinantes == '?':
-                determinantes = 'V,'
+                determinantes = ',V'
             else: 
-                determinantes = determinantes + 'V,'
+                determinantes = determinantes + ',V'
             dispatcher.utter_message(text="Hay vista(determinante)")
         else:
             dispatcher.utter_message(text="No hay vista(determinante)")
         if slot_ccromatico == "true":
             if determinantes == '?':
-                determinantes = 'C,'
+                determinantes = ',C'
             else: 
-                determinantes = determinantes + 'C,'
+                determinantes = determinantes + ',C'
             dispatcher.utter_message(text="Hay color cromático(determinante)")
         else:
             dispatcher.utter_message(text="No hay color cromático(determinante)")
         if slot_cacromatico == "true":
             if determinantes == '?':
-                determinantes = 'C\','
+                determinantes = ',C\''
             else: 
-                determinantes = determinantes + 'C\','
+                determinantes = determinantes + ',C\''
             dispatcher.utter_message(text="Hay color acromático(determinante)")
         else:
             dispatcher.utter_message(text="No hay color acromático(determinante)")
         if slot_forma == "humana":
             if determinantes == '?':
-                determinantes = 'M,'
+                determinantes = ',M'
             else: 
-                determinantes = determinantes + 'M,'
+                determinantes = determinantes + ',M'
             dispatcher.utter_message(text="Hay forma humana(determinante)")
         else:
             if slot_forma == "animal":
                 if determinantes == '?':
-                    determinantes = 'FM,'
+                    determinantes = ',FM'
                 else: 
-                    determinantes = determinantes + 'FM,'
+                    determinantes = determinantes + ',FM'
                 dispatcher.utter_message(text="Hay forma animal(determinante)")
             else:
                 if slot_forma == "inanimada":
                     if determinantes == '?':
-                        determinantes = 'm,'
+                        determinantes = ',m'
                     else: 
-                        determinantes = determinantes + 'm,'
+                        determinantes = determinantes + ',m'
                     dispatcher.utter_message(text="Hay forma inanimada(determinante)")
                 else:
                     dispatcher.utter_message(text="No hay forma(determinante)")
         if slot_movimiento == "true" and slot_forma == 'humana':
             if determinantes == '?':
-                determinantes = 'M,'
+                determinantes = ',M'
             else: 
-                determinantes = determinantes + 'M,'
+                determinantes = determinantes + ',M'
             dispatcher.utter_message(text="Hay movimiento humano M(determinante)")
         else:
             if slot_movimiento == "true" and slot_forma == 'inanimada':
                 if determinantes == '?':
-                    determinantes = 'm,'
+                    determinantes = ',m'
                 else: 
-                    determinantes = determinantes + 'm,'
+                    determinantes = determinantes + ',m'
                 dispatcher.utter_message(text="Hay movimiento inanimado m(determinante)")
             elif slot_movimiento == "true":
                 if determinantes == '?':
-                    determinantes = 'ind,'
+                    determinantes = ',ind'
                 else: 
-                    determinantes = determinantes + 'ind,'
+                    determinantes = determinantes + ',ind'
                 dispatcher.utter_message(text="Hay movimiento indefinido(determinante)")
             else:
                 dispatcher.utter_message(text="No hay movimiento(determinante)")
         if slot_textura == "true":
             if determinantes == '?':
-                determinantes = 'T,'
+                determinantes = ',T'
             else: 
-                determinantes = determinantes + 'T,'
+                determinantes = determinantes + ',T'
             dispatcher.utter_message(text="Hay textura(determinante)")
         else:
             dispatcher.utter_message(text="No hay textura(determinante)") 
         if slot_reflejo == "true":
             if determinantes == '?':
-                determinantes = 'r,'
+                determinantes = ',r'
             else: 
-                determinantes = determinantes + 'r,'
+                determinantes = determinantes + ',r'
             dispatcher.utter_message(text="Hay reflejo(determinante)")
         else:
             dispatcher.utter_message(text="No hay reflejo(determinante)")
@@ -371,29 +371,34 @@ class imprimirSlot(Action):
 
         wb = op.load_workbook('PlanillaZulliger.xlsx')
         ws = wb.get_sheet_by_name('Hoja de datos')
-        if determinantes != '?':
-            determinantes = determinantes[:-1]
-        if contenidos != '?':
-            contenidos = contenidos[:-1]
-        if lamina == (1 or 2 or 3):
+        if (determinantes != '?' and lamina < 4):
+            determinantes = determinantes[1:]
+        #elif determinantes != '?' and lamina < 4:
+
+        if (contenidos != '?' and lamina < 4):
+            contenidos = contenidos[1:]
+        print(lamina)
+        if (lamina == 1) or (lamina == 2) or (lamina == 3):
+            print(lamina)
             ws.append([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?']) 
         else:
             if lamina == 4:
                 #lamina == 1
                 vf2 = ws['F2'].value
-                ws['F2'] = str(vf2)  + determinantes #recortar repetidos y poner comas
+                print([*set(str(vf2)  + determinantes),])
+                #ws['F2'] = list(set(str(vf2)  + determinantes)) #recortar repetidos y poner comas
+                ws['F2'] = str(vf2)  + determinantes
                 ws['H2'] = par
                 vi2 = ws['I2'].value
                 ws['I2'] = str(vi2) + contenidos
+                #ws['I2'] = list(set(str(vi2) + contenidos))
                 vj2 = ws['J2'].value
-                ws['J2'] = str(vj2) + popular 
+                ws['J2'] = str(vj2) + popular
+                #ws['J2'] = list(set(str(vj2) + popular)) 
             elif lamina == 5:
                 lamina == 2
             elif lamina == 6:
                 lamina == 3
-            
-        #ws.append([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?']) ##necesito mergearlas no se como, o update de fila. 
-        #ws.merge([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?'])
         wb.save('PlanillaZulliger.xlsx')
         wb.close()
         planilla = pd.read_excel('PlanillaZulliger.xlsx')

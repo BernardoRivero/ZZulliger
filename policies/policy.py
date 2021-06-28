@@ -102,7 +102,6 @@ class TestPolicy(Policy):
                     tracker.update(SlotSet("response", "utter_Lamina3"))
 
                 elif self._contador == 3:
-                    tracker.update(SlotSet("contador", 3))
                     self._respuesta3 = tracker.latest_message.text
                     tracker.update(SlotSet("respuestaLamina3", self._respuesta3))
                     
