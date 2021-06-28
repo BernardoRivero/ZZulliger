@@ -17,6 +17,7 @@ import pandas as pd
 from pandas import ExcelWriter
 import openpyxl as op
 from openpyxl import load_workbook
+from collections import OrderedDict
 
 
 
@@ -283,7 +284,7 @@ class imprimirSlot(Action):
         if slot_vista == "true":
             if determinantes == '?':
                 determinantes = ',V'
-            else: 
+            else:
                 determinantes = determinantes + ',V'
             dispatcher.utter_message(text="Hay vista(determinante)")
         else:
@@ -299,7 +300,7 @@ class imprimirSlot(Action):
         if slot_cacromatico == "true":
             if determinantes == '?':
                 determinantes = ',C\''
-            else: 
+            else:
                 determinantes = determinantes + ',C\''
             dispatcher.utter_message(text="Hay color acromático(determinante)")
         else:
@@ -314,7 +315,7 @@ class imprimirSlot(Action):
             if slot_forma == "animal":
                 if determinantes == '?':
                     determinantes = ',FM'
-                else: 
+                else:
                     determinantes = determinantes + ',FM'
                 dispatcher.utter_message(text="Hay forma animal(determinante)")
             else:
@@ -385,8 +386,6 @@ class imprimirSlot(Action):
             if lamina == 4:
                 #lamina == 1
                 vf2 = ws['F2'].value
-                print([*set(str(vf2)  + determinantes),])
-                #ws['F2'] = list(set(str(vf2)  + determinantes)) #recortar repetidos y poner comas
                 ws['F2'] = str(vf2)  + determinantes
                 ws['H2'] = par
                 vi2 = ws['I2'].value
