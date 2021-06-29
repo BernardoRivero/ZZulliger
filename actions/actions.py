@@ -127,12 +127,11 @@ class imprimirSlot(Action):
         while _Hd: #3
             subconjunto = _Hd.pop()
             if subconjunto in respuesta:
-                dispatcher.utter_message("Hd")
-                dispatcher.utter_message(contenidos)
+                dispatcher.utter_message("está Hd en respuesta")
             if ((subconjunto in respuesta) and (' Hd,' not in contenidos)):
+                dispatcher.utter_message("(subconjunto in respuesta) and (' Hd,' not in contenidos)")
                 contenidos = contenidos + ' Hd,'
-                dispatcher.utter_message(contenidos)
-                dispatcher.utter_message("Hd")
+                dispatcher.utter_message('contenidos:'+ contenidos)
                 break
         while _Hx: #5
             subconjunto = _Hx.pop()
@@ -312,7 +311,12 @@ class imprimirSlot(Action):
         if slot_movimiento == "true" and slot_forma == 'humana':
             if determinantes == '?':
                 determinantes = ', M'
-            elif ' M,' not in determinantes and' M,' not in ws['F'+ str(lamina)].value: 
+            #dispatcher.utter_message(determinantes)
+            #dispatcher.utter_message('F'+ str(lamina))
+            #dispatcher.utter_message(ws['F'+ str(lamina)].value)
+            
+            if ' M,' not in determinantes and' M,' not in ws['F'+ str(lamina)].value: 
+                
                 determinantes = determinantes + ', M'
         else:
             if slot_movimiento == "true" and slot_forma == 'inanimada':
@@ -348,7 +352,7 @@ class imprimirSlot(Action):
 
         if (contenidos != '?' and contenidos != '' and lamina < 4):
             contenidos = contenidos[:-1]
-        else: contenidos = '?'
+        #else: contenidos = '?'
         if (lamina == 1) or (lamina == 2) or (lamina == 3):
             ws.append([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?']) 
         else:
@@ -382,8 +386,12 @@ class imprimirSlot(Action):
                     ws['F4'] = str(vf4)  + determinantes
                 ws['H4'] = par
                 vi4 = ws['I4'].value
-                if contenidos != '?':
-                    ws['I4'] = str(vi4) + contenidos
+                dispatcher.utter_message("celda:"+ vi4)
+                #if '?' not in contenidos:
+                dispatcher.utter_message('celda+caontenidos:'+ vi4 + contenidos)
+                dispatcher.utter_message(str(vi4) + contenidos)
+                ws['I4'] = str(vi4) + contenidos
+                #
                 vj4 = ws['J4'].value
                 if str(vj4) !='?' and str(vj4) != 'Po3':
                     ws['J4'] = str(vj4) + popular
