@@ -14,6 +14,8 @@ intents:
   - respuestaSector
   - respuestas2
   - respuestas3
+  - nombre
+
 
 entities:
 #determinantes
@@ -28,49 +30,34 @@ entities:
   - color_cromatico #listo
   - color_acromatico #listo
   - textura #pendiente, sin ejemplos
+  - nombre
   #- popular
 #contenidos
 
 slots:
+  nombre:
+    type: text
   vista:
-    type: text #listo
-    #initial_value: "false"
+    type: text 
   par:
-    type: text #listo
-    #initial_value: "false"
+    type: text 
   reflejo:
-    type: text #listo
-    #initial_value: "false"
+    type: text 
   forma:
-    type: text #listo
-    #initial_value: "false"
-  movimiento: #hago solo movimiento y en action detecto si es humano o animal de acuerdo a contenido. pendiente
+    type: text 
+  movimiento: #hago solo movimiento y en action detecto si es humano o animal de acuerdo a contenido
     type: text
-    #initial_value: "false"
-  #mov_humano:
-  #  type: bool
-  #mov_animal:
-  #  type: bool
-  #mov_inanimado:
-  #  type: bool
-  color_cromatico: #listo
+  color_cromatico: 
     type: text
-    #initial_value: "false"
-  color_acromatico: #listo
+  color_acromatico: 
     type: text
-    #initial_value: "false"
   textura:
     type: text 
-    #initial_value: "false"
   sombreado:
-    type: text #pendiente, sin ejemplos
-    #initial_value: "false"
-
-  ######## ESTE SLOT LO AGREGO BELEN ###########
+    type: text 
   # Es para guardar las rtas que va a dar el bot
   response:
     type: text
-  
   # Es para guardar las rtas de las laminas que ingresa el usuario
   respuestaLamina1:
     type: text
@@ -78,9 +65,7 @@ slots:
     type: text
   respuestaLamina3:
     type: text
-  
-  
-  # Es para guardar las razones de las respuestas de laslaminas que ingresa el usuario
+  # Es para guardar las razones de las respuestas de las laminas que ingresa el usuario
   razonesLamina1:
     type: text
   razonesLamina2:
@@ -90,13 +75,6 @@ slots:
   
   contador:
     type: text
-
-  #aparte respuestas populares
-  #popular:
-  #  type: bool
-  #populares
-  #insecto:
-   # type: text
 
 actions:
   - action_imprimir_determinantes
@@ -134,14 +112,9 @@ responses:
           \nEscribirá la respuesta que considere y presionará la tecla enter.
           \nSi comprendió escriba la palabra listo" 
 
-  #- text:   "Antes de comenzar a realizar el test es importante que usted se encuentre en un ambiente que\n
-   #         cumpla los siguientes requisitos:\n
-    #          - Debe ser un espacio cerrado\n
-     #         - Dicho espacio debe ser tranquilo y libre de distracciones\n
-      #        - Debe estar bien iluminado\n
-       #       - Asegúrese de estar cómodo\n
-        #    Cuando considere que está listo para comenzar el test introduzca la palabra listo."
-
+  utter_nombre:
+  - text: "Por favor ingrese su nombre y apellido"
+  
   utter_start:
   - text:   "¿Qué podría ser esto?"
     image: "https://imgur.com/a/Pd6NDCA"
@@ -186,14 +159,12 @@ responses:
 
   utter_no_vista:
   - text: "no hay vista"
-
   
   utter_color_cromatico:
   - text: "hay color cromático"
 
   utter_no_color_cromatico:
   - text: "no hay color cromático"
-
   
   utter_color_acromatico:
   - text: "hay color acromático"
@@ -221,15 +192,13 @@ responses:
 
   utter_movimiento_indefinido:
   - text: "hay movimiento indefinido"
-  
-  
+    
   utter_textura:
   - text: "hay textura"
 
   utter_no_textura:
   - text: "no hay textura"
 
-  
   utter_reflejo:
   - text: "hay reflejo"
 

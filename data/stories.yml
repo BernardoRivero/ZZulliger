@@ -29,10 +29,6 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story: Test
-  steps:
-  - intent: start
-  - action: utter_start
 
 #- story: imagen
 #  steps:

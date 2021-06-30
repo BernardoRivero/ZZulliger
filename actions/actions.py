@@ -98,8 +98,9 @@ class imprimirSlot(Action):
         _Po3 = {"persona","humano","hombre","mujer","niño","niña","chico","chica","señor","señora","personas","humanos","hombres","mujeres","niños","niñas","chicos","chicas","señores","señoras","payaso","payasos","hada","hadas","bruja","brujas","fantasma","fantasmas","enano","enanos","enana","enanas","demonio","demonios","ángel","ángeles","humanoide","humanoides","caricaturas","caricatura","monstruo","monstruos","duende","duendes"}
         #IMAGEN 2 NO TIENE RESPUESTAS POPULARES
         
+        slot_nombre = tracker.get_slot("nombre")
         #tomo planilla de excel
-        wb = op.load_workbook('PlanillaZulliger.xlsx')
+        wb = op.load_workbook(str(slot_nombre).replace(' ','') +'.xlsx')
         ws = wb.get_sheet_by_name('Hoja de datos')
 
         determinantes = '?'
@@ -116,7 +117,7 @@ class imprimirSlot(Action):
         respuesta = tracker.latest_message['text']
         while _H:#1
             subconjunto = _H.pop()
-            if subconjunto in respuesta and ' H,' not in contenidos and ' H,' not in ws['I'+str(lamina)].value:
+            if subconjunto in respuesta and ' H,' not in contenidos and ' H,' not in ws['I'+ str(lamina)].value:
                 contenidos = contenidos + ' H,'
                 break   
         while _ParentesisH:#2
@@ -395,9 +396,9 @@ class imprimirSlot(Action):
                 vj4 = ws['J4'].value
                 if str(vj4) !='?' and str(vj4) != 'Po3':
                     ws['J4'] = str(vj4) + popular
-        wb.save('PlanillaZulliger.xlsx')
+        wb.save(str(slot_nombre).replace(' ','') +'.xlsx')
         wb.close()
-        planilla = pd.read_excel('PlanillaZulliger.xlsx')
+        planilla = pd.read_excel(str(slot_nombre).replace(' ','') +'.xlsx')
         print(planilla)
 
         return [SlotSet("par","false"),SlotSet("vista","false"),SlotSet("color_cromatico","false"),SlotSet("color_acromatico","false"),SlotSet("forma","false"),SlotSet("movimiento","false"),SlotSet("textura","false"),SlotSet("reflejo","false"),SlotSet("response", "None")]

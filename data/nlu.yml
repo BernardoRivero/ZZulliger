@@ -382,3 +382,6 @@ nlu:
 #- intent: razones
 #  examples: |
     
+- intent: nombre
+  examples: |
+    - soy [Bernardo Rivero]{"entity": "nombre"}
