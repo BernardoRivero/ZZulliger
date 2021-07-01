@@ -59,28 +59,27 @@ class TestPolicy(Policy):
         if tracker.latest_action_name == "action_listen":
             # The user starts the conversation.
             if intent["name"] == "welcome":
-                return self._prediction(confidence_scores_for('utter_welcome', 1.0, domain))
-            elif intent["name"] == "start":
                 return self._prediction(confidence_scores_for('utter_nombre', 1.0, domain))
             elif intent["name"] == "nombre":
                 planilla = pd.DataFrame({'Lám': [''],
-                                        'N°Rta':[''],
-                                        'N°Loc':[''],
-                                        'Loc': [''],
-                                        'DQ': [''],
-                                        'Det': [''],
-                                        'FQ': [''],
-                                        '(2)': [''],
-                                        'Cont': [''],
-                                        'Pop': [''],
-                                        'Pje Z': [''],
-                                        'CCEE': ['']})
-                
+                        'N°Rta':[''],
+                        'N°Loc':[''],
+                        'Loc': [''],
+                        'DQ': [''],
+                        'Det': [''],
+                        'FQ': [''],
+                        '(2)': [''],
+                        'Cont': [''],
+                        'Pop': [''],
+                        'Pje Z': [''],
+                        'CCEE': ['']})
                 planilla = planilla[['Lám', 'N°Rta', 'N°Loc','Loc','DQ','Det','FQ','(2)','Cont','Pop','Pje Z','CCEE']]
                 slot_nombre = tracker.get_slot("nombre")
                 writer = ExcelWriter('C:/Users/Bernardo/Desktop/Zulliger/'+ str(slot_nombre).replace(' ','')+'.xlsx')
                 planilla.to_excel(writer, 'Hoja de datos', index=False)
                 writer.save()
+                return self._prediction(confidence_scores_for('utter_welcome', 1.0, domain))
+            elif intent["name"] == "start":
                 return self._prediction(confidence_scores_for('utter_start', 1.0, domain))
       
 

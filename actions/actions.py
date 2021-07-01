@@ -108,29 +108,18 @@ class imprimirSlot(Action):
         lamina = tracker.get_slot("contador")
         if lamina == 4:
             contenidos = ws['I'+str(lamina - 2)].value
-            print(contenidos)
             lamina = 1
         elif lamina == 5:
             contenidos = ws['I'+str(lamina - 2)].value
-            print(contenidos)
             lamina = 2
         elif lamina == 6:
             contenidos = ws['I'+str(lamina - 2)].value
-            print(contenidos)
             lamina = 3
-        print('lamina' + str(lamina))
-        print('celda:'+ str(lamina + 1))
-        #contenidos = ws['I'+str(lamina + 1)].value#####cata esta el problema
-        print('contenido:'+ str(contenidos))
-        #print(str(lamina + 1))
-        #print(ws['I'+str(lamina + 1)].value)
         respuesta = tracker.latest_message['text']
         contenidos = str(contenidos)
         while _H:#1
             subconjunto = _H.pop()
-            print(subconjunto)
             if subconjunto in respuesta:
-                print(subconjunto)
                 if ' H,' not in contenidos:
                     contenidos = contenidos + ' H,'
                 elif contenidos == '':
@@ -387,9 +376,6 @@ class imprimirSlot(Action):
         if slot_movimiento == "true" and slot_forma == 'humana':
             if determinantes == '?':
                 determinantes = ', M'
-            #dispatcher.utter_message(determinantes)
-            #dispatcher.utter_message('F'+ str(lamina))
-            #dispatcher.utter_message(ws['F'+ str(lamina)].value)
             
             if ' M,' not in determinantes and' M,' not in ws['F'+ str(lamina)].value: 
                 

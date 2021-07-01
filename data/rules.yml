@@ -12,8 +12,8 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
-- rule: welcome user
-  conversation_start: true  # this rule only applies at the beginning of a conversation
-  steps:
-  - intent: welcome
-  - action: utter_welcome
+#- rule: welcome user
+#  conversation_start: true  # this rule only applies at the beginning of a conversation
+#  steps:
+#  - intent: welcome
+#  - action: utter_welcome
