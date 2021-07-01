@@ -328,79 +328,87 @@ class imprimirSlot(Action):
         slot_textura = tracker.get_slot("textura")
         slot_reflejo = tracker.get_slot("reflejo")       
         
-        
-        if lamina == 4:
-            lamina = 1
-        elif lamina == 5:
-            lamina = 2
-        elif lamina == 6:
-            lamina = 3
-
-
         if slot_paridad == "true":
             par = '2'
         else:
             par ='?'
+        while _Xy: #26
+            subconjunto = _Xy.pop()
+            if subconjunto in respuesta:
+                if ' Xy,' not in contenidos:
+                    contenidos = contenidos + ' Xy,'
+                elif contenidos == '':
+                    contenidos = ' Xy,'    
+                break
+        if lamina == 4:
+            determinantes = ws['F'+str(lamina - 2)].value
+            lamina = 1
+        elif lamina == 5:
+            determinantes = ws['F'+str(lamina - 2)].value
+            lamina = 2
+        elif lamina == 6:
+            determinantes = ws['F'+str(lamina - 2)].value
+            lamina = 3
+
+
         if slot_vista == "true":
             if determinantes == '?':
-                determinantes = ', V'
+                determinantes = ' V,'
             elif ' V,' not in determinantes:
-                determinantes = determinantes + ', V'
+                determinantes = determinantes + ', V,'
         if slot_ccromatico == "true":
             if determinantes == '?':
-                determinantes = ', C'
+                determinantes = ' C,'
             elif ' C,' not in determinantes:
-                determinantes = determinantes + ', C'
+                determinantes = determinantes + ' C,'
         if slot_cacromatico == "true":
             if determinantes == '?':
-                determinantes = ', C\''
+                determinantes = ' C\','
             elif ' C\',' not in determinantes:
-                determinantes = determinantes + ', C\''
+                determinantes = determinantes + ' C\','
         if slot_forma == "humana":
             if determinantes == '?':
-                determinantes = ', M'
+                determinantes = ' M,'
             elif ' M,' not in determinantes and' M,' not in ws['F'+ str(lamina)].value: 
-                determinantes = determinantes + ', M'
+                determinantes = determinantes + ' M,'
         else:
             if slot_forma == "animal":
                 if determinantes == '?':
-                    determinantes = ', FM'
+                    determinantes = ' FM,'
                 elif ' FM,' not in determinantes:
-                    determinantes = determinantes + ', FM'
+                    determinantes = determinantes + ' FM,'
             else:
                 if slot_forma == "inanimada":
                     if determinantes == '?':
-                        determinantes = ', m'
+                        determinantes = ' m,'
                     elif ' m,' not in determinantes: 
-                        determinantes = determinantes + ', m'
+                        determinantes = determinantes + ' m,'
         if slot_movimiento == "true" and slot_forma == 'humana':
             if determinantes == '?':
-                determinantes = ', M'
-            
+                determinantes = ' M,'
             if ' M,' not in determinantes and' M,' not in ws['F'+ str(lamina)].value: 
-                
-                determinantes = determinantes + ', M'
+                determinantes = determinantes + ' M,'
         else:
             if slot_movimiento == "true" and slot_forma == 'inanimada':
                 if determinantes == '?':
-                    determinantes = ', m'
+                    determinantes = ' m,'
                 elif ' m,' not in determinantes: 
-                    determinantes = determinantes + ', m'
+                    determinantes = determinantes + ' m,'
             elif slot_movimiento == "true":
                 if determinantes == '?':
-                    determinantes = ', ind'
+                    determinantes = ' ind,'
                 elif ' ind,' not in determinantes:
-                    determinantes = determinantes + ', ind'
+                    determinantes = determinantes + ' ind,'
         if slot_textura == "true":
             if determinantes == '?':
-                determinantes = ', T'
+                determinantes = ' T,'
             elif ' T,' not in determinantes:
-                determinantes = determinantes + ', T'
+                determinantes = determinantes + ' T,'
         if slot_reflejo == "true":
             if determinantes == '?':
-                determinantes = ', r'
+                determinantes = ' r,'
             elif ' r,' not in determinantes:
-                determinantes = determinantes + ', r'
+                determinantes = determinantes + ' r,'
         
         lamina = tracker.get_slot("contador")
         # Lo que hace es mostrar el mensaje con la próxima imagen: utter_Lamina2 ó utter_Lamina3
@@ -408,87 +416,35 @@ class imprimirSlot(Action):
         if next_response != "None":
             dispatcher.utter_message(response=next_response)  
 
-        if (determinantes != '?' and lamina < 4):
-            determinantes = determinantes[1:]
-        #elif determinantes != '?' and lamina < 4:
-
-        #if (contenidos != '?' and contenidos != '' and lamina < 4):
-        #    contenidos = contenidos[:-1]
-        #else: contenidos = '?'
+        
         if (lamina == 1) or (lamina == 2) or (lamina == 3):
             ws.append([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?']) 
         else:
             if lamina == 4:
-                lamina == 1
-                vf2 = ws['F2'].value
                 if determinantes != '?':
-                    ws['F2'] = str(vf2)  + determinantes
-                ws['H2'] = par
-                vi2 = ws['I2'].value
+                    ws['F2'] = (determinantes)[:-1]
+                if  ws['H2'] != 'po1':
+                    ws['H2'] = par
                 if contenidos != '?':  
                     ws['I2'] = contenidos[:-1]
                 vj2 = ws['J2'].value
                 if str(vj2) !='?' and str(vj2) != 'Po1':
                     ws ['J2'] = str(vj2) + popular
             elif lamina == 5:
-                lamina == 2
-                vf3 = ws['F3'].value
                 if determinantes != '?':
-                    ws['F3'] = str(vf3)  + determinantes
-                ws['H3'] = par
-                vi3 = ws['I3'].value
+                    ws['F3'] = (determinantes)[:-1]
                 if contenidos != '?':
                     ws['I3'] =  contenidos[:-1]
             elif lamina == 6:
-                lamina == 3
-                vf4 = ws['F4'].value
                 if determinantes != '?':
-                    ws['F4'] = str(vf4)  + determinantes
-                ws['H4'] = par
-                vi4 = ws['I4'].value
+                    ws['F4'] = (determinantes)[:-1]
+                if  ws['H4'] != 'po3':
+                    ws['H4'] = par
                 ws['I4'] = contenidos[:-1]
                 vj4 = ws['J4'].value
                 if str(vj4) !='?' and str(vj4) != 'Po3':
                     ws['J4'] = str(vj4) + popular
-        
-        # else:
-        #     if lamina == 4:
-        #         lamina == 1
-        #         vf3 = ws['F3'].value
-        #         if determinantes != '?':
-        #             ws['F3'] = str(vf3)  + determinantes
-        #         ws['H3'] = par
-        #         vi3 = ws['I3'].value
-        #         if contenidos != '?':  
-        #             ws['I3'] = str(vi3) + contenidos
-        #         vj3 = ws['J3'].value
-        #         if str(vj3) !='?' and str(vj3) != 'Po1':
-        #             ws ['J3'] = str(vj3) + popular
-        #     elif lamina == 5:
-        #         lamina == 2
-        #         vf4 = ws['F4'].value
-        #         if determinantes != '?':
-        #             ws['F4'] = str(vf4)  + determinantes
-        #         ws['H4'] = par
-        #         vi4 = ws['I4'].value
-        #         if contenidos != '?':
-        #             ws['I4'] = str(vi4) + contenidos
-        #     elif lamina == 6:
-        #         lamina == 3
-        #         vf5 = ws['F5'].value
-        #         if determinantes != '?':
-        #             ws['F5'] = str(vf5)  + determinantes
-        #         ws['H5'] = par
-        #         vi5 = ws['I5'].value
-        #         dispatcher.utter_message("celda:"+ vi5)
-        #         #if '?' not in contenidos:
-        #         dispatcher.utter_message('celda+caontenidos:'+ vi5 + contenidos)
-        #         dispatcher.utter_message(str(vi5) + contenidos)
-        #         ws['I5'] = str(vi5) + contenidos
-        #         #
-        #         vj5 = ws['J5'].value
-        #         if str(vj5) !='?' and str(vj5) != 'Po3':
-        #             ws['J5'] = str(vj5) + popular
+    
         wb.save(str(slot_nombre).replace(' ','') +'.xlsx')
         wb.close()
         planilla = pd.read_excel(str(slot_nombre).replace(' ','') +'.xlsx')
