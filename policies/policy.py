@@ -1,6 +1,7 @@
 #from actions.actions import imprimirSlot
 #import json
 from typing import Any, List, Dict, Text, Optional
+from numpy.lib.ufunclike import _dispatcher
 import pandas as pd
 from pandas import ExcelWriter
 from rasa.core.featurizers.tracker_featurizers import TrackerFeaturizer
@@ -17,6 +18,7 @@ from rasa_sdk.executor import CollectingDispatcher
 
 from rasa.shared.core.events import SlotSet
 from rasa_sdk.events import BotUttered, SessionStarted
+import webbrowser
 
 class TestPolicy(Policy):
 
@@ -56,6 +58,7 @@ class TestPolicy(Policy):
         intent = tracker.latest_message.intent
         # If the last thing rasa did was listen to a user message, we need to
         # send back a response.
+        slot_nombre = str(tracker.get_slot("nombre")).replace(' ','')
         if tracker.latest_action_name == "action_listen":
             # The user starts the conversation.
             if intent["name"] == "welcome":
@@ -74,8 +77,8 @@ class TestPolicy(Policy):
                         'Pje Z': [''],
                         'CCEE': ['']})
                 planilla = planilla[['Lám', 'N°Rta', 'N°Loc','Loc','DQ','Det','FQ','(2)','Cont','Pop','Pje Z','CCEE']]
-                slot_nombre = tracker.get_slot("nombre")
-                writer = ExcelWriter('C:/Users/Bernardo/Desktop/Zulliger/'+ str(slot_nombre).replace(' ','')+'.xlsx')
+                slot_nombre = str(tracker.get_slot("nombre")).replace(' ','')
+                writer = ExcelWriter('C:/Users/Bernardo/Desktop/'+ slot_nombre+'.xlsx')
                 planilla.to_excel(writer, 'Hoja de datos', index=False)
                 writer.save()
                 return self._prediction(confidence_scores_for('utter_welcome', 1.0, domain))
@@ -123,9 +126,10 @@ class TestPolicy(Policy):
                          self._razones2 = tracker.latest_message.text
                          tracker.update(SlotSet("razonesLamina2", self._respuesta3))
                          tracker.update(SlotSet("response", "utter_Lamina3Razones"))
-                    #else:
-                     #    tracker.update(SlotSet("contador", 3))
+                    elif self._contador == 6:
+                        webbrowser.open("https://drive.google.com/drive/folders/1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl?usp=sharing")
                     return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
+                
         # If rasa latest action isn't "action_listen", it means the last thing
         # rasa did was send a response, so now we need to listen again so the
         # user can talk to us.

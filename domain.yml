@@ -78,6 +78,7 @@ slots:
 
 actions:
   - action_imprimir_determinantes
+  # - action_upload
 
 responses:
   utter_greet:
@@ -204,6 +205,9 @@ responses:
 
   utter_no_reflejo:
   - text: "no hay reflejo"
+
+  utter_upload:
+   - text: Por favor arrastre el archivo denominado {nombre}.xlxs y sueltelo en la página web que acaba de abrirse. Gracias
 
 session_config:
   session_expiration_time: 60
