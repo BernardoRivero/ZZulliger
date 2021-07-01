@@ -6,15 +6,17 @@ from pandas import ExcelWriter
 from rasa.core.featurizers.tracker_featurizers import TrackerFeaturizer
 from rasa.core.policies.policy import PolicyPrediction, confidence_scores_for, \
     Policy
+from rasa.shared.core.constants import SESSION_START_METADATA_SLOT
 from rasa.shared.core.domain import Domain
 from rasa.shared.core.generator import TrackerWithCachedStates
 from rasa.shared.core.trackers import DialogueStateTracker
 from rasa.shared.nlu.interpreter import NaturalLanguageInterpreter
 from rasa.utils.endpoints import *
 from typing import Any, Text, Dict, List
-#from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.executor import CollectingDispatcher
 
 from rasa.shared.core.events import SlotSet
+from rasa_sdk.events import BotUttered, SessionStarted
 
 class TestPolicy(Policy):
 
@@ -33,7 +35,6 @@ class TestPolicy(Policy):
         self._respuesta1 = ""
         self._respuesta2 = ""
         self._respuesta3 = ""
-        
         
     def train(
             self,

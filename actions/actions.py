@@ -102,132 +102,207 @@ class imprimirSlot(Action):
         #tomo planilla de excel
         wb = op.load_workbook(str(slot_nombre).replace(' ','') +'.xlsx')
         ws = wb.get_sheet_by_name('Hoja de datos')
-
-        determinantes = '?'
-        contenidos = ''
+        determinantes = '?'        
         popular = '?'
+        contenidos = ''
         lamina = tracker.get_slot("contador")
         if lamina == 4:
+            contenidos = ws['I'+str(lamina - 2)].value
+            print(contenidos)
             lamina = 1
         elif lamina == 5:
+            contenidos = ws['I'+str(lamina - 2)].value
+            print(contenidos)
             lamina = 2
         elif lamina == 6:
+            contenidos = ws['I'+str(lamina - 2)].value
+            print(contenidos)
             lamina = 3
-
+        print('lamina' + str(lamina))
+        print('celda:'+ str(lamina + 1))
+        #contenidos = ws['I'+str(lamina + 1)].value#####cata esta el problema
+        print('contenido:'+ str(contenidos))
+        #print(str(lamina + 1))
+        #print(ws['I'+str(lamina + 1)].value)
         respuesta = tracker.latest_message['text']
+        contenidos = str(contenidos)
         while _H:#1
             subconjunto = _H.pop()
-            if subconjunto in respuesta and ' H,' not in contenidos and ' H,' not in ws['I'+ str(lamina)].value:
-                contenidos = contenidos + ' H,'
+            print(subconjunto)
+            if subconjunto in respuesta:
+                print(subconjunto)
+                if ' H,' not in contenidos:
+                    contenidos = contenidos + ' H,'
+                elif contenidos == '':
+                    contenidos = ' H,'    
                 break   
         while _ParentesisH:#2
             subconjunto = _ParentesisH.pop()
-            if subconjunto in respuesta and ' (H),' not in contenidos:
-                contenidos = contenidos + ' (H),'
+            if subconjunto in respuesta:
+                if ' (H),' not in contenidos:
+                    contenidos = contenidos + ' (H),'
+                elif contenidos == '':
+                    contenidos = ' (H),'    
                 break
         while _Hd: #3
             subconjunto = _Hd.pop()
             if subconjunto in respuesta:
-                dispatcher.utter_message("está Hd en respuesta")
-            if ((subconjunto in respuesta) and (' Hd,' not in contenidos)):
-                dispatcher.utter_message("(subconjunto in respuesta) and (' Hd,' not in contenidos)")
-                contenidos = contenidos + ' Hd,'
-                dispatcher.utter_message('contenidos:'+ contenidos)
+                if ' Hd,' not in contenidos:
+                    contenidos = contenidos + ' Hd,'
+                elif contenidos == '':
+                    contenidos = ' Hd,'    
                 break
         while _Hx: #5
             subconjunto = _Hx.pop()
-            if subconjunto in respuesta and ' Hx,' not in contenidos:
-                contenidos = contenidos + ' Hx,'
+            if subconjunto in respuesta:
+                if ' Hx,' not in contenidos:
+                    contenidos = contenidos + ' Hx,'
+                elif contenidos == '':
+                    contenidos = ' Hx,'    
                 break
         while _A: #6
             subconjunto = _A.pop()
-            if subconjunto in respuesta and ' A,' not in contenidos:
-                contenidos = contenidos + ' A,'
+            if subconjunto in respuesta:
+                if ' A,' not in contenidos:
+                    contenidos = contenidos + ' A,'
+                elif contenidos == '':
+                    contenidos = ' A,'    
                 break
         while _ParentesisA: #7
             subconjunto = _ParentesisA.pop()
-            if subconjunto in respuesta and ' (A),' not in contenidos:
-                contenidos = contenidos + ' (A),'
+            if subconjunto in respuesta:
+                if ' (A),' not in contenidos:
+                    contenidos = contenidos + ' (A),'
+                elif contenidos == '':
+                    contenidos = ' (A),'    
                 break
         while _Ad: #8
             subconjunto = _Ad.pop()
-            if subconjunto in respuesta and ' Ad,' not in contenidos:
-                contenidos = contenidos + ' Ad,'
+            if subconjunto in respuesta:
+                if ' Ad,' not in contenidos:
+                    contenidos = contenidos + ' Ad,'
+                elif contenidos == '':
+                    contenidos = ' Ad,'    
                 break
         while _An: #10
             subconjunto = _An.pop()
-            if subconjunto in respuesta and ' An,' not in contenidos:
-                contenidos = contenidos + ' An,'
+            if subconjunto in respuesta:
+                if ' An,' not in contenidos:
+                    contenidos = contenidos + ' An,'
+                elif contenidos == '':
+                    contenidos = ' An,'    
                 break
         while _Art: #11
             subconjunto = _Art.pop()
-            if subconjunto in respuesta and ' Art,' not in contenidos:
-                contenidos = contenidos + ' Art,'
+            if subconjunto in respuesta:
+                if ' Art,' not in contenidos:
+                    contenidos = contenidos + ' Art,'
+                elif contenidos == '':
+                    contenidos = ' Art,'    
                 break
         while _Bl: #13
             subconjunto = _Bl.pop()
-            if subconjunto in respuesta and ' Bl,' not in contenidos:
-                contenidos = contenidos + ' Bl,'
+            if subconjunto in respuesta:
+                if ' Bl,' not in contenidos:
+                    contenidos = contenidos + ' Bl,'
+                elif contenidos == '':
+                    contenidos = ' Bl,'    
                 break
         while _Bt: #14
             subconjunto = _Bt.pop()
-            if subconjunto in respuesta and ' Bt,' not in contenidos:
-                contenidos = contenidos + ' Bt,'
+            if subconjunto in respuesta:
+                if ' Bt,' not in contenidos:
+                    contenidos = contenidos + ' Bt,'
+                elif contenidos == '':
+                    contenidos = ' Bt,'    
                 break
         while _Cg: #15
             subconjunto = _Cg.pop()
-            if subconjunto in respuesta and ' Cg,' not in contenidos:
-                contenidos = contenidos + ' Cg,'
+            if subconjunto in respuesta:
+                if ' Cg,' not in contenidos:
+                    contenidos = contenidos + ' Cg,'
+                elif contenidos == '':
+                    contenidos = ' Cg,'    
                 break
         while _Cl: #16
             subconjunto = _Cl.pop()
-            if subconjunto in respuesta and ' Cl,' not in contenidos:
-                contenidos = contenidos + ' Cl,'
+            if subconjunto in respuesta:
+                if ' Cl,' not in contenidos:
+                    contenidos = contenidos + ' Cl,'
+                elif contenidos == '':
+                    contenidos = ' Cl,'    
                 break
         while _Ex: #17
             subconjunto = _Ex.pop()
-            if subconjunto in respuesta and ' Ex,' not in contenidos:
-                contenidos = contenidos + ' Ex,'
+            if subconjunto in respuesta:
+                if ' Ex,' not in contenidos:
+                    contenidos = contenidos + ' Ex,'
+                elif contenidos == '':
+                    contenidos = ' Ex,'    
                 break
         while _Fi: #18
             subconjunto = _Fi.pop()
-            if subconjunto in respuesta and ' Fi,' not in contenidos:
-                contenidos = contenidos + ' Fi,'
+            if subconjunto in respuesta:
+                if ' Fi,' not in contenidos:
+                    contenidos = contenidos + ' Fi,'
+                elif contenidos == '':
+                    contenidos = ' Fi,'    
                 break
         while _Fd: #19
             subconjunto = _Fd.pop()
-            if subconjunto in respuesta and ' Fd,' not in contenidos:
-                contenidos = contenidos + ' Fd,'
+            if subconjunto in respuesta:
+                if ' Fd,' not in contenidos:
+                    contenidos = contenidos + ' Fd,'
+                elif contenidos == '':
+                    contenidos = ' Fd,'    
                 break
         while _Ge: #20
             subconjunto = _Ge.pop()
-            if subconjunto in respuesta and ' Ge,' not in contenidos:
-                contenidos = contenidos + ' Ge,'
+            if subconjunto in respuesta:
+                if ' Ge,' not in contenidos:
+                    contenidos = contenidos + ' Ge,'
+                elif contenidos == '':
+                    contenidos = ' Ge,'    
                 break
         while _Hh: #21
             subconjunto = _Hh.pop()
-            if subconjunto in respuesta and ' Hh,' not in contenidos:
-                contenidos = contenidos + ' Hh,'
+            if subconjunto in respuesta:
+                if ' Hh,' not in contenidos:
+                    contenidos = contenidos + ' Hh,'
+                elif contenidos == '':
+                    contenidos = ' Hh,'    
                 break
         while _Na: #23
             subconjunto = _Na.pop()
-            if subconjunto in respuesta and ' Na,' not in contenidos:
-                contenidos = contenidos + ' Na,'
+            if subconjunto in respuesta:
+                if ' Na,' not in contenidos:
+                    contenidos = contenidos + ' Na,'
+                elif contenidos == '':
+                    contenidos = ' Na,'    
                 break
         while _Sc: #24
             subconjunto = _Sc.pop()
-            if subconjunto in respuesta and ' Sc,' not in contenidos:
-                contenidos = contenidos + ' Sc,'
+            if subconjunto in respuesta:
+                if ' Sc,' not in contenidos:
+                    contenidos = contenidos + ' Sc,'
+                elif contenidos == '':
+                    contenidos = ' Sc,'    
                 break
         while _Sx: #25
             subconjunto = _Sx.pop()
-            if subconjunto in respuesta and ' Sx,' not in contenidos:
-                contenidos = contenidos + ' Sx,'
+            if subconjunto in respuesta:
+                if ' Sx,' not in contenidos:
+                    contenidos = contenidos + ' Sx,'
+                elif contenidos == '':
+                    contenidos = ' Sx,'    
                 break
         while _Xy: #26
             subconjunto = _Xy.pop()
-            if subconjunto in respuesta and ' Xy,' not in contenidos:
-                contenidos = contenidos + ' Xy,'
+            if subconjunto in respuesta:
+                if ' Xy,' not in contenidos:
+                    contenidos = contenidos + ' Xy,'
+                elif contenidos == '':
+                    contenidos = ' Xy,'    
                 break
         lamina = tracker.get_slot("contador")
         while _Po1: #27 populares
@@ -351,8 +426,8 @@ class imprimirSlot(Action):
             determinantes = determinantes[1:]
         #elif determinantes != '?' and lamina < 4:
 
-        if (contenidos != '?' and contenidos != '' and lamina < 4):
-            contenidos = contenidos[:-1]
+        #if (contenidos != '?' and contenidos != '' and lamina < 4):
+        #    contenidos = contenidos[:-1]
         #else: contenidos = '?'
         if (lamina == 1) or (lamina == 2) or (lamina == 3):
             ws.append([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?']) 
@@ -365,12 +440,10 @@ class imprimirSlot(Action):
                 ws['H2'] = par
                 vi2 = ws['I2'].value
                 if contenidos != '?':  
-                    ws['I2'] = str(vi2) + contenidos
-                #ws['I2'] = list(set(str(vi2) + contenidos))
+                    ws['I2'] = contenidos[:-1]
                 vj2 = ws['J2'].value
                 if str(vj2) !='?' and str(vj2) != 'Po1':
                     ws ['J2'] = str(vj2) + popular
-                #ws['J2'] = list(set(str(vj2) + popular)) 
             elif lamina == 5:
                 lamina == 2
                 vf3 = ws['F3'].value
@@ -379,7 +452,7 @@ class imprimirSlot(Action):
                 ws['H3'] = par
                 vi3 = ws['I3'].value
                 if contenidos != '?':
-                    ws['I3'] = str(vi3) + contenidos
+                    ws['I3'] =  contenidos[:-1]
             elif lamina == 6:
                 lamina == 3
                 vf4 = ws['F4'].value
@@ -387,15 +460,49 @@ class imprimirSlot(Action):
                     ws['F4'] = str(vf4)  + determinantes
                 ws['H4'] = par
                 vi4 = ws['I4'].value
-                dispatcher.utter_message("celda:"+ vi4)
-                #if '?' not in contenidos:
-                dispatcher.utter_message('celda+caontenidos:'+ vi4 + contenidos)
-                dispatcher.utter_message(str(vi4) + contenidos)
-                ws['I4'] = str(vi4) + contenidos
-                #
+                ws['I4'] = contenidos[:-1]
                 vj4 = ws['J4'].value
                 if str(vj4) !='?' and str(vj4) != 'Po3':
                     ws['J4'] = str(vj4) + popular
+        
+        # else:
+        #     if lamina == 4:
+        #         lamina == 1
+        #         vf3 = ws['F3'].value
+        #         if determinantes != '?':
+        #             ws['F3'] = str(vf3)  + determinantes
+        #         ws['H3'] = par
+        #         vi3 = ws['I3'].value
+        #         if contenidos != '?':  
+        #             ws['I3'] = str(vi3) + contenidos
+        #         vj3 = ws['J3'].value
+        #         if str(vj3) !='?' and str(vj3) != 'Po1':
+        #             ws ['J3'] = str(vj3) + popular
+        #     elif lamina == 5:
+        #         lamina == 2
+        #         vf4 = ws['F4'].value
+        #         if determinantes != '?':
+        #             ws['F4'] = str(vf4)  + determinantes
+        #         ws['H4'] = par
+        #         vi4 = ws['I4'].value
+        #         if contenidos != '?':
+        #             ws['I4'] = str(vi4) + contenidos
+        #     elif lamina == 6:
+        #         lamina == 3
+        #         vf5 = ws['F5'].value
+        #         if determinantes != '?':
+        #             ws['F5'] = str(vf5)  + determinantes
+        #         ws['H5'] = par
+        #         vi5 = ws['I5'].value
+        #         dispatcher.utter_message("celda:"+ vi5)
+        #         #if '?' not in contenidos:
+        #         dispatcher.utter_message('celda+caontenidos:'+ vi5 + contenidos)
+        #         dispatcher.utter_message(str(vi5) + contenidos)
+        #         ws['I5'] = str(vi5) + contenidos
+        #         #
+        #         vj5 = ws['J5'].value
+        #         if str(vj5) !='?' and str(vj5) != 'Po3':
+        #             ws['J5'] = str(vj5) + popular
         wb.save(str(slot_nombre).replace(' ','') +'.xlsx')
         wb.close()
         planilla = pd.read_excel(str(slot_nombre).replace(' ','') +'.xlsx')
