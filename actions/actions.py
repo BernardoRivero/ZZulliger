@@ -20,6 +20,7 @@ from openpyxl import load_workbook
 from collections import OrderedDict
 
 
+from pathlib import Path
 
 #
 #
@@ -38,6 +39,11 @@ from collections import OrderedDict
   
     
 class imprimirSlot(Action):
+
+
+    def get_project_root(self) -> Path:
+        return Path(__file__).parent.parent
+
     def name(self) -> Text:
         return "action_imprimir_determinantes"
         
@@ -368,35 +374,23 @@ class imprimirSlot(Action):
                 determinantes = ' C\','
             elif ' C\',' not in determinantes:
                 determinantes = determinantes + ' C\','
-        if slot_forma == "humana":
+        if ((slot_forma == "humana") or (slot_forma == "animal") or (slot_forma == "inanimada")):
             if determinantes == '?':
-                determinantes = ' M,'
-            elif ' M,' not in determinantes and' M,' not in ws['F'+ str(lamina)].value: 
-                determinantes = determinantes + ' M,'
-        else:
-            if slot_forma == "animal":
+                determinantes = ' F,'
+            elif ' F,' not in determinantes and' F,' not in ws['F'+ str(lamina)].value: 
+                determinantes = determinantes + ' F,'
+        if slot_movimiento == "true": 
+            if slot_forma == 'humana':
                 if determinantes == '?':
-                    determinantes = ' FM,'
-                elif ' FM,' not in determinantes:
-                    determinantes = determinantes + ' FM,'
-            else:
-                if slot_forma == "inanimada":
-                    if determinantes == '?':
-                        determinantes = ' m,'
-                    elif ' m,' not in determinantes: 
-                        determinantes = determinantes + ' m,'
-        if slot_movimiento == "true" and slot_forma == 'humana':
-            if determinantes == '?':
-                determinantes = ' M,'
-            if ' M,' not in determinantes and' M,' not in ws['F'+ str(lamina)].value: 
-                determinantes = determinantes + ' M,'
-        else:
-            if slot_movimiento == "true" and slot_forma == 'inanimada':
+                    determinantes = ' M,'
+                elif ' M,' not in determinantes:
+                    determinantes = determinantes + ' M,'
+            elif slot_forma == 'inanimada':
                 if determinantes == '?':
                     determinantes = ' m,'
                 elif ' m,' not in determinantes: 
                     determinantes = determinantes + ' m,'
-            elif slot_movimiento == "true":
+            else:
                 if determinantes == '?':
                     determinantes = ' ind,'
                 elif ' ind,' not in determinantes:
@@ -425,7 +419,7 @@ class imprimirSlot(Action):
             if lamina == 4:
                 if determinantes != '?':
                     ws['F2'] = (determinantes)[:-1]
-                if  ws['H2'] != 'po1':
+                if  ws['H2'] == '2':
                     ws['H2'] = par
                 if contenidos != '?':  
                     ws['I2'] = contenidos[:-1]
@@ -435,18 +429,20 @@ class imprimirSlot(Action):
             elif lamina == 5:
                 if determinantes != '?':
                     ws['F3'] = (determinantes)[:-1]
+                if  ws['H3'] == '2':
+                    ws['H3'] = par
                 if contenidos != '?':
                     ws['I3'] =  contenidos[:-1]
             elif lamina == 6:
                 if determinantes != '?':
                     ws['F4'] = (determinantes)[:-1]
-                if  ws['H4'] != 'po3':
+                if ws['H4'] == '?':
                     ws['H4'] = par
                 ws['I4'] = contenidos[:-1]
                 vj4 = ws['J4'].value
                 if str(vj4) !='?' and str(vj4) != 'Po3':
                     ws['J4'] = str(vj4) + popular
-                dispatcher.utter_message("Por favor arrastre el archivo denominado " + slot_nombre +".xlxs y sueltelo en la página web que acaba de abrirse. Gracias")
+                #dispatcher.utter_message("Por favor arrastre el archivo denominado " + slot_nombre +".xlxs ubicado en su escritorio y sueltelo en la página web que acaba de abrirse. Gracias")
         wb.save('C:/Users/Bernardo/Desktop/'+ slot_nombre+'.xlsx')
         wb.close()
         planilla = pd.read_excel('C:/Users/Bernardo/Desktop/'+ slot_nombre+'.xlsx')

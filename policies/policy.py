@@ -19,6 +19,8 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa.shared.core.events import SlotSet
 from rasa_sdk.events import BotUttered, SessionStarted
 import webbrowser
+from pathlib import Path
+
 
 class TestPolicy(Policy):
 
@@ -47,6 +49,9 @@ class TestPolicy(Policy):
     ) -> None:
         pass
 
+    def get_project_root(self) -> Path:
+        return Path(__file__).parent.parent
+    
     def predict_action_probabilities(
             self, 
             tracker: DialogueStateTracker,
@@ -63,7 +68,7 @@ class TestPolicy(Policy):
             # The user starts the conversation.
             if intent["name"] == "welcome":
                 return self._prediction(confidence_scores_for('utter_nombre', 1.0, domain))
-            elif intent["name"] == "nombre":
+            elif intent["name"] == "id":
                 planilla = pd.DataFrame({'Lám': [''],
                         'N°Rta':[''],
                         'N°Loc':[''],
@@ -126,8 +131,8 @@ class TestPolicy(Policy):
                          self._razones2 = tracker.latest_message.text
                          tracker.update(SlotSet("razonesLamina2", self._respuesta3))
                          tracker.update(SlotSet("response", "utter_Lamina3Razones"))
-                    elif self._contador == 6:
-                        webbrowser.open("https://drive.google.com/drive/folders/1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl?usp=sharing")
+                    #elif self._contador == 6:
+                        #webbrowser.open("https://drive.google.com/drive/folders/1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl?usp=sharing")
                     return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
                 
         # If rasa latest action isn't "action_listen", it means the last thing

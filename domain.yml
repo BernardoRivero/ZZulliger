@@ -14,7 +14,8 @@ intents:
   - respuestaSector
   - respuestas2
   - respuestas3
-  - nombre
+  #- nombre
+  - id
 
 
 entities:
@@ -114,19 +115,19 @@ responses:
           \nSi comprendió escriba la palabra listo" 
 
   utter_nombre:
-  - text: "Por favor ingrese su nombre y apellido"
+  - text: "Por favor ingrese su nombre y apellido con el formato: soy Nombre Apellido"
   
   utter_start:
   - text:   "¿Qué podría ser esto?"
-    image: "https://imgur.com/a/Pd6NDCA"
+    image: "https://i.imgur.com/ScvPxc3.jpeg"
   
   utter_Lamina2:
   - text: "¿Qué podría ser esto?"
-    image: "https://imgur.com/a/4UoY6KR"
+    image: "https://i.imgur.com/ZLC8NbE.jpeg"
 
   utter_Lamina3:
   - text: "¿Qué podría ser esto?"
-    image: "https://imgur.com/a/1ou8ala"
+    image: "https://i.imgur.com/9uHtd03.jpeg"
 
   utter_Lamina1Razones:
   - text: "Bien, usted escribió todo lo que la mancha podría ser, es decir, respondieron a la PRIMERA pregunta.
@@ -139,15 +140,15 @@ responses:
           \nsin responder. Recuerde que la pregunta es **¿QUE HAY EN LA MANCHA QUE HACE QUE PAREZCA LO QUE SE VIO?** y no confundir con
           \n¿donde está ubicado lo que anotaron?. Eso se hará mas adelante. Tenga cuidado con esa diferencia.
           \nSu respuesta:'{respuestaLamina1}'." # SLOT CON LA RTA DEL USUARIO
-    image: "https://imgur.com/a/Pd6NDCA"
+    image: "https://i.imgur.com/ScvPxc3.jpeg"
 
   utter_Lamina2Razones:
   - text: "Aquí Usted ha dicho '{respuestaLamina2}'." # SLOT CON LA RTA DEL USUARIO
-    image: "https://imgur.com/a/4UoY6KR"
+    image: "https://i.imgur.com/ZLC8NbE.jpeg"
 
   utter_Lamina3Razones:
   - text: "Aquí Usted ha dicho '{respuestaLamina3}'." # SLOT CON LA RTA DEL USUARIO 
-    image: "https://imgur.com/a/1ou8ala"
+    image: "https://i.imgur.com/9uHtd03.jpeg"
 
   utter_par:
   - text: "hay par"

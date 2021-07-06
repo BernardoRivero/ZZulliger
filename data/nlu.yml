@@ -379,9 +379,59 @@ nlu:
     - G
     - H
 
+
+- intent: id
+  examples: |
+    - soy [Bernardo Rivero](nombre)
+    - soy [Matias Guerrero](nombre)
+    - soy [Lucas Olivera](nombre)
+    - soy [Joshua Corino](nombre)
+    - soy [Magali Boulanger](nombre)
+    - soy [Erick Anderson](nombre)
+    - soy [Exequiel Herrera](nombre)
+    - soy [Belen Velazquez](nombre)
+    - soy [Bruno Guidi](nombre)
+    - soy [Gabriel Gonzalez](nombre)
+    - soy [Thomas Ojeda](nombre)
+    - soy [Benjamin figeiredo](nombre)
+    - soy [Marcelo Campo](nombre)
+    - soy [Ariel Bertino](nombre)
+    - soy [Carlos Aranda](nombre)
+    - soy [Dana	Alvarez](nombre)
+    - soy [Ezequiel	Carbajo](nombre)
+    - soy [Galo	Pianciola](nombre)
+    - soy [Gonzalo Gatica](nombre)
+    - soy [Guido Chiara](nombre)
+    - soy [Joaquin Mastropierro](nombre)
+    - soy [Joaquín Saralegui](nombre)
+    - soy [Eliel Viviant](nombre)
+    - soy [Juan Tripodi](nombre)
+    - soy [Juan Correa](nombre)
+    - soy [Lautaro Osinaga](nombre)
+    - soy [Leonel	Benavidez](nombre)
+    - soy [Mainque Menjoulou](nombre)
+    - soy [Martin	Lorenzo](nombre)
+    - soy [Martín	Visca](nombre)
+    - soy [Matias	Morandeira](nombre)
+    - soy [Matias Guerrero](nombre)
+    - soy [Mauro Andrés](nombre)
+    - soy [Nicolás Errea](nombre)
+    - soy [Palmira Benavente](nombre)
+    - soy [Ramiro Orella](nombre)
+    - soy [Santiago Ithurralde](nombre)
+    - soy [Sofia Barcelo](nombre)
+    - soy [Federico	Gregorio](nombre)
+    
+
+- regex: nombre
+  examples: |
+    - ^([a-zA-Z]{2,}\s[a-zA-z]{1,}\s?([a-zA-Z]{1,})?\s?([a-zA-Z]{1,})?)
+
+
 #- intent: razones
 #  examples: |
     
-- intent: nombre
-  examples: |
-    - soy [Bernardo Rivero]{"entity": "nombre"}
+#- intent: nombre
+#  examples: |
+#    - soy [Bernardo Rivero]{"entity": "nombre"}
+#    - soy []
