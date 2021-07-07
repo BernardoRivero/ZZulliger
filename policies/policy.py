@@ -21,7 +21,6 @@ from rasa_sdk.events import BotUttered, SessionStarted
 import webbrowser
 from pathlib import Path
 
-
 class TestPolicy(Policy):
 
     def __init__(
@@ -51,7 +50,7 @@ class TestPolicy(Policy):
 
     def get_project_root(self) -> Path:
         return Path(__file__).parent.parent
-    
+
     def predict_action_probabilities(
             self, 
             tracker: DialogueStateTracker,
@@ -83,7 +82,7 @@ class TestPolicy(Policy):
                         'CCEE': ['']})
                 planilla = planilla[['Lám', 'N°Rta', 'N°Loc','Loc','DQ','Det','FQ','(2)','Cont','Pop','Pje Z','CCEE']]
                 slot_nombre = str(tracker.get_slot("nombre")).replace(' ','')
-                writer = ExcelWriter('C:/Users/Bernardo/Desktop/'+ slot_nombre+'.xlsx')
+                writer = ExcelWriter(str(self.get_project_root())+'/files/'+ slot_nombre+'.xlsx')
                 planilla.to_excel(writer, 'Hoja de datos', index=False)
                 writer.save()
                 return self._prediction(confidence_scores_for('utter_welcome', 1.0, domain))
@@ -132,7 +131,7 @@ class TestPolicy(Policy):
                          tracker.update(SlotSet("razonesLamina2", self._respuesta3))
                          tracker.update(SlotSet("response", "utter_Lamina3Razones"))
                     #elif self._contador == 6:
-                        #webbrowser.open("https://drive.google.com/drive/folders/1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl?usp=sharing")
+                    #    webbrowser.open("https://drive.google.com/drive/folders/1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl?usp=sharing")
                     return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
                 
         # If rasa latest action isn't "action_listen", it means the last thing

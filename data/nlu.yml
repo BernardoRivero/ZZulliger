@@ -379,7 +379,6 @@ nlu:
     - G
     - H
 
-
 - intent: id
   examples: |
     - soy [Bernardo Rivero](nombre)

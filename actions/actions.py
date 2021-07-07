@@ -6,6 +6,7 @@
 
 
 # This is a simple example for a custom action which utters "Hello World!"
+import os.path
 from typing import Any, Text, Dict, List
 from openpyxl.reader.excel import ExcelReader
 from pandas.io.pytables import AppendableFrameTable
@@ -18,7 +19,7 @@ from pandas import ExcelWriter
 import openpyxl as op
 from openpyxl import load_workbook
 from collections import OrderedDict
-
+from GoogleDrive import *
 
 from pathlib import Path
 
@@ -108,7 +109,7 @@ class imprimirSlot(Action):
         slot_nombre = str(tracker.get_slot("nombre")).replace(' ','')
         SlotSet("nombre",slot_nombre)
         #tomo planilla de excel
-        wb = op.load_workbook('C:/Users/Bernardo/Desktop/'+ slot_nombre+'.xlsx')
+        wb = op.load_workbook(str(self.get_project_root())+'/files/'+ slot_nombre+'.xlsx')
         ws = wb.get_sheet_by_name('Hoja de datos')
         determinantes = '?'        
         popular = '?'
@@ -442,10 +443,11 @@ class imprimirSlot(Action):
                 vj4 = ws['J4'].value
                 if str(vj4) !='?' and str(vj4) != 'Po3':
                     ws['J4'] = str(vj4) + popular
-                #dispatcher.utter_message("Por favor arrastre el archivo denominado " + slot_nombre +".xlxs ubicado en su escritorio y sueltelo en la página web que acaba de abrirse. Gracias")
-        wb.save('C:/Users/Bernardo/Desktop/'+ slot_nombre+'.xlsx')
+                subir_archivo(str(self.get_project_root())+'/files/'+ slot_nombre+'.xlsx',"1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl")
+                #dispatcher.utter_message("Por favor arrastre el archivo denominado " + slot_nombre +".xlxs y sueltelo en la página web que acaba de abrirse. Gracias")
+        wb.save(str(self.get_project_root())+'/files/'+ slot_nombre+'.xlsx')
         wb.close()
-        planilla = pd.read_excel('C:/Users/Bernardo/Desktop/'+ slot_nombre+'.xlsx')
+        planilla = pd.read_excel(str(self.get_project_root())+'/files/'+ slot_nombre+'.xlsx')
         print(planilla)
 
 
