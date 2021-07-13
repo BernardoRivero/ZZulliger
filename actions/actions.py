@@ -415,7 +415,20 @@ class imprimirSlot(Action):
 
         
         if (lamina == 1) or (lamina == 2) or (lamina == 3):
-            ws.append([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?']) 
+            indice = str(lamina + 1)
+            ws['A' + indice]=lamina
+            ws['B' + indice]='1'
+            ws['C' + indice]='?'
+            ws['D' + indice]='?'
+            ws['E' + indice]='?'
+            ws['F' + indice]=determinantes
+            ws['G' + indice]='?'
+            ws['H' + indice]=par
+            ws['I' + indice]=contenidos
+            ws['J' + indice]=popular
+            ws['K' + indice]='?'
+            ws['L' + indice]='?'
+            #ws.append([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?']) 
         else:
             if lamina == 4:
                 if determinantes != '?':
