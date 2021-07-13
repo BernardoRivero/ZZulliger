@@ -341,14 +341,6 @@ class imprimirSlot(Action):
             par = '2'
         else:
             par ='?'
-        while _Xy: #26
-            subconjunto = _Xy.pop()
-            if subconjunto in respuesta:
-                if ' Xy,' not in contenidos:
-                    contenidos = contenidos + ' Xy,'
-                elif contenidos == '':
-                    contenidos = ' Xy,'    
-                break
         if lamina == 4:
             determinantes = ws['F'+str(lamina - 2)].value
             lamina = 1
