@@ -20,20 +20,20 @@ intents:
 
 entities:
 #determinantes
-  - vista #listo
-  - par #listo
-  - reflejo #pendiente, sin ejemplos
-  - forma
-  - movimiento
+  - vista 
+  - par 
+  - reflejo 
+  - forma #pendiente
+  - movimiento #pendiente
   - movimiento_humano
   - mov_animal
   - mov_inanimado
-  - color_cromatico #listo
-  - color_acromatico #listo
-  - textura #pendiente, sin ejemplos
+  - color_cromatico 
+  - color_acromatico 
+  - textura 
+  - sombreado #pendiente hundido
   - nombre
-  #- popular
-#contenidos
+ 
 
 slots:
   nombre:
