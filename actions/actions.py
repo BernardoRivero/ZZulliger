@@ -335,7 +335,8 @@ class imprimirSlot(Action):
         slot_forma = tracker.get_slot("forma")
         slot_movimiento = tracker.get_slot("movimiento")
         slot_textura = tracker.get_slot("textura")
-        slot_reflejo = tracker.get_slot("reflejo")       
+        slot_reflejo = tracker.get_slot("reflejo") 
+        slot_sombreado = tracker.get_slot("sombreado")      
         
         if slot_paridad == "true":
             par = '2'
@@ -398,6 +399,11 @@ class imprimirSlot(Action):
                 determinantes = ' r,'
             elif ' r,' not in determinantes:
                 determinantes = determinantes + ' r,'
+        if slot_sombreado == "true":
+            if determinantes == '?':
+                determinantes = ' Y,'
+            elif ' Y,' not in determinantes:
+                determinantes = determinantes + ' Y,'
         
         lamina = tracker.get_slot("contador")
         # Lo que hace es mostrar el mensaje con la próxima imagen: utter_Lamina2 ó utter_Lamina3
@@ -456,4 +462,4 @@ class imprimirSlot(Action):
         print(planilla)
 
 
-        return [SlotSet("par","false"),SlotSet("vista","false"),SlotSet("color_cromatico","false"),SlotSet("color_acromatico","false"),SlotSet("forma","false"),SlotSet("movimiento","false"),SlotSet("textura","false"),SlotSet("reflejo","false"),SlotSet("response", "None")]
+        return [SlotSet("par","false"),SlotSet("vista","false"),SlotSet("color_cromatico","false"),SlotSet("color_acromatico","false"),SlotSet("forma","false"),SlotSet("movimiento","false"),SlotSet("textura","false"),SlotSet("reflejo","false"),SlotSet("sombreado","false"),SlotSet("response", "None")]

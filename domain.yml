@@ -23,15 +23,15 @@ entities:
   - vista 
   - par 
   - reflejo 
-  - forma #pendiente
-  - movimiento #pendiente
+  - forma 
+  - movimiento 
   - movimiento_humano
   - mov_animal
   - mov_inanimado
   - color_cromatico 
   - color_acromatico 
   - textura 
-  - sombreado #pendiente hundido
+  - sombreado
   - nombre
  
 
