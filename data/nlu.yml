@@ -101,6 +101,7 @@ nlu:
 - intent: welcome
   examples: |
     - hola
+    - buenas
 
 - intent: respuestas
   examples: |
@@ -130,14 +131,14 @@ nlu:
     - un [reflejo]{"entity":"reflejo","value": "true"} de un [pollo]{"entity":"forma","value": "animal"} partido al medio 
     - un [pollo]{"entity":"forma","value": "animal"}
     - Noto [simetria]{"entity":"par","value": "true"} en la imagen, parece una [hoja]{"entity":"forma","value": "inanimada"} de arbol o un [insecto]{"entity":"forma","value": "animal"}
-    - una [cara]{"entity":"forma","value": "inanimada"}]{"entity":"forma","value": "inanimada"} de [perro]{"entity":"forma","value": "animal"} [lisa]{"entity":"textura","value": "true"}
+    - una [cara]{"entity":"forma","value": "inanimada"} de [perro]{"entity":"forma","value": "animal"} [lisa]{"entity":"textura","value": "true"}
     - un [cangrejo]{"entity":"forma","value": "animal"} [duro]{"entity":"textura","value": "true"}
     - [cangrejo]{"entity":"forma","value": "animal"} [reflejado]{"entity":"reflejo","value": "true"} en el agua
     - [cangrejo]{"entity":"forma","value": "animal"}
     - [cangrejos]{"entity":"forma","value": "animal"} [duros]{"entity":"textura","value": "true"}
     - un [murcielago]{"entity":"forma","value": "animal"}
     - un [escarabajo]{"entity":"forma","value": "animal"} aplastado
-    - la [cara]{"entity":"forma","value": "inanimada"}]{"entity":"forma","value": "inanimada"} de un [elefante]{"entity":"forma","value": "animal"} [lisa]{"entity":"textura","value": "true"}
+    - la [cara]{"entity":"forma","value": "inanimada"} de un [elefante]{"entity":"forma","value": "animal"} [lisa]{"entity":"textura","value": "true"}
     - [dos]{"entity":"par","value": "true"} [palos]{"entity":"forma","value": "inanimada"} [vistos]{"entity":"vista","value": "true"} desde arriba
     - [dos]{"entity":"par","value": "true"} [espadas]{"entity":"forma","value": "inanimada"}
     - un [bicho]{"entity":"forma","value": "animal"} microscopico
@@ -180,7 +181,7 @@ nlu:
     - un [leon]{"entity":"forma","value": "animal"} entre [vegetacion]{"entity":"forma","value": "inanimada"}
     - un [leon]{"entity":"forma","value": "animal"} [reflejado]{"entity":"reflejo","value": "true"} en el agua entre [vegetacion]{"entity":"forma","value": "inanimada"}
     - [dos]{"entity":"par","value": "true"} [peces]{"entity":"forma","value": "animal"} con un [alga]{"entity":"forma","value": "inanimada"} [blanda]{"entity":"textura","value": "true"} encima que tiene un [ojo]{"entity":"forma","value": "inanimada"}
-    - una [cara]{"entity":"forma","value": "inanimada"}]{"entity":"forma","value": "inanimada"} de [animal]{"entity":"forma","value": "animal"} raro que esta [cruzando]{"entity":"movimiento","value": "true"} los [ojos]{"entity":"forma","value": "inanimada"} [vista]{"entity":"vista","value": "true"} desde arriba
+    - una [cara]{"entity":"forma","value": "inanimada"} de [animal]{"entity":"forma","value": "animal"} raro que esta [cruzando]{"entity":"movimiento","value": "true"} los [ojos]{"entity":"forma","value": "inanimada"} [vista]{"entity":"vista","value": "true"} desde arriba
     - [dos]{"entity":"par","value": "true"} [peces]{"entity":"forma","value": "animal"}
     - [bacterias]{"entity":"forma","value": "animal"} [animadas]{"entity":"movimiento","value": "true"}
     - [lucha]{"entity":"movimiento","value": "true"} entre [bichos]{"entity":"forma","value": "animal"} [verdes]{"entity":"color_cromatico","value": "true"} [peludos]{"entity":"textura","value": "true"} que controlan lo [naranja]{"entity":"color_cromatico","value": "true"} para obtener lo [rojo]{"entity":"color_cromatico","value": "true"} como premio
@@ -204,7 +205,7 @@ nlu:
     - un [cangrejo]{"entity":"forma","value": "animal"} [visto]{"entity":"vista","value": "true"} desde arriba [espejado]{"entity":"reflejo","value": "true"} en el agua
     - [dos]{"entity":"par","value": "true"} [pescados]{"entity":"forma","value": "animal"} [naranjas]{"entity":"color_cromatico","value": "true"} [enfrentados]{"entity":"movimiento","value": "true"} y algas arribas
     - una pintura en un [casco]{"entity":"forma","value": "inanimada"} de [bicicleta]{"entity":"forma","value": "inanimada"}
-    - [dos]{"entity":"par","value": "true"} [organismos]{"entity":"forma","value": "animal"} [verdes]{"entity":"color_cromatico","value": "true"} [vistos]{"entity":"vista","value": "true"} desde arriba sobre un [altar]{"entity":"forma","value": "true"} [alabando]{"entity":"movimiento","value": "true"} a un organismo [rojo]{"entity":"color_cromatico","value": "true"}
+    - [dos]{"entity":"par","value": "true"} [organismos]{"entity":"forma","value": "animal"} [verdes]{"entity":"color_cromatico","value": "true"} [vistos]{"entity":"vista","value": "true"} desde arriba sobre un [altar]{"entity":"forma","value": "inanimada"} [alabando]{"entity":"movimiento","value": "true"} a un organismo [rojo]{"entity":"color_cromatico","value": "true"}
     - 4 [personas]{"entity":"forma","value": "humana"} [bailando]{"entity":"movimiento","value": "true"}
     - una [fogata]{"entity":"forma","value": "inanimada"} [caliente]{"entity":"textura","value": "true"}
     - una [fogata]{"entity":"forma","value": "inanimada"}
@@ -212,7 +213,7 @@ nlu:
     - [dos]{"entity":"par","value": "true"} [personas]{"entity":"forma","value": "humana"} alrededor de un [fuego]{"entity":"forma","value": "inanimada"} [caliente]{"entity":"textura","value": "true"}
     - [luchadores]{"entity":"forma","value": "humana"}
     - [luchadores]{"entity":"forma","value": "humana"} [peleando]{"entity":"movimiento","value": "true"}
-    - una [cara]{"entity":"forma","value": "inanimada"}]{"entity":"forma","value": "inanimada"}
+    - una [cara]{"entity":"forma","value": "inanimada"}
     - [mariposa]{"entity":"forma","value": "animal"} [suave]{"entity":"textura","value": "true"}
     - [mariposa]{"entity":"forma","value": "animal"} [comiendo]{"entity":"movimiento","value": "true"}
     - señal de destino
@@ -230,7 +231,7 @@ nlu:
     - algun tipo de [animal]{"entity":"forma","value": "animal"}
     - [dos]{"entity":"par","value": "true"} [personas]{"entity":"forma","value": "humana"} [bailando]{"entity":"movimiento","value": "true"}
     - [dos]{"entity":"par","value": "true"} [personas]{"entity":"forma","value": "humana"} [peleando]{"entity":"movimiento","value": "true"}
-    - [dos]{"entity":"par","value": "true"} aliens [negros]{"entity":"color_acromatico","value": "true"} con [personas]{"entity":"forma","value": "humana"} [rojas]{"entity":"color_cromatico","value": "true"} en las [manos]{"entity":"forma","value": "true"}
+    - [dos]{"entity":"par","value": "true"} aliens [negros]{"entity":"color_acromatico","value": "true"} con [personas]{"entity":"forma","value": "humana"} [rojas]{"entity":"color_cromatico","value": "true"} en las [manos]{"entity":"forma","value": "inanimada"}
     - la [cara]{"entity":"forma","value": "inanimada"} de un [animal]{"entity":"forma","value": "animal"}
     - la [cara]{"entity":"forma","value": "inanimada"} de una [vaca]{"entity":"forma","value": "animal"} con unos colgantes en las orejas
     - la [cara]{"entity":"forma","value": "inanimada"} y el maquillaje de un [payaso]{"entity":"forma","value": "humana"}
@@ -251,14 +252,14 @@ nlu:
     - [dos]{"entity":"par","value": "true"} [ciempies]{"entity":"forma","value": "animal"} [asperos]{"entity":"textura","value": "true"} 
     - [dos]{"entity":"par","value": "true"} [ciempies]{"entity":"forma","value": "animal"} 
     - [dos]{"entity":"par","value": "true"} [gallinas]{"entity":"forma","value": "animal"}
-    - la [cara]{"entity":"forma","value": "inanimada"}]{"entity":"forma","value": "inanimada"} de una [mujer]{"entity":"forma","value": "humana"} con labios pintados y [aritos]{"entity":"forma","value": "true"} [rojos]{"entity":"color_cromatico","value": "true"}, insectoide
+    - la [cara]{"entity":"forma","value": "inanimada"} de una [mujer]{"entity":"forma","value": "humana"} con labios pintados y [aritos]{"entity":"forma","value": "true"} [rojos]{"entity":"color_cromatico","value": "true"}, insectoide
     - [dos]{"entity":"par","value": "true"} [hombres]{"entity":"forma","value": "humana"} con [lamparas]{"entity":"forma","value": "true"} [enfrentados]{"entity":"movimiento","value": "true"}
     - [dos]{"entity":"par","value": "true"} [hombres]{"entity":"forma","value": "humana"} [vistos]{"entity":"vista","value": "true"} desde arriba
     - una [cueva]{"entity":"forma","value": "inanimada"} con el sol [reflejado]{"entity":"reflejo","value": "true"}  en el agua del piso y postes de luz a los costados
     - Puedo observar una [simetria]{"entity":"par","value": "true"} vertical. Veo en la parte de arriba partes que podrian ser como parte de la boca. Observo patas a los costados y atras. La froma rara como con pelos me hace pensar que es un ser microscopico
     - La [forma]{"entity":"forma","value": "inanimada"} de la imagen
     - El [sombreado]{"entity":"sombreado","value": "true"} 
-    - alas y la [cabeza]{"entity":"forma","val[caraue": "inanimada"}
+    - alas y la [cabeza]{"entity":"forma","value": "inanimada"}
     - una []{"entity":"forma","value": "inanimada"}]{"entity":"forma","value": "inanimada"}, [2]{"entity":"par","value": "true"} brazos [sujetando]{"entity":"movimiento","value": "true"} [dos]{"entity":"par","value": "true"} cuchillos y [dos]{"entity":"par","value": "true"} pies
     - cortes o roturas
     - la [forma]{"entity":"forma","value": "inanimada"} mas ancha abajo
@@ -276,8 +277,8 @@ nlu:
     - Hay una serie de rectas, como en la parte inferior que me dan a entender que podrian ser unas antenas o patas del [bicho]{"entity":"forma","value": "animal"}. En la parte superior tambien una serie de rectas, lineas que me dan la impresion que podrian ser las patas o con lo que el [bicho]{"entity":"forma","value": "animal"} podria picar o morder. Lo de color mas claro me da la impresion que podria complementar el cuerpo del [bicho]{"entity":"forma","value": "animal"}
     - antenas y pinzas
     - las patas de [cangrejo]{"entity":"forma","value": "animal"}
-    - una [silueta]{"entity":"forma","value": "inanimada"}]{"entity":"forma","value": "inanimada"} [negra]{"entity":"color_acromatico","value": "true"} formando ambas alas
-    - la [silueta]{"entity":"forma","value": "inanimada"}]{"entity":"forma","value": "inanimada"} [negra]{"entity":"color_acromatico","value": "true"} parece la hoja de un arbol
+    - una [silueta]{"entity":"forma","value": "inanimada"} [negra]{"entity":"color_acromatico","value": "true"} formando ambas alas
+    - la [silueta]{"entity":"forma","value": "inanimada"} [negra]{"entity":"color_acromatico","value": "true"} parece la hoja de un arbol
     - alas del [insecto]{"entity":"forma","value": "animal"}, patas y el rostro. Extraño porque no se parece a ningun [insecto]{"entity":"forma","value": "animal"} que he visto
     - La [figura]{"entity":"forma","value": "inanimada"} interior mas [oscura]{"entity":"color_acromatico","value": "true"} y la figura exterior que lo rodea, junto los ojos y extremidades que parece tener esta última
     - Para el [insecto]{"entity":"forma","value": "animal"}, en la imagen hay una especie de cuerpo del bicho con seis patas y una posible cabeza que tiene [dos]{"entity":"par","value": "true"} agujeros simulando ojos
@@ -299,13 +300,13 @@ nlu:
     - [forma]{"entity":"forma","value": "inanimada"} de [pez]{"entity":"forma","value": "animal"} y/o [forma]{"entity":"forma","value": "inanimada"} de la cabeza del [hipocampo]{"entity":"forma","value": "animal"}
     - los [huesos]{"entity":"forma","value": "inanimada"} de la columna vertebral
     - lo primero por la [forma]{"entity":"forma","value": "inanimada"} de la foto
-    - lo segundo por las [formas]{"entity":"forma","value": "inanimada"}[verde]{"entity":"color_cromatico","value": "true"}
+    - lo segundo por las [formas]{"entity":"forma","value": "inanimada"} [verde]{"entity":"color_cromatico","value": "true"}
     - lo ultimo por la parte de abajo que tiene como trompa y cola
     - La parte [roja]{"entity":"color_cromatico","value": "true"} parece una cabeza de un [león]{"entity":"forma","value": "animal"} con la melena y lo [verde]{"entity":"color_cromatico","value": "true"} arbustos en los que el [león]{"entity":"forma","value": "animal"} está agazapado. Lo marrón podría ser el suelo
-    - Los [dos]{"entity":"par","value": "true"} [peces]{"entity":"forma","value": "animal"} son las [formas]{"entity":"forma","value": "inanimada"}[naranjas]{"entity":"color_cromatico","value": "true"}, y las algas con ojos son las partes [verdes]{"entity":"color_cromatico","value": "true"}
+    - Los [dos]{"entity":"par","value": "true"} [peces]{"entity":"forma","value": "animal"} son las [formas]{"entity":"forma","value": "inanimada"} [naranjas]{"entity":"color_cromatico","value": "true"}, y las algas con ojos son las partes [verdes]{"entity":"color_cromatico","value": "true"}
     - La parte [naranja]{"entity":"color_cromatico","value": "true"} es la parte del medio de la [cara]{"entity":"forma","value": "inanimada"} con la nariz que son los [dos]{"entity":"par","value": "true"} [ovalos]{"entity":"forma","value": "inanimada"}, y lo [verdes]{"entity":"color_cromatico","value": "true"} son los ojos que se estan mirando
-    - Las [formas]{"entity":"forma","value": "inanimada"}[naranjas]{"entity":"color_cromatico","value": "true"} me parecian [peces]{"entity":"forma","value": "animal"} con su esqueleto dentro
-    - Las [formas]{"entity":"forma","value": "inanimada"}[verdes]{"entity":"color_cromatico","value": "true"} me parecieron las [bacterias]{"entity":"forma","value": "animal"} [animadas]{"entity":"movimiento","value": "true"}
+    - Las [formas]{"entity":"forma","value": "inanimada"} [naranjas]{"entity":"color_cromatico","value": "true"} me parecian [peces]{"entity":"forma","value": "animal"} con su esqueleto dentro
+    - Las [formas]{"entity":"forma","value": "inanimada"} [verdes]{"entity":"color_cromatico","value": "true"} me parecieron las [bacterias]{"entity":"forma","value": "animal"} [animadas]{"entity":"movimiento","value": "true"}
     - Hay [dos]{"entity":"par","value": "true"} [bichos]{"entity":"forma","value": "animal"} [verdes]{"entity":"color_cromatico","value": "true"} que parecen tener un solo ojo como Mike Wazowski que estan montando lo [naranja]{"entity":"color_cromatico","value": "true"} que podrian ser [dos]{"entity":"par","value": "true"} [animales]{"entity":"forma","value": "animal"}, se estan enfrentando por conquistar u obtener lo [rojo]{"entity":"color_cromatico","value": "true"} del centro
     - [Peces]{"entity":"forma","value": "animal"}: cola
     - [Peces]{"entity":"forma","value": "animal"}: branquias
@@ -334,15 +335,15 @@ nlu:
     - [dos]{"entity":"par","value": "true"} pinzas
     - [dos]{"entity":"par","value": "true"} caras de [perfil]{"entity":"vista","value": "true"} y una especia de torso con brazos
     - [dos]{"entity":"par","value": "true"} cabezas de dragon
-    - la [silueta]{"entity":"forma","value": "inanimada"}]{"entity":"forma","value": "inanimada"} [roja]{"entity":"color_cromatico","value": "true"} en la parte central inferior
+    - la [silueta]{"entity":"forma","value": "inanimada"} [roja]{"entity":"color_cromatico","value": "true"} en la parte central inferior
     - las [siluetas]{"entity":"forma","value": "inanimada"} a los extremos inferiores
-    - lo aclare en la anterior, las [formas]{"entity":"forma","value": "inanimada"}de garras o patas [negras]{"entity":"color_acromatico","value": "true"} a los costados de la [mariposa]{"entity":"forma","value": "animal"}
-    - Son [dos]{"entity":"par","value": "true"} personas por las [formas]{"entity":"forma","value": "inanimada"}similares y humanoides. Parece que bailan porque las posiciones son iguales
+    - lo aclare en la anterior, las [formas]{"entity":"forma","value": "inanimada"}  de garras o patas [negras]{"entity":"color_acromatico","value": "true"} a los costados de la [mariposa]{"entity":"forma","value": "animal"}
+    - Son [dos]{"entity":"par","value": "true"} personas por las [formas]{"entity":"forma","value": "inanimada"} similares y humanoides. Parece que bailan porque las posiciones son iguales
     - Se podría decir que están [peleando]{"entity":"movimiento","value": "true"} y ambas se están preparando para pegar un golpe
     - la [cara]{"entity":"forma","value": "inanimada"} de un [animal]{"entity":"forma","value": "animal"} por la [forma]{"entity":"forma","value": "inanimada"} y que lo [rojo]{"entity":"color_cromatico","value": "true"} del medio parece la nariz
     - [dos]{"entity":"par","value": "true"} aliens por la parte [gris]{"entity":"color_acromatico","value": "true"} que tiene la [forma]{"entity":"forma","value": "inanimada"} de aliens y lo rojo que esta a los costados parecen persona por la forma
     - la [cara]{"entity":"forma","value": "inanimada"} de una [vaca]{"entity":"forma","value": "animal"} por la [forma]{"entity":"forma","value": "inanimada"} y lo de la nariz, y lo de los colgantes seria lo [rojo]{"entity":"color_cromatico","value": "true"} de los costados porque parecen las orejas lo que sobresale [gris]{"entity":"color_acromatico","value": "true"}
-    - Todas las [formas]{"entity":"forma","value": "inanimada"}combinadas me parecieron el maquillaje de un [payaso]{"entity":"forma","value": "humana"} y la parte mas oscura de las [formas]{"entity":"forma","value": "inanimada"}mas grandes, los ojos
+    - Todas las [formas]{"entity":"forma","value": "inanimada"} combinadas me parecieron el maquillaje de un [payaso]{"entity":"forma","value": "humana"} y la parte mas oscura de las [formas]{"entity":"forma","value": "inanimada"} mas grandes, los ojos
     - La [mariposa]{"entity":"forma","value": "animal"} es la figura [roja]{"entity":"color_cromatico","value": "true"} del centro
     - Los [conejos]{"entity":"forma","value": "animal"} son las figuras [rojas]{"entity":"color_cromatico","value": "true"} de los costados
     - Los [caracoles]{"entity":"forma","value": "animal"} son las figuras [oscuras]{"entity":"color_acromatico","value": "true"} de abajo (las que tienen como una pequeña cola)
@@ -392,7 +393,7 @@ nlu:
     - lo otro patas y manos de un [animal]{"entity":"forma","value": "animal"} como un [oso]{"entity":"forma","value": "animal"} [nadando]{"entity":"movimiento","value": "true"} pero sin cabeza, como es una figura [espejada]{"entity":"reflejo","value": "true"} veo [dos]{"entity":"par","value": "true"} de estos [animales]{"entity":"forma","value": "animal"} enfrentados. 
     - [dos]{"entity":"par","value": "true"} [hombres]{"entity":"forma","value": "humana"} [cayéndose]{"entity":"movimiento","value": "true"} para atrás 
     - lo [naranja]{"entity":"color_cromatico","value": "true"} [dos]{"entity":"par","value": "true"} [chicos]{"entity":"forma","value": "humana"} [corriendo]{"entity":"movimiento","value": "true"} con un cuerno 
-    - Veo la [silueta]{"entity":"forma","value": "inanimada"}[cara]{"entity":"forma","value": "inanimada"} de [dos]{"entity":"par","value": "true"} cabezas de [dos]{"entity":"par","value": "true"} hombres, su nariz, su pera el [hundido]{"entity":"sombreado","value": "true"} de sus ojos por eso la [cara]{"entity":"forma","value": "inanimada"}.
+    - Veo la [silueta]{"entity":"forma","value": "inanimada"} [cara]{"entity":"forma","value": "inanimada"} de [dos]{"entity":"par","value": "true"} cabezas de [dos]{"entity":"par","value": "true"} hombres, su nariz, su pera el [hundido]{"entity":"sombreado","value": "true"} de sus ojos por eso la [cara]{"entity":"forma","value": "inanimada"}.
     - sería el cuerpo deformado pero dando la impresión de que está [cayéndose]{"entity":"movimiento","value": "true"} como una de sus manos hacia atrás para apoyar al caerse.    
     - Lo [rojo]{"entity":"color_cromatico","value": "true"} de la punta la [silueta]{"entity":"forma","value": "inanimada"} de [dos]{"entity":"par","value": "true"} [personas]{"entity":"forma","value": "humana"} pequeñas [corriendo]{"entity":"movimiento","value": "true"} ya que una de sus piernas está levantada y un cuerno tal vez por un disfraz.  
     - una [abeja]{"entity":"forma","value": "animal"}
@@ -447,7 +448,7 @@ nlu:
     - La parte [blanca]{"entity":"color_acromatico","value": "true"} del medio parece una [persona]{"entity":"forma","value": "humana"} con los brazos sobre el mentón.
     - La parte [naranja]{"entity":"color_cromatico","value": "true"} se asemeja a [dos]{"entity":"par","value": "true"} [camarones]{"entity":"forma","value": "animal"} enfrentados [cara]{"entity":"forma","value": "inanimada"} a [cara]{"entity":"forma","value": "inanimada"}, la parte del cuerpo a los lados.
     - Los laterales [grises]{"entity":"color_acromatico","value": "true"} serian los perfiles y la parte [blanca]{"entity":"color_acromatico","value": "true"} y [roja]{"entity":"color_cromatico","value": "true"} la boca.
-    - La parte [roja]{"entity":"color_cromatico","value": "true"} a los costados parecen [dos]{"entity":"par","value": "true"} [personas]{"entity":"forma","value": "h[caraumana"} [saltando]{"entity":"movimiento","value": "true"} [bailando]{"entity":"movimiento","value": "true"}
+    - La parte [roja]{"entity":"color_cromatico","value": "true"} a los costados parecen [dos]{"entity":"par","value": "true"} [personas]{"entity":"forma","value": "humana"} [saltando]{"entity":"movimiento","value": "true"} [bailando]{"entity":"movimiento","value": "true"}
     - La [cara]{"entity":"forma","value": "inanimada"} de una [mujer]{"entity":"forma","value": "humana"}, los costados [rojos]{"entity":"color_cromatico","value": "true"} pueden ser aritos, los laterales los [perfiles]{"entity":"vista","value": "true"}
     - Galaxia
     - [Pollo]{"entity":"forma","value": "animal"}
@@ -498,14 +499,14 @@ nlu:
     - Figura [espejada]{"entity":"reflejo","value": "true"} de una persona [pateando]{"entity":"movimiento","value": "true"} una pelota las [rojas]{"entity":"color_cromatico","value": "true"} también lo parecen pero mas pequeño.
     - Maquillaje de un [payaso]{"entity":"forma","value": "humana"} macabro.
     - El color ayuda a imaginarme en un [insecto]{"entity":"forma","value": "animal"} [cascarudo]{"entity":"forma","value": "animal"}, si fuera flúor quizás se me hubiese venido a la mente otra cosa. Ademas la figura presenta extremidades que hacen parecer que son patitas o tenazas. Por otro lado en la figura también se aprecian puntos blancos en la parte superior , que simulan ser ojos y que en esa parte esta efectivamente la cabeza del [insecto]{"entity":"forma","value": "animal"}
-    - La figura central con tonalidad mas cercana a [rojo]{"entity":"color_cromatico","value": "true"} parece claramente un fuego pero con una [forma]{"entity":"forma","value": "inanimada"} especial, que me dio trabajo compre[carander, pareciera una melena de [león]{"entity":"forma","value": "animal"}, que no esta en un [león]{"entity":"forma","value": "animal"}, sino en una [cebra]{"entity":"forma","value": "animal"} por que la [cara]{"entity":"forma","value": "inanimada"} es muy flaca para ser un [león]{"entity":"forma","value": "animal"}
-    - Las figuras [verdes]{"entity":"color_cromatico","value": "true"} parecen [pescados]{"entity":"forma","value": "animal"} por su forma, con un ojo grande en la parte delantera. Las [formas]{"entity":"forma","value": "inanimada"} también parecen [desplegar]{"entity":"movimiento","value": "true"} aletas.
+    - La figura central con tonalidad mas cercana a [rojo]{"entity":"color_cromatico","value": "true"} parece claramente un fuego pero con una [forma]{"entity":"forma","value": "inanimada"} especial, que me dio trabajo comprender, pareciera una melena de [león]{"entity":"forma","value": "animal"}, que no esta en un [león]{"entity":"forma","value": "animal"}, sino en una [cebra]{"entity":"forma","value": "animal"} por que la [cara]{"entity":"forma","value": "inanimada"} es muy flaca para ser un [león]{"entity":"forma","value": "animal"}
+    - Las figuras [verdes]{"entity":"color_cromatico","value": "true"} parecen [pescados]{"entity":"forma","value": "animal"} por su forma, con un ojo grande en la parte delantera. Las [formas]{"entity":"forma","value": "inanimada"}  también parecen [desplegar]{"entity":"movimiento","value": "true"} aletas.
     - Las figuras inferiores también parecen [pescados]{"entity":"forma","value": "animal"}, y al parecer se pueden apreciar aletas en las cosas
     - La figura [negra]{"entity":"color_acromatico","value": "true"} da la sensación de ser una [persona]{"entity":"forma","value": "humana"} [pateando]{"entity":"movimiento","value": "true"} una pelota de fútbol, parece una persona por presentar extremidades en [forma]{"entity":"forma","value": "inanimada"} de piernas, cabeza y brazos.
     - Una flor [vista]{"entity":"vista","value": "true"} de frente 
     - El cerebro [visto]{"entity":"vista","value": "true"} desde arriba
     - Una [hoja]{"entity":"forma","value": "inanimada"} de un [árbol]{"entity":"forma","value": "inanimada"}
-    - Un [templo]{"entity":"forma","value": "inanimada"} con un [totem]{"entity":"forma","value": "inanimada"}]{"entity":"movimiento","value": "true"}
+    - Un [templo]{"entity":"forma","value": "inanimada"} con un [totem]{"entity":"forma","value": "inanimada"}
     - Un [bosque]{"entity":"forma","value": "inanimada"}
     - La cabeza de una [jirafa]{"entity":"forma","value": "animal"}
     - La cabeza de una [vaca]{"entity":"forma","value": "animal"} 
@@ -530,7 +531,7 @@ nlu:
     - Desierto
     - [Escorpion]{"entity":"forma","value": "animal"}, con una [mariposa]{"entity":"forma","value": "animal"} entre sus patas
     - [dos]{"entity":"par","value": "true"} [hombrecitos]{"entity":"forma","value": "humana"} [bailando]{"entity":"movimiento","value": "true"} alrededor de un fuego, estilo escena de películas con indios bailando en un fogón
-    - Las líneas que sobresalen en la parte de debajo, al medio y encima de la imagen simulan las patas. Los círculos [blancos]{"entity":"color_acromatico","value": "true"} cerca de la parte de arriba de la mancha simulan ojos, si bien no son o[carajos de [araña]{"entity":"forma","value": "animal"}, dio la ilusión a una [cara]{"entity":"forma","value": "inanimada"}
+    - Las líneas que sobresalen en la parte de debajo, al medio y encima de la imagen simulan las patas. Los círculos [blancos]{"entity":"color_acromatico","value": "true"} cerca de la parte de arriba de la mancha simulan ojos, si bien no son ojos de [araña]{"entity":"forma","value": "animal"}, dio la ilusión a una [cara]{"entity":"forma","value": "inanimada"}
     - La [forma]{"entity":"forma","value": "inanimada"} de la figura en general dio la sensación de una hoja seca, el color [oscuro]{"entity":"color_acromatico","value": "true"} y la [textura]{"entity":"textura","value": "true"} me dieron la sensación a un color mate de una hoja seca
     - La mancha mas [oscura]{"entity":"color_acromatico","value": "true"} en el centro de la mancha me hizo acordar a una flor, pensamiento, parecía una parte de un vestido. Esto, acompañado a la “cara” de la mancha, por los ojos, me ayudo a visualizar una [personita]{"entity":"forma","value": "humana"}. Dije hada por el cuerpo de hoja seca y las patas de [insecto]{"entity":"forma","value": "animal"}
     - La mancha [roja]{"entity":"color_cromatico","value": "true"} seria un sol, digo atardecer por el color [naranja]{"entity":"color_cromatico","value": "true"} que tiene. La mancha [blanca]{"entity":"color_acromatico","value": "true"} en su centro tiene [forma]{"entity":"forma","value": "inanimada"} de [torre]{"entity":"forma","value": "inanimada"} estilo oriental
@@ -548,7 +549,7 @@ nlu:
     - Las [dos]{"entity":"par","value": "true"} manchas inferiores al tener una parte mas [oscura]{"entity":"color_acromatico","value": "true"} y una [silueta]{"entity":"forma","value": "inanimada"} rodeandola, la [silueta]{"entity":"forma","value": "inanimada"} parece una [abeja]{"entity":"forma","value": "animal"} desplegada con sus patas colgando, la cola en punta que parece hasta un aguijon y su cabeza, enfrentadas. El interior simplemente asumo que seria asi, no conozco el organismo interno de una [abeja]{"entity":"forma","value": "animal"}. La parte mas [oscura]{"entity":"color_acromatico","value": "true"} en lo que vendria a ser la cabeza parecen los ojos.
     - La [cara]{"entity":"forma","value": "inanimada"} del [bagre]{"entity":"forma","value": "animal"} es mas rebuscado. Las manchas [verdes]{"entity":"color_cromatico","value": "true"} serian los ojos, las [naranjas]{"entity":"color_cromatico","value": "true"} serian los bigotes y la [roja]{"entity":"color_cromatico","value": "true"} marcaria el cuerpo del [pescado]{"entity":"forma","value": "animal"}.
     - Las manchas [negras]{"entity":"color_acromatico","value": "true"} desplegadas verticalmente, la terminacion en punta de la parte superior parece el hocico, con sus orejas. la parte inferior parecen las patas desplegadas.
-    - Las posicion de las manchas y la [simetria]{"entity":"par","val[caraue": "true"} de ellas dan a entender una [cara]{"entity":"forma","value": "inanimada"}, y los colores elegidos son los que utiliza un payaso de maquillaje.
+    - Las posicion de las manchas y la [simetria]{"entity":"par","value": "true"} de ellas dan a entender una [cara]{"entity":"forma","value": "inanimada"}, y los colores elegidos son los que utiliza un payaso de maquillaje.
     - [Espadas]{"entity":"forma","value": "inanimada"}, por los extremos sobresalientes en la parte superior.
     - [Escarabajo]{"entity":"forma","value": "animal"}, por la [forma]{"entity":"forma","value": "inanimada"} de toda la imagen
     - Pétalos, por la [forma]{"entity":"forma","value": "inanimada"} del centro de la imagen de un tono más [oscuro]{"entity":"color_acromatico","value": "true"}
@@ -612,7 +613,7 @@ nlu:
     - parecen [toros]{"entity":"forma","value": "animal"} que se [cuernean]{"entity":"movimiento","value": "true"}
     - El color [verde]{"entity":"color_cromatico","value": "true"} simila un arreglo floral, el rojo simula una obra de arte antigua y las fieras [invitan]{"entity":"movimiento","value": "true"} a que camines por la pasarela
     - son los colores que se pueden esperar en un ramo de flores. [Rojo]{"entity":"color_cromatico","value": "true"}, [verde]{"entity":"color_cromatico","value": "true"} y [amarillo]{"entity":"color_cromatico","value": "true"}
-    - El color [amarillo]{"entity":"color_cromatico","value[cara": "true"} simula los cuernos y el [rojo]{"entity":"color_cromatico","value": "true"} la [cara]{"entity":"forma","value": "inanimada"}. Mientras que los colores [verdes]{"entity":"color_cromatico","value": "true"} parecen las orejas
+    - El color [amarillo]{"entity":"color_cromatico","value": "true"} simula los cuernos y el [rojo]{"entity":"color_cromatico","value": "true"} la [cara]{"entity":"forma","value": "inanimada"}. Mientras que los colores [verdes]{"entity":"color_cromatico","value": "true"} parecen las orejas
     - Al ser [simetrico]{"entity":"par","value": "true"} parece que todo quiere conectar en armonia
     - [siluetas]{"entity":"forma","value": "inanimada"} y colores resaltando del fondo [blanco]{"entity":"color_acromatico","value": "true"}
     - Parece la piel de un [animal]{"entity":"forma","value": "animal"} la cual ha sido dividida en secciones [simetricas]{"entity":"par","value": "true"}
