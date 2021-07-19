@@ -55,23 +55,25 @@ class imprimirSlot(Action):
         ######CONTENIDOS######:
         
         #1 figura humana completa
-        _H = {"persona","humano","hombre","mujer","niño","niña","chico","chica","señor","señora","personas","humanos","hombres","mujeres","niños","niñas","chicos","chicas","señores","señoras"}
+        _H = {"persona","humano","hombre","mujer","niño","niña","chico","chica","señor","señora","anciano","anciana","viejo","vieja","joven","nene","bebé","bebe","hombrecito","mujercita","personita","personas","humanos","hombres","mujeres","niños","niñas","chicos","chicas","señores","señoras","ancianos","ancianas","viejos","viejas","jovenes","nenes","bebés","bebes","hombrecitos","mujercitas","personitas","futbolista","jugador","jugadora","deportista","ladron","ladrón","ladrona","policía","futbolistas","deportistas","ladrones","ladronas","policias","jugadores","jugadoras","guerrero","guerreros","guerrera","guerreras"}
         #2 figura humana completa irreal, de ficción o mitológica
-        _ParentesisH = {"payaso","payasos","hada","hadas","bruja","brujas","fantasma","fantasmas","enano","enanos","enana","enanas","demonio","demonios","ángel","ángeles","humanoide","humanoides","caricaturas","caricatura","monstruo","monstruos","duende","duendes"}
+        _ParentesisH = {"payaso","payasos","hada","hadas","bruja","brujas","fantasma","fantasmas","enano","enanos","enana","enanas","demonio","demonios","ángel","ángeles","humanoide","humanoides","caricaturas","caricatura","monstruo","monstruos","monstruito","monstruitos","duende","duendes"}
         #3 Detalle humano
-        _Hd = {"brazo","pierna","dedos","pies","cabeza","codo","nariz","brazos","piernas"}        
+        _Hd = {"brazo","pierna","dedos","pies","cabeza","codo","nariz","brazos","piernas","diente","dientes","muela","muelas","rodilla","rodillas","cerebro","cerebros",}        
         #5 Experiencia humana
         _Hx = {"amor","amar","ama","amamos","amo","odio","odia","odiamos","odiar","depresión","deprimido","deprimida","deprimidos","deprimidas","feliz","felices","alegre","alegres","felicidad","alegria","ruido","ruidoso","sonido","suena","olor","huele","oloroso","miedo","temor","miedoso","contento","contenta","contentos","contentas"}
         #6 Figura animal completa
-        _A = {"escarabajo","escarabajos","bicho","bichos","araña","arañas","cucaracha","cucarachas","mariposa","mariposas","mantis","mosca","mosquito","moscas","mosquitos","murcielago","murciélago","murciélagos","pulga","pulgas","águila","águilas","avestruz","ballena","bisonte","búfalo","búhos","buitre","burro","caballo","cabra","camaleón","camello","canario","castor","cebra","cerdo","chancho","ciervo","cobra","colibrí","comadreja","cóndor","conejo","delfín","elefante","faisan","flamenco","foca","gallina","gallo","gato","gorila","guepardo","hámster","hiena","hipopótamo","jabalí","jaguar","jirafa","koala","lagarto","león","lobo","loro","manatí","mapache","mono","murciélago","nutria","ñandú","orcas","oso","pájaro","paloma","panda","pato","pavo","pelícano","perro","pingüino","puercoespín","puma","rana","ratón","reno","rinoceronte","salamandra","sapo","serpiente","tapir","tejon","tiburón","tigre","topo","toro","tucán","vaca","vicuña","zorrino","zorro","águila","avestruces","ballenas","bisontes","búfalos","búho","buitres","burros","caballos","cabras","camaleones","camellos","canarios","castores","cebras","cerdos","chanchos","ciervos","cobras","colibries","comadrejas","cóndores","conejos","delfines","elefantes","faisanes","flamencos","focas","gallinas","gallos","gatos","gorilas","guepardos","hámsters","hienas","hipopótamos","jabalies","jaguares","jirafas","koalas","lagartos","leones","lobos","loros","manaties","mapaches","monos","murciélagos","nutrias","ñandues","orca","osos","pájaros","palomas","pandas","patos","pavos","pelícanos","perros","pingüinos","puercoespines","pumas","ranas","ratones","renos","rinocerontes","salamandras","sapos","serpientes","tapires","tiburones","tigres","topos","toros","tucanes","vacas","víbora","víboras","vicuñas","zorrinos","zorros"}
+        _A = {"escarabajo","escarabajos","bicho","bichos","araña","arañas","cucaracha","cucarachas","mariposa","mariposas","mantis","mosca","mosquito","moscas","mosquitos","murcielago","murciélago","murciélagos","pulga","pulgas","águila","águilas","avestruz","ballena","bisonte","bug","búfalo","búhos","buitre","burro","caballo","cabra","camaleón","camello","canario","castor","cebra","cerdo","chancho","ciervo","cobra","colibrí","comadreja","cóndor","conejo","delfín","elefante","faisan","flamenco","foca","gallina","gallo","gato","gorila","guepardo","hámster","hiena","hipopótamo","jabalí","jaguar","jirafa","koala","lagarto","león","lobo","loro","manatí","mapache","mono","murciélago","nutria","ñandú","orcas","oso","pájaro","paloma","panda","pato","pavo","pelícano","perro","pingüino","puercoespín","puma","rana","ratón","reno","rinoceronte","salamandra","sapo","serpiente","tapir","tejon","tiburón","tigre","topo","toro","tucán","vaca","vicuña","zorrino","zorro","águila","avestruces","ballenas","bisontes","búfalos","bugs","búho","buitres","burros","caballos","cabras","camaleones","camellos","canarios","castores","cebras","cerdos","chanchos","ciervos","cobras","colibries","comadrejas","cóndores","conejos","delfines","elefantes","faisanes","flamencos","focas","gallinas","gallos","gatos","gorilas","guepardos","hámsters","hienas","hipopótamos","jabalies","jaguares","jirafas","koalas","lagartos","leones","lobos","loros","manaties","mapaches","monos","murciélagos","nutrias","ñandues","orca","osos","pájaros","palomas","pandas","patos","pavos","pelícanos","perros","pingüinos","puercoespines","pumas","ranas","ratones","renos","rinocerontes","salamandras","sapos","serpientes","tapires","tiburones","tigres","topos","toros","tucanes","vacas","víbora","víboras","vicuñas","zorrinos","zorros""bacteria","bacterias","animal","animales","arácnido","aracnido","arácnidos","arácnido","libélula","libélulas","libelula","libelulas","ciempies","pescado","bagre","escorpión","escorpion","escorpiones","cotorras","caballito","elefantito","camaron","camarones","artrópodo","artropodo","artrópodos","artropodos","garrapata","garrapatas","peces","pez","langosta","langostas"}
         #7 Figura animal completa irreal, de ficción o mitológica
-        _ParentesisA = {"unicornio","unicornios","dragón","dragon","dragones","minotauro","minotauros"}
+        _ParentesisA = {"fiera","bruja","brujas","ángel","angel","ángeles","angeles","demonio","demonios","fantasma","fantasmas","unicornio","unicornios","dragón","dragon","dragones","minotauro","minotauros","krampus","hada","guason","batman","superman","korioto","koriotos","máscara","mascara","máscaras","mascaras","pato donald","mickey","yeti","yetis",}
         #8 Figura animal incompleta
-        _Ad = {"pata","patas","cola","pinza","hocico", "cuero","pezuñas","garras","vasos","pico"}
+        _Ad = {"pata","patas","cola","pinza","hocico", "cuero","pezuñas","garras","vasos","pico","melena","trompa","cuerno","colmillo","colmillos"}
         #10 Anatomía
         _An = {"ósea","osea","cráneo","cráneo","torax","toracica","tórax","corazón","corazon","pulmón","pulmon","estomágo","estomago","panza","hígado","higado","musculo","articulaciones","vértebral","vértebra","vertebras","cerebro","cerebros"}
         #11 Arte
-        _Art = {"pintura","dibujo","pinturas","dibujos","ilustración","ilustracion","ilustraciones","acuarela","acuarelas","arte","estatua","estatuas","escultura","esculturas","joya","joyas","insignia","insignias","escudo","escudos","adornos","espada","espadas","cuadros","lienzos","cuadro","lienzo"}
+        _Art = {"pintura","dibujo","pinturas","dibujos","ilustración","ilustracion","ilustraciones","acuarela","acuarelas","arte","estatua","estatuas","escultura","esculturas","joya","joyas","insignia","insignias","escudo","escudos","adornos","espada","espadas","cuadros","lienzos","cuadro","lienzo","logo","logos"}
+        #12 Antropología
+        _Ay = {"tótem","totem","templo","prehistórica","prehistorica","prehistóricas","prehistorica","incaica","incaicas","azteca","aztecas","maya","mayas","romano","romanos","griego","griegos","persa","persas"}
         #13 Sangre
         _Bl = {"sangre","sanguíneo","sanguínea","sanguinario","sanguinaria","sangriento","sangrienta"}
         #14 Botánica
@@ -99,7 +101,7 @@ class imprimirSlot(Action):
         #25 Sexo
         _Sx = {"pene","penes","verga","vergas","pito","pitos","vagina","vaginas","concha","conchas","nalgas","cachas","pechos","teta","tetas","testículos","huevos","bolas","menstruación","aborto","abortar","coito","coger","garchar","cogiendo","teniendo sexo","garchando"}
         #26 Radiografía
-        _Xy = {"radiografía","radiografia","placa","placas","rayos x"}
+        _Xy = {"radiografía","radiografia","placa","placas","rayos x","tomografía","ecografía","tomografía","ultrasonido","resonancia"}
         #27 Popular1
         _Po1 = {"escarabajo","escarabajos","bicho","bichos","araña","arañas","cucaracha","cucarachas","mariposa","mariposas","mantis","mosca","mosquito","moscas","mosquitos","insecto","insectos","gusano"}
         #28 Popular3
@@ -269,6 +271,14 @@ class imprimirSlot(Action):
                     contenidos = contenidos + ' Hh,'
                 elif contenidos == '':
                     contenidos = ' Hh,'    
+                break
+        while _Ls: #21
+            subconjunto = _Ls.pop()
+            if subconjunto in respuesta:
+                if ' Ls,' not in contenidos:
+                    contenidos = contenidos + ' Ls,'
+                elif contenidos == '':
+                    contenidos = ' Ls,'    
                 break
         while _Na: #23
             subconjunto = _Na.pop()
