@@ -60,14 +60,17 @@ class imprimirSlot(Action):
         _ParentesisH = {"payaso","payasos","hada","hadas","bruja","brujas","fantasma","fantasmas","enano","enanos","enana","enanas","demonio","demonios","ángel","ángeles","humanoide","humanoides","caricaturas","caricatura","monstruo","monstruos","monstruito","monstruitos","duende","duendes"}
         #3 Detalle humano
         _Hd = {"brazo","pierna","dedos","pies","cabeza","codo","nariz","brazos","piernas","diente","dientes","muela","muelas","rodilla","rodillas","cerebro","cerebros",}        
+        #4 Detalle humano irreal, de ficción o mitológico
+        _ParentesisHd = {"máscara","mascara","máscaras","mascaras"}
         #5 Experiencia humana
         _Hx = {"amor","amar","ama","amamos","amo","odio","odia","odiamos","odiar","depresión","deprimido","deprimida","deprimidos","deprimidas","feliz","felices","alegre","alegres","felicidad","alegria","ruido","ruidoso","sonido","suena","olor","huele","oloroso","miedo","temor","miedoso","contento","contenta","contentos","contentas"}
         #6 Figura animal completa
         _A = {"escarabajo","escarabajos","bicho","bichos","araña","arañas","cucaracha","cucarachas","mariposa","mariposas","mantis","mosca","mosquito","moscas","mosquitos","murcielago","murciélago","murciélagos","pulga","pulgas","águila","águilas","avestruz","ballena","bisonte","bug","búfalo","búhos","buitre","burro","caballo","cabra","camaleón","camello","canario","castor","cebra","cerdo","chancho","ciervo","cobra","colibrí","comadreja","cóndor","conejo","delfín","elefante","faisan","flamenco","foca","gallina","gallo","gato","gorila","guepardo","hámster","hiena","hipopótamo","jabalí","jaguar","jirafa","koala","lagarto","león","lobo","loro","manatí","mapache","mono","murciélago","nutria","ñandú","orcas","oso","pájaro","paloma","panda","pato","pavo","pelícano","perro","pingüino","puercoespín","puma","rana","ratón","reno","rinoceronte","salamandra","sapo","serpiente","tapir","tejon","tiburón","tigre","topo","toro","tucán","vaca","vicuña","zorrino","zorro","águila","avestruces","ballenas","bisontes","búfalos","bugs","búho","buitres","burros","caballos","cabras","camaleones","camellos","canarios","castores","cebras","cerdos","chanchos","ciervos","cobras","colibries","comadrejas","cóndores","conejos","delfines","elefantes","faisanes","flamencos","focas","gallinas","gallos","gatos","gorilas","guepardos","hámsters","hienas","hipopótamos","jabalies","jaguares","jirafas","koalas","lagartos","leones","lobos","loros","manaties","mapaches","monos","murciélagos","nutrias","ñandues","orca","osos","pájaros","palomas","pandas","patos","pavos","pelícanos","perros","pingüinos","puercoespines","pumas","ranas","ratones","renos","rinocerontes","salamandras","sapos","serpientes","tapires","tiburones","tigres","topos","toros","tucanes","vacas","víbora","víboras","vicuñas","zorrinos","zorros""bacteria","bacterias","animal","animales","arácnido","aracnido","arácnidos","arácnido","libélula","libélulas","libelula","libelulas","ciempies","pescado","bagre","escorpión","escorpion","escorpiones","cotorras","caballito","elefantito","camaron","camarones","artrópodo","artropodo","artrópodos","artropodos","garrapata","garrapatas","peces","pez","langosta","langostas"}
         #7 Figura animal completa irreal, de ficción o mitológica
-        _ParentesisA = {"fiera","bruja","brujas","ángel","angel","ángeles","angeles","demonio","demonios","fantasma","fantasmas","unicornio","unicornios","dragón","dragon","dragones","minotauro","minotauros","krampus","hada","guason","batman","superman","korioto","koriotos","máscara","mascara","máscaras","mascaras","pato donald","mickey","yeti","yetis",}
+        _ParentesisA = {"fiera","bruja","brujas","ángel","angel","ángeles","angeles","demonio","demonios","fantasma","fantasmas","unicornio","unicornios","dragón","dragon","dragones","minotauro","minotauros","krampus","hada","guason","batman","superman","korioto","koriotos","pato donald","mickey","yeti","yetis",}
         #8 Figura animal incompleta
         _Ad = {"pata","patas","cola","pinza","hocico", "cuero","pezuñas","garras","vasos","pico","melena","trompa","cuerno","colmillo","colmillos"}
+        #9 Figura animal irreal, de ficción o mitológica incompleta. PENDIENTE
         #10 Anatomía
         _An = {"ósea","osea","cráneo","cráneo","torax","toracica","tórax","corazón","corazon","pulmón","pulmon","estomágo","estomago","panza","hígado","higado","musculo","articulaciones","vértebral","vértebra","vertebras","cerebro","cerebros"}
         #11 Arte
@@ -128,7 +131,7 @@ class imprimirSlot(Action):
             lamina = 3
         respuesta = tracker.latest_message['text']
         contenidos = str(contenidos)
-        while _H:#1
+        while _H:#1 figura humana completa
             subconjunto = _H.pop()
             if subconjunto in respuesta:
                 if ' H,' not in contenidos:
@@ -136,7 +139,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' H,'    
                 break   
-        while _ParentesisH:#2
+        while _ParentesisH:#2 figura humana completa irreal, de ficción o mitológica
             subconjunto = _ParentesisH.pop()
             if subconjunto in respuesta:
                 if ' (H),' not in contenidos:
@@ -144,7 +147,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' (H),'    
                 break
-        while _Hd: #3
+        while _Hd: #3 Detalle humano
             subconjunto = _Hd.pop()
             if subconjunto in respuesta:
                 if ' Hd,' not in contenidos:
@@ -152,7 +155,15 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Hd,'    
                 break
-        while _Hx: #5
+        while _ParentesisHd: #4 Detalle humano irreal, de ficción o mitológico
+            subconjunto = _ParentesisHd.pop()
+            if subconjunto in respuesta:
+                if ' (Hd),' not in contenidos:
+                    contenidos = contenidos + ' (Hd),'
+                elif contenidos == '':
+                    contenidos = ' (Hd),'    
+                break    
+        while _Hx: #5 Experiencia humana
             subconjunto = _Hx.pop()
             if subconjunto in respuesta:
                 if ' Hx,' not in contenidos:
@@ -160,7 +171,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Hx,'    
                 break
-        while _A: #6
+        while _A: #6 Figura animal completa
             subconjunto = _A.pop()
             if subconjunto in respuesta:
                 if ' A,' not in contenidos:
@@ -168,7 +179,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' A,'    
                 break
-        while _ParentesisA: #7
+        while _ParentesisA: #7 Figura animal completa irreal, de ficción o mitológica
             subconjunto = _ParentesisA.pop()
             if subconjunto in respuesta:
                 if ' (A),' not in contenidos:
@@ -176,7 +187,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' (A),'    
                 break
-        while _Ad: #8
+        while _Ad: #8 Figura animal incompleta
             subconjunto = _Ad.pop()
             if subconjunto in respuesta:
                 if ' Ad,' not in contenidos:
@@ -184,7 +195,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Ad,'    
                 break
-        while _An: #10
+        while _An: #10 Anatomía
             subconjunto = _An.pop()
             if subconjunto in respuesta:
                 if ' An,' not in contenidos:
@@ -192,7 +203,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' An,'    
                 break
-        while _Art: #11
+        while _Art: #11 Arte
             subconjunto = _Art.pop()
             if subconjunto in respuesta:
                 if ' Art,' not in contenidos:
@@ -200,7 +211,15 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Art,'    
                 break
-        while _Bl: #13
+        while _Ay: #12 Antropológica
+            subconjunto = _Ay.pop()
+            if subconjunto in respuesta:
+                if ' Ay,' not in contenidos:
+                    contenidos = contenidos + ' Ay,'
+                elif contenidos == '':
+                    contenidos = ' Ay,'    
+                break
+        while _Bl: #13 Sangre
             subconjunto = _Bl.pop()
             if subconjunto in respuesta:
                 if ' Bl,' not in contenidos:
@@ -208,7 +227,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Bl,'    
                 break
-        while _Bt: #14
+        while _Bt: #14 Botánica
             subconjunto = _Bt.pop()
             if subconjunto in respuesta:
                 if ' Bt,' not in contenidos:
@@ -216,7 +235,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Bt,'    
                 break
-        while _Cg: #15
+        while _Cg: #15 Vestidos
             subconjunto = _Cg.pop()
             if subconjunto in respuesta:
                 if ' Cg,' not in contenidos:
@@ -224,7 +243,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Cg,'    
                 break
-        while _Cl: #16
+        while _Cl: #16 Nubes
             subconjunto = _Cl.pop()
             if subconjunto in respuesta:
                 if ' Cl,' not in contenidos:
@@ -232,7 +251,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Cl,'    
                 break
-        while _Ex: #17
+        while _Ex: #17 Explosión
             subconjunto = _Ex.pop()
             if subconjunto in respuesta:
                 if ' Ex,' not in contenidos:
@@ -240,7 +259,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Ex,'    
                 break
-        while _Fi: #18
+        while _Fi: #18 Fuego
             subconjunto = _Fi.pop()
             if subconjunto in respuesta:
                 if ' Fi,' not in contenidos:
@@ -248,7 +267,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Fi,'    
                 break
-        while _Fd: #19
+        while _Fd: #19 Comida
             subconjunto = _Fd.pop()
             if subconjunto in respuesta:
                 if ' Fd,' not in contenidos:
@@ -256,7 +275,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Fd,'    
                 break
-        while _Ge: #20
+        while _Ge: #20 Geografía
             subconjunto = _Ge.pop()
             if subconjunto in respuesta:
                 if ' Ge,' not in contenidos:
@@ -264,7 +283,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Ge,'    
                 break
-        while _Hh: #21
+        while _Hh: #21 Hogar
             subconjunto = _Hh.pop()
             if subconjunto in respuesta:
                 if ' Hh,' not in contenidos:
@@ -272,7 +291,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Hh,'    
                 break
-        while _Ls: #21
+        while _Ls: #21 Paisaje
             subconjunto = _Ls.pop()
             if subconjunto in respuesta:
                 if ' Ls,' not in contenidos:
@@ -280,7 +299,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Ls,'    
                 break
-        while _Na: #23
+        while _Na: #23 Naturaleza
             subconjunto = _Na.pop()
             if subconjunto in respuesta:
                 if ' Na,' not in contenidos:
@@ -288,7 +307,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Na,'    
                 break
-        while _Sc: #24
+        while _Sc: #24 Ciencia
             subconjunto = _Sc.pop()
             if subconjunto in respuesta:
                 if ' Sc,' not in contenidos:
@@ -296,7 +315,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Sc,'    
                 break
-        while _Sx: #25
+        while _Sx: #25 sexo
             subconjunto = _Sx.pop()
             if subconjunto in respuesta:
                 if ' Sx,' not in contenidos:
@@ -304,7 +323,7 @@ class imprimirSlot(Action):
                 elif contenidos == '':
                     contenidos = ' Sx,'    
                 break
-        while _Xy: #26
+        while _Xy: #26 Radiografía
             subconjunto = _Xy.pop()
             if subconjunto in respuesta:
                 if ' Xy,' not in contenidos:
