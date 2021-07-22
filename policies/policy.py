@@ -1,5 +1,10 @@
 #from actions.actions import imprimirSlot
 #import json
+
+
+######ESTE ES EL MULTIPLE#######
+
+
 from typing import Any, List, Dict, Text, Optional
 from numpy.lib.ufunclike import _dispatcher
 import pandas as pd

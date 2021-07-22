@@ -5,6 +5,13 @@
 # https://rasa.com/docs/rasa/custom-actions
 
 
+
+
+######ESTE ES EL MULTIPLE#######
+
+
+
+
 # This is a simple example for a custom action which utters "Hello World!"
 import os.path
 from typing import Any, Text, Dict, List
