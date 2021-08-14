@@ -104,17 +104,7 @@ responses:
   - text: "I am a bot, powered by Rasa."
 
   utter_welcome:
-  - text: "Se le mostrarán tres manchas, en forma sucesiva, esto es, una a una. Usted deberá mirarlas
-          \ny responder sólo a la primera pregunta que aparece en el protocolo, es decir, responder
-          \na **¿Qué podría ser esto?**. Debe escribir todo lo que podría ser cada mancha, tratando
-          \nsiempre de dar la mayor cantidad de respuestas posibles. Puede dar todas las respuestas
-          \nque quiera o que se le ocurran. También puede mirar la mancha en forma total o sólo por
-          \npartes eso queda a su criterio. Recuerde que la imagen no representa nada preciso y por
-          \nlo tanto, no existen respuestas malas o buenas, asi que toda respuesta es válida. Pero
-          \nantes de comenzar, nos vamos a poner de acuerdo en la manera que usted deberá escribir
-          \nlas respuestas.
-          \nEscribirá la respuesta que considere y presionará la tecla enter.
-          \nSi comprendió escriba la palabra listo" 
+  - text: "Se le mostrarán tres manchas, en forma sucesiva, esto es, una a una. Usted deberá mirarlas y responder sólo a la primera pregunta que aparece en el protocolo, es decir, responder a **¿Qué podría ser esto?**. Debe escribir todo lo que podría ser cada mancha, tratando siempre de dar la mayor cantidad de respuestas posibles. Puede dar todas las respuestas que quiera o que se le ocurran. También puede mirar la mancha en forma total o sólo por partes eso queda a su criterio. Recuerde que la imagen no representa nada preciso y por lo tanto, no existen respuestas malas o buenas, asi que toda respuesta es válida. Pero antes de comenzar, nos vamos a poner de acuerdo en la manera que usted deberá escribir las respuestas. Escribirá la respuesta que considere y presionará la tecla enter. Si comprendió escriba la palabra listo" 
 
   utter_nombre:
   - text: "Por favor ingrese su nombre y apellido"
@@ -132,16 +122,7 @@ responses:
     image: "https://i.imgur.com/9uHtd03.jpeg"
 
   utter_Lamina1Razones:
-  - text: "Bien, usted escribió todo lo que la mancha podría ser, es decir, respondieron a la PRIMERA pregunta.
-          \nAhora, vamos a respomnder a la SEGUNDA pregunta que aparece más arriba en el protocolo. Esto tiene el propósito
-          \nde que YO vea, tal como usted vio, cada una de sus respuestas. Para esto, volveré a mostrar las láminas, comenzando 
-          \npor la N°1 y usted, leerá sus respuestas y contestará a **¿QUE HAY EN LA MANCHA QUE HACE QUE PAREZCA LO QUE SE ANOTO?**.
-          \nTomará una a una sus respuestas, sin saltarse ninguna, y así, para la respuesta 1, respoderá a la pregunta y redactará
-          \no explicará lo que corresponde. Luego tomará su respuesta 2 y respondera de igual forma a la misma pregunta; luego se
-          \nhará lo mismo para la respuesta 3 y de igual manera para todas las respuestas que usted haya escrito, sin dejar ninguna 
-          \nsin responder. Recuerde que la pregunta es **¿QUE HAY EN LA MANCHA QUE HACE QUE PAREZCA LO QUE SE VIO?** y no confundir con
-          \n¿donde está ubicado lo que anotaron?. Eso se hará mas adelante. Tenga cuidado con esa diferencia.
-          \nSu respuesta:'{respuestaLamina1}'." # SLOT CON LA RTA DEL USUARIO
+  - text: "Bien, usted escribió todo lo que la mancha podría ser, es decir, respondieron a la PRIMERA pregunta. Ahora, vamos a respomnder a la SEGUNDA pregunta que aparece más arriba en el protocolo. Esto tiene el propósito de que YO vea, tal como usted vio, cada una de sus respuestas. Para esto, volveré a mostrar las láminas, comenzando por la N°1 y usted, leerá sus respuestas y contestará a **¿QUE HAY EN LA MANCHA QUE HACE QUE PAREZCA LO QUE SE ANOTO?**. Tomará una a una sus respuestas, sin saltarse ninguna, y así, para la respuesta 1, respoderá a la pregunta y redactará o explicará lo que corresponde. Luego tomará su respuesta 2 y respondera de igual forma a la misma pregunta; luego se hará lo mismo para la respuesta 3 y de igual manera para todas las respuestas que usted haya escrito, sin dejar ninguna sin responder. Recuerde que la pregunta es **¿QUE HAY EN LA MANCHA QUE HACE QUE PAREZCA LO QUE SE VIO?** y no confundir con ¿donde está ubicado lo que anotaron?. Eso se hará mas adelante. Tenga cuidado con esa diferencia. Su respuesta:'{respuestaLamina1}'." # SLOT CON LA RTA DEL USUARIO
     image: "https://i.imgur.com/ScvPxc3.jpeg"
 
   utter_Lamina2Razones:
@@ -153,15 +134,11 @@ responses:
     image: "https://i.imgur.com/9uHtd03.jpeg"
 
   utter_TercerParte:
-  - text: "Bien, usted ya tiene escrita sus respuestas y lo qué hay ahí que hacer que se parezca lo que indicó. Ahora, pasaremos a la 
-          \nTERCERA PARTE de la prueba. Para esto se mostrarán unos esquemas donde aparecen las tres manchas. En éstos, usted deberá
-          \nmarcar un círculo en la zona o lugar donde vieron las respuestas que enumeraron, es decir, encerrar donde está toda la
-          \nrespuesta.
-          \nPor ejemplo, si hubiera escrito que ve dos puntos blancos el dibujo sería el indicado con color rojo, escriba entendido para proseguir"
+  - text: "Bien, usted ya tiene escrita sus respuestas y lo qué hay ahí que hacer que se parezca lo que indicó. Ahora, pasaremos a la TERCERA PARTE de la prueba. Para esto se mostrarán unos esquemas donde aparecen las tres manchas. En éstos, usted deberá marcar un círculo en la zona o lugar donde vieron las respuestas que enumeraron, es decir, encerrar donde está toda la respuesta. Por ejemplo, si hubiera escrito que ve dos puntos blancos el dibujo sería el indicado con color rojo, escriba entendido para proseguir"
     image: "https://imgur.com/9qfhslC.jpeg"
 
   utter_TercerParteLamina1:
-  - text: "Marque un círculo en la zona o lugar donde vió la respuesta que dió
+  - text: "Marque un círculo en la zona o lugar donde vió la respuesta que dió.
           \nAquí Usted ha dicho '{respuestaLamina1}'"
     image: "https://i.imgur.com/ScvPxc3.jpeg"
   
