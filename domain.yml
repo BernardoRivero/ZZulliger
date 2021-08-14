@@ -158,7 +158,7 @@ responses:
           \nmarcar un círculo en la zona o lugar donde vieron las respuestas que enumeraron, es decir, encerrar donde está toda la
           \nrespuesta.
           \nPor ejemplo, si hubiera escrito que ve dos puntos blancos el dibujo sería el indicado con color rojo, escriba entendido para proseguir"
-    image: "https://imgur.com/9qfhslC"
+    image: "https://imgur.com/9qfhslC.jpeg"
 
   utter_TercerParteLamina1:
   - text: "Marque un círculo en la zona o lugar donde vió la respuesta que dió
