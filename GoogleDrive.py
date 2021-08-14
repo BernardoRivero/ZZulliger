@@ -2,6 +2,7 @@ from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from pydrive.files import FileNotUploadedError
 from rasa_sdk.interfaces import Tracker
+import os
 
 directorio_credenciales = 'credentials_module.json'
 
@@ -38,5 +39,6 @@ def subir_archivo(ruta_archivo,id_folder):
     archivo = credenciales.CreateFile({'parents': [{"kind": "drive#fileLink",\
                                                     "id": id_folder}]})
     archivo['title'] = ruta_archivo.split("/")[-1]
+    archivo['title'] = ruta_archivo.split(os.path.sep)[-1]
     archivo.SetContentFile(ruta_archivo)
     archivo.Upload()

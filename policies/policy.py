@@ -20,6 +20,7 @@ from rasa.shared.core.events import SlotSet
 from rasa_sdk.events import BotUttered, SessionStarted
 import webbrowser
 from pathlib import Path
+import os
 
 class TestPolicy(Policy):
 
@@ -79,10 +80,12 @@ class TestPolicy(Policy):
                         'Cont': [''],
                         'Pop': [''],
                         'Pje Z': [''],
-                        'CCEE': ['']})
-                planilla = planilla[['Lám', 'N°Rta', 'N°Loc','Loc','DQ','Det','FQ','(2)','Cont','Pop','Pje Z','CCEE']]
+                        'CCEE': [''],
+                        'respuesta':[''],
+                        'razon':['']})
+                planilla = planilla[['Lám', 'N°Rta', 'N°Loc','Loc','DQ','Det','FQ','(2)','Cont','Pop','Pje Z','CCEE','respuesta','razon']]
                 slot_nombre = str(tracker.get_slot("nombre")).replace(' ','')
-                writer = ExcelWriter(str(self.get_project_root())+'/files/'+ slot_nombre+'.xlsx')
+                writer = ExcelWriter(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+ slot_nombre+'.xlsx')
                 planilla.to_excel(writer, 'Hoja de datos', index=False)
                 writer.save()
                 return self._prediction(confidence_scores_for('utter_welcome', 1.0, domain))
@@ -119,17 +122,32 @@ class TestPolicy(Policy):
                     tracker.update(SlotSet("response", "utter_Lamina1Razones"))
                 if self._contador < 4:
                     return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
-                elif self._contador < 7:
-                    if self._contador == 4:
-                        self._razones1 = tracker.latest_message.text
-                        tracker.update(SlotSet("razonesLamina1", self._respuesta3))
-                        tracker.update(SlotSet("response", "utter_Lamina2Razones"))
-                    elif self._contador == 5:
-                         self._razones2 = tracker.latest_message.text
-                         tracker.update(SlotSet("razonesLamina2", self._respuesta3))
-                         tracker.update(SlotSet("response", "utter_Lamina3Razones"))
-                    return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
-                
+                #elif self._contador < 7:
+                elif self._contador == 4:
+                    self._razones1 = tracker.latest_message.text
+                    tracker.update(SlotSet("razonesLamina1", self._respuesta3))
+                    tracker.update(SlotSet("response", "utter_Lamina2Razones"))
+                elif self._contador == 5:
+                    self._razones2 = tracker.latest_message.text
+                    tracker.update(SlotSet("razonesLamina2", self._respuesta3))
+                    tracker.update(SlotSet("response", "utter_Lamina3Razones"))
+                elif self._contador == 6:
+                    tracker.update(SlotSet("response", "utter_TercerParte"))
+                    #tracker.update(SlotSet("response", "utter_TercerParteLamina1"))
+                #elif self._contador == 7:
+                #    tracker.update(SlotSet("response", "utter_TercerParteLamina2"))
+                #elif self._contador == 8:
+                #    tracker.update(SlotSet("response", "utter_TercerParteLamina3"))
+                return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
+            if intent["name"] == "entendido" :
+                self._contador = self._contador + 1
+                if self._contador == 7:
+                    tracker.update(SlotSet("response", "utter_TercerParteLamina1"))
+                elif self._contador == 8:
+                    tracker.update(SlotSet("response", "utter_TercerParteLamina2"))
+                elif self._contador == 9:
+                    tracker.update(SlotSet("response", "utter_TercerParteLamina3"))
+                return self._prediction(confidence_scores_for("action_TerceraParte", 1.0, domain))
         # If rasa latest action isn't "action_listen", it means the last thing
         # rasa did was send a response, so now we need to listen again so the
         # user can talk to us.

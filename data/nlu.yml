@@ -260,7 +260,6 @@ nlu:
     - La [forma]{"entity":"forma","value": "inanimada"} de la imagen
     - El [sombreado]{"entity":"sombreado","value": "true"} 
     - alas y la [cabeza]{"entity":"forma","value": "inanimada"}
-    - una []{"entity":"forma","value": "inanimada"}]{"entity":"forma","value": "inanimada"}, [2]{"entity":"par","value": "true"} brazos [sujetando]{"entity":"movimiento","value": "true"} [dos]{"entity":"par","value": "true"} cuchillos y [dos]{"entity":"par","value": "true"} pies
     - cortes o roturas
     - la [forma]{"entity":"forma","value": "inanimada"} mas ancha abajo
     - El contorno parece una hoja, y la parte superior e inferior parecen extremidades de un [insecto]{"entity":"forma","value": "animal"}
@@ -651,16 +650,10 @@ nlu:
     - Piel de [animal]{"entity":"forma","value": "animal"}
     - [dos]{"entity":"par","value": "true"} [jugadores]{"entity":"forma","value": "humana"} [corriendo]{"entity":"movimiento","value": "true"} la pelota
 
-- intent: respuestaSector
+- intent: entendido
   examples: |
-    - A
-    - B
-    - C
-    - D
-    - E
-    - F
-    - G
-    - H
+    - entendido
+    - Entendido
 
 - intent: id
   examples: |

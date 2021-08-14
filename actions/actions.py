@@ -22,6 +22,7 @@ from collections import OrderedDict
 from GoogleDrive import *
 
 from pathlib import Path
+import os
 
 #
 #
@@ -114,7 +115,7 @@ class imprimirSlot(Action):
         slot_nombre = str(tracker.get_slot("nombre")).replace(' ','')
         SlotSet("nombre",slot_nombre)
         #tomo planilla de excel
-        wb = op.load_workbook(str(self.get_project_root())+'/files/'+ slot_nombre+'.xlsx')
+        wb = op.load_workbook(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+ slot_nombre+'.xlsx')
         ws = wb.get_sheet_by_name('Hoja de datos')
         determinantes = '?'        
         popular = '?'
@@ -455,9 +456,12 @@ class imprimirSlot(Action):
             ws['J' + indice]=popular
             ws['K' + indice]='?'
             ws['L' + indice]='?'
+            ws['M' + indice]=respuesta
+            ws['N' + indice]='?'
             #ws.append([lamina,'1','?','?','?', determinantes,'?', par, contenidos, popular,'?','?']) 
         else:
             if lamina == 4:
+                ws['N2']=respuesta
                 if determinantes != '?':
                     ws['F2'] = (determinantes)[:-1]
                 if  ws['H2'] == '2':
@@ -468,6 +472,7 @@ class imprimirSlot(Action):
                 if str(vj2) !='?' and str(vj2) != 'Po1':
                     ws ['J2'] = str(vj2) + popular
             elif lamina == 5:
+                ws['N3']=respuesta
                 if determinantes != '?':
                     ws['F3'] = (determinantes)[:-1]
                 if  ws['H3'] == '2':
@@ -475,6 +480,7 @@ class imprimirSlot(Action):
                 if contenidos != '?':
                     ws['I3'] =  contenidos[:-1]
             elif lamina == 6:
+                ws['N4']=respuesta
                 if determinantes != '?':
                     ws['F4'] = (determinantes)[:-1]
                 if ws['H4'] == '?':
@@ -483,12 +489,24 @@ class imprimirSlot(Action):
                 vj4 = ws['J4'].value
                 if str(vj4) !='?' and str(vj4) != 'Po3':
                     ws['J4'] = str(vj4) + popular
-                subir_archivo(str(self.get_project_root())+'/files/'+ slot_nombre+'.xlsx',"1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl")
-                #dispatcher.utter_message("Por favor arrastre el archivo denominado " + slot_nombre +".xlxs y sueltelo en la página web que acaba de abrirse. Gracias")
-        wb.save(str(self.get_project_root())+'/files/'+ slot_nombre+'.xlsx')
+                print(ws['N4'].value)
+        wb.save(str(self.get_project_root())+ os.path.sep +'files'+os.path.sep+ slot_nombre+'.xlsx')
         wb.close()
-        planilla = pd.read_excel(str(self.get_project_root())+'/files/'+ slot_nombre+'.xlsx')
+        if lamina == 6:
+            subir_archivo(str(self.get_project_root())+ os.path.sep +'files'+os.path.sep+ slot_nombre+'.xlsx',"1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl")
+        planilla = pd.read_excel(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+ slot_nombre+'.xlsx')
         print(planilla)
-
-
         return [SlotSet("par","false"),SlotSet("vista","false"),SlotSet("color_cromatico","false"),SlotSet("color_acromatico","false"),SlotSet("forma","false"),SlotSet("movimiento","false"),SlotSet("textura","false"),SlotSet("reflejo","false"),SlotSet("sombreado","false"),SlotSet("response", "None")]
+
+class TercerParte(Action):
+
+     def name(self) -> Text:
+         return "action_TerceraParte"
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        next_response = tracker.get_slot("response")
+        dispatcher.utter_message(response=next_response)  
+        return []

@@ -16,6 +16,7 @@ intents:
   - respuestas3
   #- nombre
   - id
+  - entendido
 
 
 entities:
@@ -79,6 +80,7 @@ slots:
 
 actions:
   - action_imprimir_determinantes
+  - action_TerceraParte
   # - action_upload
 
 responses:
@@ -115,7 +117,7 @@ responses:
           \nSi comprendió escriba la palabra listo" 
 
   utter_nombre:
-  - text: "Por favor ingrese su nombre y apellido con el formato: soy Nombre Apellido"
+  - text: "Por favor ingrese su nombre y apellido"
   
   utter_start:
   - text:   "¿Qué podría ser esto?"
@@ -148,6 +150,29 @@ responses:
 
   utter_Lamina3Razones:
   - text: "Aquí Usted ha dicho '{respuestaLamina3}'." # SLOT CON LA RTA DEL USUARIO 
+    image: "https://i.imgur.com/9uHtd03.jpeg"
+
+  utter_TercerParte:
+  - text: "Bien, usted ya tiene escrita sus respuestas y lo qué hay ahí que hacer que se parezca lo que indicó. Ahora, pasaremos a la 
+          \nTERCERA PARTE de la prueba. Para esto se mostrarán unos esquemas donde aparecen las tres manchas. En éstos, usted deberá
+          \nmarcar un círculo en la zona o lugar donde vieron las respuestas que enumeraron, es decir, encerrar donde está toda la
+          \nrespuesta.
+          \nPor ejemplo, si hubiera escrito que ve dos puntos blancos el dibujo sería el indicado con color rojo, escriba entendido para proseguir"
+    image: "https://imgur.com/9qfhslC"
+
+  utter_TercerParteLamina1:
+  - text: "Marque un círculo en la zona o lugar donde vió la respuesta que dió
+          \nAquí Usted ha dicho '{respuestaLamina1}'"
+    image: "https://i.imgur.com/ScvPxc3.jpeg"
+  
+  utter_TercerParteLamina2:
+  - text: "Marque un círculo en la zona o lugar donde vió la respuesta que dió
+          \nAquí Usted ha dicho '{respuestaLamina2}'"
+    image: "https://i.imgur.com/ZLC8NbE.jpeg"
+
+  utter_TercerParteLamina3:
+  - text: "Marque un círculo en la zona o lugar donde vió la respuesta que dió
+          \nAquí Usted ha dicho '{respuestaLamina3}'"
     image: "https://i.imgur.com/9uHtd03.jpeg"
 
   utter_par:
