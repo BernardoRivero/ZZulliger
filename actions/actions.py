@@ -115,7 +115,7 @@ class imprimirSlot(Action):
         slot_nombre = str(tracker.get_slot("nombre")).replace(' ','')
         SlotSet("nombre",slot_nombre)
         #tomo planilla de excel
-        wb = op.load_workbook(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+ slot_nombre+'.xlsx')
+        wb = op.load_workbook(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'.xlsx')
         ws = wb.get_sheet_by_name('Hoja de datos')
         determinantes = '?'        
         popular = '?'
@@ -489,11 +489,12 @@ class imprimirSlot(Action):
                 vj4 = ws['J4'].value
                 if str(vj4) !='?' and str(vj4) != 'Po3':
                     ws['J4'] = str(vj4) + popular
-        wb.save(str(self.get_project_root())+ os.path.sep +'files'+os.path.sep+ slot_nombre+'.xlsx')
+        wb.save(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'.xlsx')
         wb.close()
         if lamina == 6:
-            subir_archivo(str(self.get_project_root())+ os.path.sep +'files'+os.path.sep+ slot_nombre+'.xlsx',"1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl")
-        planilla = pd.read_excel(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+ slot_nombre+'.xlsx')
+            
+            subir_archivo(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'.xlsx',"1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl")
+        planilla = pd.read_excel(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'.xlsx')
         print(planilla)
         return [SlotSet("par","false"),SlotSet("vista","false"),SlotSet("color_cromatico","false"),SlotSet("color_acromatico","false"),SlotSet("forma","false"),SlotSet("movimiento","false"),SlotSet("textura","false"),SlotSet("reflejo","false"),SlotSet("sombreado","false"),SlotSet("response", "None")]
 

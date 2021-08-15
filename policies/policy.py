@@ -64,6 +64,7 @@ class TestPolicy(Policy):
         # If the last thing rasa did was listen to a user message, we need to
         # send back a response.
         slot_nombre = str(tracker.get_slot("nombre")).replace(' ','')
+        
         if tracker.latest_action_name == "action_listen":
             # The user starts the conversation.
             if intent["name"] == "welcome":
@@ -85,7 +86,7 @@ class TestPolicy(Policy):
                         'razon':['']})
                 planilla = planilla[['Lám', 'N°Rta', 'N°Loc','Loc','DQ','Det','FQ','(2)','Cont','Pop','Pje Z','CCEE','respuesta','razon']]
                 slot_nombre = str(tracker.get_slot("nombre")).replace(' ','')
-                writer = ExcelWriter(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+ slot_nombre+'.xlsx')
+                writer = ExcelWriter(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'.xlsx')
                 planilla.to_excel(writer, 'Hoja de datos', index=False)
                 writer.save()
                 return self._prediction(confidence_scores_for('utter_welcome', 1.0, domain))
