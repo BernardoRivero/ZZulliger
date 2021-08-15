@@ -650,10 +650,14 @@ nlu:
     - Piel de [animal]{"entity":"forma","value": "animal"}
     - [dos]{"entity":"par","value": "true"} [jugadores]{"entity":"forma","value": "humana"} [corriendo]{"entity":"movimiento","value": "true"} la pelota
 
-- intent: entendido
+- intent: ok
   examples: |
-    - entendido
-    - Entendido
+    - ok
+    - oka
+    - okey
+    - OK
+    - OKA
+    - OKEY
 
 - intent: id
   examples: |
