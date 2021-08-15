@@ -489,7 +489,6 @@ class imprimirSlot(Action):
                 vj4 = ws['J4'].value
                 if str(vj4) !='?' and str(vj4) != 'Po3':
                     ws['J4'] = str(vj4) + popular
-                print(ws['N4'].value)
         wb.save(str(self.get_project_root())+ os.path.sep +'files'+os.path.sep+ slot_nombre+'.xlsx')
         wb.close()
         if lamina == 6:

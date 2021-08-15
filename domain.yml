@@ -138,17 +138,17 @@ responses:
     image: "https://imgur.com/9qfhslC.jpeg"
 
   utter_TercerParteLamina1:
-  - text: "Marque un círculo en la zona o lugar donde vió la respuesta que dió. Luego vuelva al chat y escriba ok.
+  - text: "Vaya a la pizarra y marque un círculo en la zona o lugar donde vió la respuesta que dió. Cuando termine oprima el botón guardar imagen. Finalmente vuelva al chat y escriba ok.
           \nAquí Usted ha dicho '{respuestaLamina1}'"
     image: "https://i.imgur.com/ScvPxc3.jpeg"
   
   utter_TercerParteLamina2:
-  - text: "Marque un círculo en la zona o lugar donde vió la respuesta que dió. Luego vuelva al chat y escriba ok
+  - text: "Vaya a la pizarra y marque un círculo en la zona o lugar donde vió la respuesta que dió. Cuando termine oprima el botón guardar imagen. Finalmente vuelva al chat y escriba ok.
           \nAquí Usted ha dicho '{respuestaLamina2}'"
     image: "https://i.imgur.com/ZLC8NbE.jpeg"
 
   utter_TercerParteLamina3:
-  - text: "Marque un círculo en la zona o lugar donde vió la respuesta que dió. Luego vuelva al chat y escriba ok
+  - text: "Vaya a la pizarra y marque un círculo en la zona o lugar donde vió la respuesta que dió. Cuando termine oprima el botón guardar imagen. Finalmente vuelva al chat y escriba ok.
           \nAquí Usted ha dicho '{respuestaLamina3}'"
     image: "https://i.imgur.com/9uHtd03.jpeg"
 
