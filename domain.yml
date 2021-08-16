@@ -34,6 +34,7 @@ entities:
   - textura 
   - sombreado
   - nombre
+  - contador2
  
 
 slots:
@@ -76,6 +77,8 @@ slots:
     type: text
   
   contador:
+    type: text
+  contador2:
     type: text
 
 actions:
