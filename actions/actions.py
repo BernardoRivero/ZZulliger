@@ -491,8 +491,7 @@ class imprimirSlot(Action):
                     ws['J4'] = str(vj4) + popular
         wb.save(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'.xlsx')
         wb.close()
-        if lamina == 6:
-            
+        if lamina == 6:    
             subir_archivo(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'.xlsx',"1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl")
         planilla = pd.read_excel(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'.xlsx')
         print(planilla)
@@ -502,6 +501,9 @@ class TercerParte(Action):
 
      def name(self) -> Text:
          return "action_TerceraParte"
+
+     def get_project_root(self) -> Path:
+        return Path(__file__).parent.parent
 
      def run(self, dispatcher: CollectingDispatcher,
              tracker: Tracker,
