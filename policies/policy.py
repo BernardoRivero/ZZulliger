@@ -64,7 +64,7 @@ class TestPolicy(Policy):
         intent = tracker.latest_message.intent
         # If the last thing rasa did was listen to a user message, we need to
         # send back a response.
-        slot_nombre = str(tracker.get_slot("nombre")).replace(' ','')
+        slot_nombre = str(tracker.get_slot("nombre"))
         
         if tracker.latest_action_name == "action_listen":
             # The user starts the conversation.
@@ -86,7 +86,7 @@ class TestPolicy(Policy):
                         'respuesta':[''],
                         'razon':['']})
                 planilla = planilla[['Lám', 'N°Rta', 'N°Loc','Loc','DQ','Det','FQ','(2)','Cont','Pop','Pje Z','CCEE','respuesta','razon']]
-                slot_nombre = str(tracker.get_slot("nombre")).replace(' ','')
+                slot_nombre = str(tracker.get_slot("nombre"))
                 writer = ExcelWriter(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'.xlsx')
                 planilla.to_excel(writer, 'Hoja de datos', index=False)
                 writer.save()

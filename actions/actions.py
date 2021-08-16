@@ -112,7 +112,7 @@ class imprimirSlot(Action):
         _Po3 = {"persona","humano","hombre","mujer","niño","niña","chico","chica","señor","señora","personas","humanos","hombres","mujeres","niños","niñas","chicos","chicas","señores","señoras","payaso","payasos","hada","hadas","bruja","brujas","fantasma","fantasmas","enano","enanos","enana","enanas","demonio","demonios","ángel","ángeles","humanoide","humanoides","caricaturas","caricatura","monstruo","monstruos","duende","duendes"}
         #IMAGEN 2 NO TIENE RESPUESTAS POPULARES
         
-        slot_nombre = str(tracker.get_slot("nombre")).replace(' ','')
+        slot_nombre = str(tracker.get_slot("nombre"))
         SlotSet("nombre",slot_nombre)
         #tomo planilla de excel
         wb = op.load_workbook(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'.xlsx')
