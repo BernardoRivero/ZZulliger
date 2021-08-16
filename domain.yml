@@ -134,8 +134,8 @@ responses:
     image: "https://i.imgur.com/9uHtd03.jpeg"
 
   utter_TercerParte:
-  - text: "Bien, usted ya tiene escrita sus respuestas y lo qué hay ahí que hacer que se parezca lo que indicó. Ahora, pasaremos a la TERCERA PARTE de la prueba. Para esto se mostrarán unos esquemas donde aparecen las tres manchas. En éstos, usted deberá marcar un círculo en la zona o lugar donde vieron las respuestas que enumeraron, es decir, encerrar donde está toda la respuesta. Por ejemplo, si hubiera escrito que ve dos puntos blancos el dibujo sería el indicado con color rojo, escriba ok para proseguir"
-    image: "https://imgur.com/9qfhslC.jpeg"
+  - text: "Bien, usted ya tiene escrita sus respuestas y lo qué hay ahí que hacer que se parezca lo que indicó. Ahora, pasaremos a la TERCERA PARTE de la prueba. Para esto se mostrarán unos esquemas donde aparecen las tres manchas. En éstos, usted deberá marcar un círculo en la zona o lugar donde vieron las respuestas que enumeraron, es decir, encerrar donde está toda la respuesta. Por ejemplo, si hubiera escrito que ve dos cabezas de animales con cuernos que tienen la boca abierta, el dibujo sería el indicado con color rojo. Escriba ok para proseguir"
+    image: "https://imgur.com/OoXqWYJ.jpeg"
 
   utter_TercerParteLamina1:
   - text: "Vaya a la pizarra y marque un círculo en la zona o lugar donde vió la respuesta que dió. Cuando termine oprima el botón guardar imagen. Finalmente vuelva al chat y escriba ok.
