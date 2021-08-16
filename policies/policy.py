@@ -146,11 +146,11 @@ class TestPolicy(Policy):
                 self._contador2 = self._contador2 + 1
                 tracker.update(SlotSet("contador2", self._contador2))
                 if self._contador == 7:
-                    tracker.update(SlotSet("response", "utter_TercerParteLamina1"))
+                    return self._prediction(confidence_scores_for("utter_TercerParteLamina1", 1.0, domain))
                 elif self._contador == 8:
-                    tracker.update(SlotSet("response", "utter_TercerParteLamina2"))
+                    return self._prediction(confidence_scores_for("utter_TercerParteLamina2", 1.0, domain))
                 elif self._contador == 9:
-                    tracker.update(SlotSet("response", "utter_TercerParteLamina3"))
+                    return self._prediction(confidence_scores_for("utter_TercerParteLamina3", 1.0, domain))
                 elif self._contador == 10:
                     tracker.update(SlotSet("response", "utter_Fin"))
                     return self._prediction(confidence_scores_for("action_TerceraParte", 1.0, domain))
