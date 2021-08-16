@@ -35,6 +35,7 @@ class TestPolicy(Policy):
         
         #indicador de respuesta
         self._contador = 0
+        self._contador2 = 0
         #respuestas del entrevistado
         self._respuesta1 = ""
         self._respuesta2 = ""
@@ -140,8 +141,10 @@ class TestPolicy(Policy):
                 #elif self._contador == 8:
                 #    tracker.update(SlotSet("response", "utter_TercerParteLamina3"))
                 return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
-            if intent["name"] == "ok" :
+            if intent["name"] == "ok":
                 self._contador = self._contador + 1
+                self._contador2 = self._contador2 + 1
+                tracker.update(SlotSet("contador2", self._contador2))
                 if self._contador == 7:
                     tracker.update(SlotSet("response", "utter_TercerParteLamina1"))
                 elif self._contador == 8:

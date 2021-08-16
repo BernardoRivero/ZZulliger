@@ -508,7 +508,9 @@ class TercerParte(Action):
      def run(self, dispatcher: CollectingDispatcher,
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
+        contador = tracker.get_slot("contador")
         next_response = tracker.get_slot("response")
-        dispatcher.utter_message(response=next_response)  
+        dispatcher.utter_message(response=next_response)
+        slot_nombre = str(tracker.get_slot("nombre"))
+        subir_archivo(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'_'+contador+'.png',"1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl")  
         return []
