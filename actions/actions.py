@@ -508,7 +508,7 @@ class TercerParte(Action):
      def run(self, dispatcher: CollectingDispatcher,
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        contador = tracker.get_slot("contador")
+        contador = tracker.get_slot("contador2")
         next_response = tracker.get_slot("response")
         dispatcher.utter_message(response=next_response)
         slot_nombre = str(tracker.get_slot("nombre"))
