@@ -497,22 +497,22 @@ class imprimirSlot(Action):
         print(planilla)
         return [SlotSet("par","false"),SlotSet("vista","false"),SlotSet("color_cromatico","false"),SlotSet("color_acromatico","false"),SlotSet("forma","false"),SlotSet("movimiento","false"),SlotSet("textura","false"),SlotSet("reflejo","false"),SlotSet("sombreado","false"),SlotSet("response", "None")]
 
-class TercerParte(Action):
+# class TercerParte(Action):
 
-     def name(self) -> Text:
-         return "action_TerceraParte"
+#      def name(self) -> Text:
+#          return "action_TerceraParte"
 
-     def get_project_root(self) -> Path:
-        return Path(__file__).parent.parent
+#      def get_project_root(self) -> Path:
+#         return Path(__file__).parent.parent
 
-     def run(self, dispatcher: CollectingDispatcher,
-             tracker: Tracker,
-             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        contador = 1
-        next_response = tracker.get_slot("response")
-        dispatcher.utter_message(response=next_response)
-        slot_nombre = str(tracker.get_slot("nombre"))
-        while contador < 4:    
-            subir_archivo(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'_'+str(contador)+'.png',"1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl")  
-            contador = contador + 1
-        return []
+#      def run(self, dispatcher: CollectingDispatcher,
+#              tracker: Tracker,
+#              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#         contador = 1
+#         next_response = tracker.get_slot("response")
+#         dispatcher.utter_message(response=next_response)
+#         slot_nombre = str(tracker.get_slot("nombre"))
+#         while contador < 4:    
+#             subir_archivo(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'_'+str(contador)+'.png',"1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl")  
+#             contador = contador + 1
+#         return []
