@@ -152,7 +152,8 @@ class TestPolicy(Policy):
                 elif self._contador == 9:
                     return self._prediction(confidence_scores_for("utter_TercerParteLamina3", 1.0, domain))
                 elif self._contador == 10:
-                    tracker.update(SlotSet("response", "utter_Fin"))
+                    #tracker.update(SlotSet("response", "utter_Fin"))
+                    return self._prediction(confidence_scores_for("utter_Fin", 1.0, domain))
                     #return self._prediction(confidence_scores_for("action_TerceraParte", 1.0, domain))
         # If rasa latest action isn't "action_listen", it means the last thing
         # rasa did was send a response, so now we need to listen again so the
