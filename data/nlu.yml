@@ -98,6 +98,13 @@ nlu:
     - list
     - listoo
 
+- intent: termine
+  examples: |
+    - termine
+    - termin
+    - terminado
+    - terminee
+
 - intent: welcome
   examples: |
     - hola
@@ -145,12 +152,35 @@ nlu:
     - Entrada a un templo de civilizaciones antiguas
     - Conexión de elementos [simetricamente]{"entity":"par","value": "true"}
     - por los colores y la [profundidad]{"entity":"sombreado","value": "true"} del [negro]{"entity":"color_acromatico","value": "true"} del centro
-    - Obra de arte
     - Entrada a un templo de civilizaciones antiguas
     - Parece la piel de un [animal]{"entity":"forma","value": "animal"}
+    - nubes
+    - nube
+    - mancha
+    - manchas
+    - tierra
+    - tierras
+    - fuego
+    - fuegos
+    - fogata
+    - colores del atardecer
+    - colores del amanecer
+    - colores de noche
+    - colores del arcoiris
+    - amanecer
+    - tarde gris
+    - campos
+    - campo
+    - estrellas
+    - galaxia
+    - mar
+    - oceano
+    - oceanos
+    - agua
+    - aire
 
-- intent: respuestasv+
-  examples: |
+- intent: respuestasvmas
+  examples: |  
     - una mancha [gris]{"entity":"color_acromatico","value": "true"} [suave]{"entity":"textura","value": "true"} en la pared
     - una mancha [gris]{"entity":"color_acromatico","value": "true"} en la pared
     - una [fogata]{"entity":"forma","value": "inanimada"} [reflejada]{"entity":"reflejo","value": "true"} en un espejo
@@ -175,6 +205,31 @@ nlu:
     - Parece la piel de un [animal]{"entity":"forma","value": "animal"} la cual ha sido dividida en secciones [simetricas]{"entity":"par","value": "true"}
     - Helado [derritiéndose]{"entity":"movimiento","value": "true"} en vidrio
     - Representacion de los colores de un ramo de [flores]{"entity":"forma","value": "inanimada"}
+    - nubes [moviendose]{"entity":"movimiento","value": "true"} en el cielo
+    - nubes [moviendose]{"entity":"movimiento","value": "true"} sobre el agua
+    - nubes [moviendose]{"entity":"movimiento","value": "true"} sobre la tierra
+    - raíces [saliendo]{"entity":"movimiento","value": "true"} de la tierra
+    - agujeros en la tierra
+    - fuego [saliendo]{"entity":"movimiento","value": "true"} de la tierra
+    - incendio forestal
+    - humo en el cielo
+    - humo sobre un bosque
+    - tierra inundada
+    - campos llenos de agua
+    - campos con pozos
+    - humo sobre el campo
+    - niebla sobre el agua
+    - niebla sobre el campo
+    - niebla [moviendose]{"entity":"movimiento","value": "true"} sobre el agua
+    - niebla [moviendose]{"entity":"movimiento","value": "true"} sobre el campo
+    - olas [rompiendo]{"entity":"movimiento","value": "true"} en el mar
+    - olas [rompiendo]{"entity":"movimiento","value": "true"} en el agua
+    - viento sobre el mar
+    - viento [soplando]{"entity":"movimiento","value": "true"} sobre la tierra
+    - polvo [volando]{"entity":"movimiento","value": "true"} sobre el campo
+    - viento [levantando]{"entity":"movimiento","value": "true"} polvo
+    - viento [soplando]{"entity":"movimiento","value": "true"} sobre el desierto
+    - tormenta de arena en el desierto
     
 - intent: respuestaso
   examples: |
@@ -714,12 +769,3 @@ nlu:
 - regex: nombre
   examples: |
     - ^([a-zA-Z]{2,}\s[a-zA-z]{1,}\s?([a-zA-Z]{1,})?\s?([a-zA-Z]{1,})?)
-
-
-#- intent: razones
-#  examples: |
-    
-#- intent: nombre
-#  examples: |
-#    - soy [Bernardo Rivero]{"entity": "nombre"}
-#    - soy []

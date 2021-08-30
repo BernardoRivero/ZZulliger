@@ -1,28 +1,19 @@
-#from actions.actions import imprimirSlot
-#import json
+from policies.data_processor import DataProccesor
+from policies.excel_handler import ExcelHandler
 from typing import Any, List, Dict, Text, Optional
-from numpy.lib.ufunclike import _dispatcher
-import pandas as pd
-from pandas import ExcelWriter
 from rasa.core.featurizers.tracker_featurizers import TrackerFeaturizer
 from rasa.core.policies.policy import PolicyPrediction, confidence_scores_for, \
     Policy
-from rasa.shared.core.constants import SESSION_START_METADATA_SLOT
 from rasa.shared.core.domain import Domain
 from rasa.shared.core.generator import TrackerWithCachedStates
 from rasa.shared.core.trackers import DialogueStateTracker
 from rasa.shared.nlu.interpreter import NaturalLanguageInterpreter
 from rasa.utils.endpoints import *
 from typing import Any, Text, Dict, List
-from rasa_sdk.executor import CollectingDispatcher
-
 from rasa.shared.core.events import SlotSet
-from rasa_sdk.events import BotUttered, SessionStarted
-import webbrowser
 from pathlib import Path
-import os
 
-class TestPolicy(Policy):
+class ZulligerPolicy(Policy):
 
     def __init__(
             self,
@@ -33,12 +24,26 @@ class TestPolicy(Policy):
     ) -> None:
         super().__init__(featurizer, priority, should_finetune, **kwargs)
         
-        #indicador de respuesta
-        self._contador = 0
-        #respuestas del entrevistado
-        self._respuesta1 = ""
-        self._respuesta2 = ""
-        self._respuesta3 = ""
+        ## Maneja todo lo relacionado a excel
+        self._excelHandler = ExcelHandler()
+
+        ## Procesa contenidos y determinantes
+        self._data_processor = DataProccesor()
+        
+        ## Indicador de etapa 
+        self._state = 1        
+        # Indicador de respuesta
+        self._lamina = 1
+        # Respuestas del entrevistado
+        self._responses_lamina1 = []
+        self._responses_lamina2 = []
+        self._responses_lamina3 = []
+        # Razones del entrevistado
+        self._reasons_lamina1 = []
+        self._reasons_lamina2 = []
+        self._reasons_lamina3 = []
+
+        self._counter = 0
         
     def train(
             self,
@@ -61,98 +66,162 @@ class TestPolicy(Policy):
             
     ) -> "PolicyPrediction":
         intent = tracker.latest_message.intent
-        # If the last thing rasa did was listen to a user message, we need to
-        # send back a response.
-        slot_nombre = str(tracker.get_slot("nombre"))
         
+        # If the last thing rasa did was listen to a user message, we need to
+        # send back a response.    
         if tracker.latest_action_name == "action_listen":
+            print(intent["name"])
+
+            ##self._excelHandler.update_data()
+
             # The user starts the conversation.
             if intent["name"] == "welcome":
                 return self._prediction(confidence_scores_for('utter_nombre', 1.0, domain))
+
+            # The user enters his name.
             elif intent["name"] == "id":
-                planilla = pd.DataFrame({'Lám': [''],
-                        'N°Rta':[''],
-                        'N°Loc':[''],
-                        'Loc': [''],
-                        'DQ': [''],
-                        'Det': [''],
-                        'FQ': [''],
-                        '(2)': [''],
-                        'Cont': [''],
-                        'Pop': [''],
-                        'Pje Z': [''],
-                        'CCEE': [''],
-                        'respuesta':[''],
-                        'razon':['']})
-                planilla = planilla[['Lám', 'N°Rta', 'N°Loc','Loc','DQ','Det','FQ','(2)','Cont','Pop','Pje Z','CCEE','respuesta','razon']]
                 slot_nombre = str(tracker.get_slot("nombre"))
-                writer = ExcelWriter(str(self.get_project_root())+os.path.sep +'files'+os.path.sep+slot_nombre+'.xlsx')
-                planilla.to_excel(writer, 'Hoja de datos', index=False)
-                writer.save()
+                self._excelHandler.create_excel_sheet(slot_nombre)
                 return self._prediction(confidence_scores_for('utter_welcome', 1.0, domain))
+
+            # The test starts, the first image is displayed.
             elif intent["name"] == "start":
                 return self._prediction(confidence_scores_for('utter_start', 1.0, domain))
-      
 
-            # The user enters a response.
-            if intent["name"] == "respuestasv" or intent["name"] == "respuestasv+" or intent["name"] == "respuestaso" or intent["name"] == "respuestas+":
-                self._contador = self._contador + 1
-                tracker.update(SlotSet("contador", self._contador))
-                if self._contador == 1:
-                    
-                    # Guarda en la variable "respuesta1" SOLO el texto que ingreso el usuario
-                    self._respuesta1 = tracker.latest_message.text
+            if intent["name"] == "termine":
+                if self._lamina == 1:
+                    self._lamina = 2
+                    return self._prediction(confidence_scores_for("utter_Lamina2", 1.0, domain))
+                elif self._lamina == 2:
+                    self._lamina = 3
+                    return self._prediction(confidence_scores_for("utter_Lamina3", 1.0, domain))
+                elif self._lamina == 3:
+                    self._lamina = 1
+                    self._state = 2
+                    self._counter = 0
+                    tracker.update(SlotSet("respuestaLamina1", self._responses_lamina1[self._counter]))
 
-                    # Setea el slot "respuestaLamina1" con lo que ingreso el usuario
-                    tracker.update(SlotSet("respuestaLamina1", self._respuesta1))
-                    # Guarda en el slot "response" la próxima respuesta del bot 
-                    # (se manda en la action "action_imprimir_determinantes")
-                    tracker.update(SlotSet("response", "utter_Lamina2"))
+                    print(str(self._responses_lamina1))
+                    print(str(self._responses_lamina2))
+                    print(str(self._responses_lamina3)) 
+
+                    return self._prediction(confidence_scores_for("utter_Lamina1Razones", 1.0, domain))
+
+            # The user enters what he sees in the images.
+            if intent["name"] == "respuestasv" or intent["name"] == "respuestasvmas" or intent["name"] == "respuestaso" or intent["name"] == "respuestas+":
                 
-                # Lo mismo se hace con las respuestas 2 y 3:
-                elif self._contador == 2:
-                    self._respuesta2 = tracker.latest_message.text
-                    tracker.update(SlotSet("respuestaLamina2", self._respuesta2))
-                    tracker.update(SlotSet("response", "utter_Lamina3"))
-
-                elif self._contador == 3:
-                    self._respuesta3 = tracker.latest_message.text
-                    tracker.update(SlotSet("respuestaLamina3", self._respuesta3))
+                #self._data_processor.process(self._lamina, tracker)
+                if self._state == 1:     ## Etapa de respuesta
                     
-                    # Acá empieza la parte de revisión de las láminas 
-                    tracker.update(SlotSet("response", "utter_Lamina1Razones"))
-                if self._contador < 4:
-                    return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
-                #elif self._contador < 7:
-                elif self._contador == 4:
-                    self._razones1 = tracker.latest_message.text
-                    tracker.update(SlotSet("razonesLamina1", self._respuesta3))
-                    tracker.update(SlotSet("response", "utter_Lamina2Razones"))
-                elif self._contador == 5:
-                    self._razones2 = tracker.latest_message.text
-                    tracker.update(SlotSet("razonesLamina2", self._respuesta3))
-                    tracker.update(SlotSet("response", "utter_Lamina3Razones"))
-                elif self._contador == 6:
-                    tracker.update(SlotSet("response", "utter_TercerParte"))
-                    #tracker.update(SlotSet("response", "utter_TercerParteLamina1"))
-                #elif self._contador == 7:
-                #    tracker.update(SlotSet("response", "utter_TercerParteLamina2"))
-                #elif self._contador == 8:
-                #    tracker.update(SlotSet("response", "utter_TercerParteLamina3"))
-                return self._prediction(confidence_scores_for("action_imprimir_determinantes", 1.0, domain))
+                    #self._data_processor.process_developmental_quality(intent["name"], self._lamina-1)
+                    
+                    if self._lamina == 1:                        
+                        #tracker.update(SlotSet("respuestaLamina1", tracker.latest_message.text))
+                        self._responses_lamina1.append(tracker.latest_message.text)
+                        if len(self._responses_lamina1) == 5:
+                            self._lamina = 2
+                            return self._prediction(confidence_scores_for("utter_Lamina2", 1.0, domain))
+                        
+                        #return self._prediction(confidence_scores_for("utter_Lamina2", 1.0, domain))
+                    
+                    elif self._lamina == 2:
+                        # tracker.update(SlotSet("respuestaLamina2", tracker.latest_message.text))
+                        # return self._prediction(confidence_scores_for("utter_Lamina3", 1.0, domain))
+                        self._responses_lamina2.append(tracker.latest_message.text)
+                        if len(self._responses_lamina2) == 5:
+                            self._lamina = 3
+                            return self._prediction(confidence_scores_for("utter_Lamina3", 1.0, domain))
+
+                    elif self._lamina == 3:                        
+                        self._responses_lamina3.append(tracker.latest_message.text)
+                        if len(self._responses_lamina3) == 5:
+                            self._lamina = 1
+                            self._state = 2
+                            self._counter = 0
+                            tracker.update(SlotSet("respuestaLamina1", self._responses_lamina1[self._counter]))
+
+                            print(str(self._responses_lamina1))
+                            print(str(self._responses_lamina2))
+                            print(str(self._responses_lamina3))
+
+                            return self._prediction(confidence_scores_for("utter_Lamina1Razones", 1.0, domain))
+
+                        # tracker.update(SlotSet("respuestaLamina3", tracker.latest_message.text))
+                        # return self._prediction(confidence_scores_for("utter_Lamina1Razones", 1.0, domain))
+               
+                elif self._state == 2:  ## Etapa de revisión    
+                    self._counter += 1
+                    
+                    if self._lamina == 1:
+                        self._reasons_lamina1.append(tracker.latest_message.text)
+                        if self._counter < len(self._responses_lamina1):
+                            tracker.update(SlotSet("respuestaLamina1", self._responses_lamina1[self._counter]))
+                            return self._prediction(confidence_scores_for("utter_Lamina1Razones2", 1.0, domain))
+                        else:
+                            self._lamina += 1
+                            self._counter = 0
+                            tracker.update(SlotSet("respuestaLamina2", self._responses_lamina2[self._counter]))
+                            return self._prediction(confidence_scores_for("utter_Lamina2Razones", 1.0, domain))
+                    
+                    elif self._lamina == 2:                        
+                        self._reasons_lamina2.append(tracker.latest_message.text)
+                        if self._counter < len(self._responses_lamina2):
+                            tracker.update(SlotSet("respuestaLamina2", self._responses_lamina2[self._counter]))
+                            return self._prediction(confidence_scores_for("utter_Lamina2Razones", 1.0, domain))
+                        else:
+                            self._lamina += 1
+                            self._counter = 0
+                            tracker.update(SlotSet("respuestaLamina3", self._responses_lamina3[self._counter]))
+                            return self._prediction(confidence_scores_for("utter_Lamina3Razones", 1.0, domain))
+
+                    elif self._lamina == 3:
+                        self._reasons_lamina3.append(tracker.latest_message.text)
+                        if self._counter < len(self._responses_lamina3):
+                            tracker.update(SlotSet("respuestaLamina3", self._responses_lamina3[self._counter]))
+                            return self._prediction(confidence_scores_for("utter_Lamina3Razones", 1.0, domain))
+                        else:
+                            self._lamina = 1
+                            self._counter = 0
+                            self._state = 3
+                            return self._prediction(confidence_scores_for("utter_TercerParte", 1.0, domain))
+                                   
             if intent["name"] == "ok":
-                self._contador = self._contador + 1
-                if self._contador == 7:
-                    return self._prediction(confidence_scores_for("utter_TercerParteLamina1", 1.0, domain))
-                elif self._contador == 8:
-                    return self._prediction(confidence_scores_for("utter_TercerParteLamina2", 1.0, domain))
-                elif self._contador == 9:
-                    return self._prediction(confidence_scores_for("utter_TercerParteLamina3", 1.0, domain))
-                elif self._contador == 10:
-                    self._contador = 0
-                    #tracker.update(SlotSet("response", "utter_Fin"))
-                    return self._prediction(confidence_scores_for("utter_Fin", 1.0, domain))
-                    #return self._prediction(confidence_scores_for("action_TerceraParte", 1.0, domain))
+                if self._state == 3:    ## Etapa de dibujo
+                    
+                    if self._lamina == 1:
+                        if self._counter < len(self._responses_lamina1):
+                            tracker.update(SlotSet("respuestaLamina1", self._responses_lamina1[self._counter]))
+                            self._counter += 1
+                            return self._prediction(confidence_scores_for("utter_TercerParteLamina1", 1.0, domain))
+                        else:
+                            self._counter = 0
+                            self._lamina += 1
+                            tracker.update(SlotSet("respuestaLamina2", self._responses_lamina2[self._counter]))
+                            return self._prediction(confidence_scores_for("utter_TercerParteLamina2", 1.0, domain))
+
+                    elif self._lamina == 2:
+                        self._counter += 1
+                        if self._counter < len(self._responses_lamina2):                            
+                            tracker.update(SlotSet("respuestaLamina2", self._responses_lamina2[self._counter]))                            
+                            return self._prediction(confidence_scores_for("utter_TercerParteLamina2", 1.0, domain))
+                        else:
+                            self._counter = 0
+                            self._lamina += 1
+                            tracker.update(SlotSet("respuestaLamina3", self._responses_lamina3[self._counter]))
+                            return self._prediction(confidence_scores_for("utter_TercerParteLamina3", 1.0, domain))
+                    
+                    elif self._lamina == 3:
+                        self._counter += 1
+                        if self._counter < len(self._responses_lamina3):
+                            tracker.update(SlotSet("respuestaLamina3", self._responses_lamina3[self._counter]))
+                            return self._prediction(confidence_scores_for("utter_TercerParteLamina3", 1.0, domain))
+                        
+                        else:       ## Final 
+                            self._state = 1
+                            self._lamina = 1
+                            self._counter = 0
+                            return self._prediction(confidence_scores_for("utter_Fin", 1.0, domain))
+        
         # If rasa latest action isn't "action_listen", it means the last thing
         # rasa did was send a response, so now we need to listen again so the
         # user can talk to us.
@@ -167,4 +236,4 @@ class TestPolicy(Policy):
 
     @classmethod
     def _metadata_filename(cls) -> Text:
-        return "test_policy.json"
+        return "zulliger_policy.json"

@@ -11,7 +11,7 @@ intents:
   - welcome
   - start
   - respuestasv
-  - respuestasv+
+  - respuestasvmas
   - respuestaso
   - respuestas+
   - respuestaSector
@@ -19,6 +19,7 @@ intents:
   - respuestas3
   - id
   - ok
+  - termine
 
 
 entities:
@@ -127,15 +128,19 @@ responses:
     image: "https://i.imgur.com/9uHtd03.jpeg"
 
   utter_Lamina1Razones:
-  - text: "Bien, usted escribió todo lo que la mancha podría ser, es decir, respondieron a la PRIMERA pregunta. Ahora, vamos a responder a la SEGUNDA pregunta que aparece más arriba en el protocolo. Esto tiene el propósito de que YO vea, tal como usted vio, cada una de sus respuestas. Para esto, volveré a mostrar las láminas, comenzando por la N°1 y usted, leerá sus respuestas y contestará a ¿QUE HAY EN LA MANCHA QUE HACE QUE PAREZCA LO QUE ANOTÓ?. Tomará una a una sus respuestas, sin saltarse ninguna, y así, para la respuesta 1, respoderá a la pregunta y redactará o explicará lo que corresponde. Luego tomará su respuesta 2 y respondera de igual forma a la misma pregunta; luego se hará lo mismo para la respuesta 3 y de igual manera para todas las respuestas que usted haya escrito, sin dejar ninguna sin responder. Recuerde que la pregunta es ¿QUE HAY EN LA MANCHA QUE HACE QUE PAREZCA LO QUE SE ANOTÓ? y no confundir con ¿donde está ubicado lo que anotaron?. Eso se hará mas adelante. Tenga cuidado con esa diferencia. Su respuesta:'{respuestaLamina1}'." # SLOT CON LA RTA DEL USUARIO
+  - text: "Bien, usted escribió todo lo que la mancha podría ser, es decir, respondieron a la PRIMERA pregunta. Ahora, vamos a responder a la SEGUNDA pregunta que aparece más arriba en el protocolo. Esto tiene el propósito de que YO vea, tal como usted vio, cada una de sus respuestas. Para esto, volveré a mostrar las láminas, comenzando por la N°1 y usted, leerá sus respuestas y contestará a ¿QUE HAY EN LA MANCHA QUE HACE QUE PAREZCA LO QUE ANOTÓ?. Tomará una a una sus respuestas, sin saltarse ninguna, y así, para la respuesta 1, respoderá a la pregunta y redactará o explicará lo que corresponde. Luego tomará su respuesta 2 y respondera de igual forma a la misma pregunta; luego se hará lo mismo para la respuesta 3 y de igual manera para todas las respuestas que usted haya escrito, sin dejar ninguna sin responder. Recuerde que la pregunta es ¿QUE HAY EN LA MANCHA QUE HACE QUE PAREZCA LO QUE SE ANOTÓ? y no confundir con ¿donde está ubicado lo que anotaron?. Eso se hará mas adelante. Tenga cuidado con esa diferencia. Su respuesta: '{respuestaLamina1}'." 
+    image: "https://i.imgur.com/ScvPxc3.jpeg"
+
+  utter_Lamina1Razones2:
+  - text: "Aquí Usted ha dicho '{respuestaLamina1}'."
     image: "https://i.imgur.com/ScvPxc3.jpeg"
 
   utter_Lamina2Razones:
-  - text: "Aquí Usted ha dicho '{respuestaLamina2}'." # SLOT CON LA RTA DEL USUARIO
+  - text: "Aquí Usted ha dicho '{respuestaLamina2}'." 
     image: "https://i.imgur.com/ZLC8NbE.jpeg"
 
   utter_Lamina3Razones:
-  - text: "Aquí Usted ha dicho '{respuestaLamina3}'." # SLOT CON LA RTA DEL USUARIO 
+  - text: "Aquí Usted ha dicho '{respuestaLamina3}'."  
     image: "https://i.imgur.com/9uHtd03.jpeg"
 
   utter_TercerParte:
