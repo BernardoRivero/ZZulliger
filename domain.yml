@@ -10,11 +10,13 @@ intents:
   - bot_challenge
   - welcome
   - start
-  - respuestas
+  - respuestasv
+  - respuestasv+
+  - respuestaso
+  - respuestas+
   - respuestaSector
   - respuestas2
   - respuestas3
-  #- nombre
   - id
   - ok
 

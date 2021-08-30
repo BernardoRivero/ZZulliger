@@ -95,7 +95,7 @@ class TestPolicy(Policy):
       
 
             # The user enters a response.
-            if intent["name"] == "respuestas":
+            if intent["name"] == "respuestasv" or intent["name"] == "respuestasv+" or intent["name"] == "respuestaso" or intent["name"] == "respuestas+":
                 self._contador = self._contador + 1
                 tracker.update(SlotSet("contador", self._contador))
                 if self._contador == 1:

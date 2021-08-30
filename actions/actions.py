@@ -121,6 +121,8 @@ class imprimirSlot(Action):
         popular = '?'
         contenidos = ''
         lamina = tracker.get_slot("contador")
+        # if lamina < 4:
+            # modificar DQ
         if lamina == 4:
             contenidos = ws['I'+str(lamina - 2)].value
             lamina = 1
