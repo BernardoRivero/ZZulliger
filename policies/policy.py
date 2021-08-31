@@ -70,9 +70,6 @@ class ZulligerPolicy(Policy):
         # If the last thing rasa did was listen to a user message, we need to
         # send back a response.    
         if tracker.latest_action_name == "action_listen":
-            print(intent["name"])
-
-            ##self._excelHandler.update_data()
 
             # The user starts the conversation.
             if intent["name"] == "welcome":
@@ -80,8 +77,7 @@ class ZulligerPolicy(Policy):
 
             # The user enters his name.
             elif intent["name"] == "id":
-                slot_nombre = str(tracker.get_slot("nombre"))
-                self._excelHandler.create_excel_sheet(slot_nombre)
+                self._excelHandler.create_excel_sheet(str(tracker.get_slot("nombre")))
                 return self._prediction(confidence_scores_for('utter_welcome', 1.0, domain))
 
             # The test starts, the first image is displayed.
@@ -100,33 +96,23 @@ class ZulligerPolicy(Policy):
                     self._state = 2
                     self._counter = 0
                     tracker.update(SlotSet("respuestaLamina1", self._responses_lamina1[self._counter]))
-
-                    print(str(self._responses_lamina1))
-                    print(str(self._responses_lamina2))
-                    print(str(self._responses_lamina3)) 
-
                     return self._prediction(confidence_scores_for("utter_Lamina1Razones", 1.0, domain))
 
             # The user enters what he sees in the images.
             if intent["name"] == "respuestasv" or intent["name"] == "respuestasvmas" or intent["name"] == "respuestaso" or intent["name"] == "respuestas+":
                 
-                #self._data_processor.process(self._lamina, tracker)
+                self._data_processor.process(self._lamina, tracker, self._state, self._counter)
                 if self._state == 1:     ## Etapa de respuesta
                     
-                    #self._data_processor.process_developmental_quality(intent["name"], self._lamina-1)
+                    self._data_processor.process_developmental_quality(intent["name"], self._lamina-1)
                     
                     if self._lamina == 1:                        
-                        #tracker.update(SlotSet("respuestaLamina1", tracker.latest_message.text))
                         self._responses_lamina1.append(tracker.latest_message.text)
                         if len(self._responses_lamina1) == 5:
                             self._lamina = 2
                             return self._prediction(confidence_scores_for("utter_Lamina2", 1.0, domain))
-                        
-                        #return self._prediction(confidence_scores_for("utter_Lamina2", 1.0, domain))
-                    
+
                     elif self._lamina == 2:
-                        # tracker.update(SlotSet("respuestaLamina2", tracker.latest_message.text))
-                        # return self._prediction(confidence_scores_for("utter_Lamina3", 1.0, domain))
                         self._responses_lamina2.append(tracker.latest_message.text)
                         if len(self._responses_lamina2) == 5:
                             self._lamina = 3
@@ -139,15 +125,7 @@ class ZulligerPolicy(Policy):
                             self._state = 2
                             self._counter = 0
                             tracker.update(SlotSet("respuestaLamina1", self._responses_lamina1[self._counter]))
-
-                            print(str(self._responses_lamina1))
-                            print(str(self._responses_lamina2))
-                            print(str(self._responses_lamina3))
-
                             return self._prediction(confidence_scores_for("utter_Lamina1Razones", 1.0, domain))
-
-                        # tracker.update(SlotSet("respuestaLamina3", tracker.latest_message.text))
-                        # return self._prediction(confidence_scores_for("utter_Lamina1Razones", 1.0, domain))
                
                 elif self._state == 2:  ## Etapa de revisión    
                     self._counter += 1
@@ -219,7 +197,10 @@ class ZulligerPolicy(Policy):
                         else:       ## Final 
                             self._state = 1
                             self._lamina = 1
-                            self._counter = 0
+                            self._counter = 0                            
+                            self._excelHandler.upload_data(self._data_processor._determinantes, self._data_processor._contenidos, self._data_processor._par,
+                            self._data_processor._popular, self._data_processor._dq, responses=[self._responses_lamina1, self._responses_lamina2, self._responses_lamina3],
+                            reasons=[self._reasons_lamina1, self._reasons_lamina2, self._reasons_lamina3])
                             return self._prediction(confidence_scores_for("utter_Fin", 1.0, domain))
         
         # If rasa latest action isn't "action_listen", it means the last thing

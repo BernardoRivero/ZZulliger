@@ -3,24 +3,31 @@ from rasa.shared.core.events import SlotSet
 class DataProccesor():
     def __init__(self):        
 
-        self._determinantes = ['?','?','?']        
-        self._popular = ['?','?','?']
-        self._contenidos = ['','','']
-        self._par = ['?','?','?']
-        self._dq = ['?','?','?']
+        self._determinantes = [[], [], []]        
+        self._popular = [[], [], []]
+        self._contenidos = [[], [], []]
+        self._par = [[], [], []]
+        self._dq = [[], [], []]
+        self._forma = [[],[],[]]
 
-    def process(self, lamina, tracker):
-        self.process_contents( tracker.latest_message.text, lamina-1)
-        self.process_determinants(tracker, lamina-1)
-        self.process_popular(lamina, tracker.latest_message.text, lamina-1)
+        ## modificar para multiples respuestas
+
+
+
+    def process(self, lamina, tracker, state, rta):
+        self.process_contents( tracker.latest_message.text, lamina-1, state, rta)
+        self.process_determinants(tracker, lamina-1, state, rta)
+        self.process_popular(lamina, tracker.latest_message.text, lamina-1, state, rta)
         
         # print('lamina: ' + str(lamina))
+        # print('state: ' + str(state))
+        # print('rta: ' + str(rta))
         # print('contenidos: ' + str(self._contenidos))
         # print('determinantes: ' + str(self._determinantes))
         # print('popular: ' + str(self._popular))
         # print('par: ' + str(self._par))
 
-    def process_contents(self, latest_response, index):
+    def process_contents(self, latest_response: str, index, state, rta):
 
         ###### Contenidos ######:        
         #1 figura humana completa
@@ -28,7 +35,7 @@ class DataProccesor():
         #2 figura humana completa irreal, de ficción o mitológica
         _ParentesisH = {"payaso","payasos","hada","hadas","bruja","brujas","fantasma","fantasmas","enano","enanos","enana","enanas","demonio","demonios","ángel","ángeles","humanoide","humanoides","caricaturas","caricatura","monstruo","monstruos","monstruito","monstruitos","duende","duendes"}
         #3 Detalle humano
-        _Hd = {"brazo","pierna","dedos","pies","cabeza","codo","nariz","brazos","piernas","diente","dientes","muela","muelas","rodilla","rodillas","cerebro","cerebros",}        
+        _Hd = {"brazo","pierna","dedos","pies","cabeza","codo","nariz","brazos","piernas","diente","dientes","muela","muelas","rodilla","rodillas","cerebro","cerebros","cara"}        
         #4 Detalle humano irreal, de ficción o mitológico
         _ParentesisHd = {"máscara","mascara","máscaras","mascaras"}
         #5 Experiencia humana
@@ -74,212 +81,256 @@ class DataProccesor():
         _Sx = {"pene","penes","verga","vergas","pito","pitos","vagina","vaginas","concha","conchas","nalgas","cachas","pechos","teta","tetas","testículos","huevos","bolas","menstruación","aborto","abortar","coito","coger","garchar","cogiendo","teniendo sexo","garchando"}
         #26 Radiografía
         _Xy = {"radiografía","radiografia","placa","placas","rayos x","tomografía","ecografía","tomografía","ultrasonido","resonancia"}
+        
+        contenidos = ''
 
-        while _H: #1 figura humana completa
+        respuesta = latest_response.split()
+
+        while _H and ' H,' not in contenidos: #1 figura humana completa
             subconjunto = _H.pop()
-            if subconjunto in latest_response:
-                if ' H,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' H,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' H,'    
-                break   
-        while _ParentesisH: #2 figura humana completa irreal, de ficción o mitológica
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' H,' not in contenidos:
+                        contenidos += ' H,'
+                    elif contenidos == '':
+                        contenidos = ' H,'  
+        
+        while _ParentesisH and ' (H),' not in contenidos: #2 figura humana completa irreal, de ficción o mitológica
             subconjunto = _ParentesisH.pop()
-            if subconjunto in latest_response:
-                if ' (H),' not in self._contenidos[index]:
-                    self._contenidos[index] += ' (H),'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' (H),'    
-                break
-        while _Hd: #3 Detalle humano
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' (H),' not in contenidos:
+                        contenidos += ' (H),'
+                    elif contenidos == '':
+                        contenidos = ' (H),'    
+                    
+        while _Hd and ' Hd,' not in contenidos: #3 Detalle humano
             subconjunto = _Hd.pop()
-            if subconjunto in latest_response:
-                if ' Hd,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Hd,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Hd,'    
-                break
-        while _ParentesisHd: #4 Detalle humano irreal, de ficción o mitológico
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Hd,' not in contenidos:
+                        contenidos += ' Hd,'
+                    elif contenidos == '':
+                        contenidos = ' Hd,'    
+
+        while _ParentesisHd and ' (Hd),' not in contenidos: #4 Detalle humano irreal, de ficción o mitológico
             subconjunto = _ParentesisHd.pop()
-            if subconjunto in latest_response:
-                if ' (Hd),' not in self._contenidos[index]:
-                    self._contenidos[index] += ' (Hd),'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' (Hd),'    
-                break    
-        while _Hx: #5 Experiencia humana
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' (Hd),' not in contenidos:
+                        contenidos += ' (Hd),'
+                    elif contenidos == '':
+                        contenidos = ' (Hd),'    
+
+        while _Hx and ' Hx,' not in contenidos: #5 Experiencia humana
             subconjunto = _Hx.pop()
-            if subconjunto in latest_response:
-                if ' Hx,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Hx,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Hx,'    
-                break
-        while _A: #6 Figura animal completa
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Hx,' not in contenidos:
+                        contenidos += ' Hx,'
+                    elif contenidos == '':
+                        contenidos = ' Hx,'    
+                    
+        while _A and ' A,' not in contenidos: #6 Figura animal completa
             subconjunto = _A.pop()
-            if subconjunto in latest_response:
-                if ' A,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' A,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' A,'    
-                break
-        while _ParentesisA: #7 Figura animal completa irreal, de ficción o mitológica
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' A,' not in contenidos:
+                        contenidos += ' A,'
+                    elif contenidos == '':
+                        contenidos = ' A,'    
+                    
+        while _ParentesisA and ' (A),' not in contenidos: #7 Figura animal completa irreal, de ficción o mitológica
             subconjunto = _ParentesisA.pop()
-            if subconjunto in latest_response:
-                if ' (A),' not in self._contenidos[index]:
-                    self._contenidos[index] += ' (A),'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' (A),'    
-                break
-        while _Ad: #8 Figura animal incompleta
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' (A),' not in contenidos:
+                        contenidos += ' (A),'
+                    elif contenidos == '':
+                        contenidos = ' (A),'    
+                
+        while _Ad and ' Ad,' not in contenidos: #8 Figura animal incompleta
             subconjunto = _Ad.pop()
-            if subconjunto in latest_response:
-                if ' Ad,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Ad,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Ad,'    
-                break
-        while _An: #10 Anatomía
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Ad,' not in contenidos:
+                        contenidos += ' Ad,'
+                    elif contenidos == '':
+                        contenidos = ' Ad,'    
+                    
+        while _An and ' An,' not in contenidos: #10 Anatomía
             subconjunto = _An.pop()
-            if subconjunto in latest_response:
-                if ' An,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' An,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' An,'    
-                break
-        while _Art: #11 Arte
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' An,' not in contenidos:
+                        contenidos += ' An,'
+                    elif contenidos == '':
+                        contenidos = ' An,'    
+                
+        while _Art and ' Art,' not in contenidos: #11 Arte
             subconjunto = _Art.pop()
-            if subconjunto in latest_response:
-                if ' Art,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Art,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Art,'    
-                break
-        while _Ay: #12 Antropológica
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Art,' not in contenidos:
+                        contenidos += ' Art,'
+                    elif contenidos == '':
+                        contenidos = ' Art,'    
+                
+        while _Ay and ' Ay,' not in contenidos: #12 Antropológica
             subconjunto = _Ay.pop()
-            if subconjunto in latest_response:
-                if ' Ay,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Ay,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Ay,'    
-                break
-        while _Bl: #13 Sangre
+            for i in respuesta: 
+                if subconjunto == i:
+                    if ' Ay,' not in contenidos:
+                        contenidos += ' Ay,'
+                    elif contenidos == '':
+                        contenidos = ' Ay,'    
+                
+        while _Bl and ' Bl,' not in contenidos: #13 Sangre
             subconjunto = _Bl.pop()
-            if subconjunto in latest_response:
-                if ' Bl,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Bl,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Bl,'    
-                break
-        while _Bt: #14 Botánica
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Bl,' not in contenidos:
+                        contenidos += ' Bl,'
+                    elif contenidos == '':
+                        contenidos = ' Bl,'    
+
+        while _Bt and ' Bt,' not in contenidos: #14 Botánica
             subconjunto = _Bt.pop()
-            if subconjunto in latest_response:
-                if ' Bt,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Bt,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Bt,'    
-                break
-        while _Cg: #15 Vestidos
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Bt,' not in contenidos:
+                        contenidos += ' Bt,'
+                    elif contenidos == '':
+                        contenidos = ' Bt,'    
+            
+        while _Cg and ' Cg,' not in contenidos: #15 Vestidos
             subconjunto = _Cg.pop()
-            if subconjunto in latest_response:
-                if ' Cg,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Cg,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Cg,'    
-                break
-        while _Cl: #16 Nubes
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Cg,' not in contenidos:
+                        contenidos += ' Cg,'
+                    elif contenidos == '':
+                        contenidos = ' Cg,'    
+                    
+        while _Cl and ' Cl,' not in contenidos: #16 Nubes
             subconjunto = _Cl.pop()
-            if subconjunto in latest_response:
-                if ' Cl,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Cl,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Cl,'    
-                break
-        while _Ex: #17 Explosión
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Cl,' not in contenidos:
+                        contenidos += ' Cl,'
+                    elif contenidos == '':
+                        contenidos = ' Cl,'    
+            
+        while _Ex and ' Ex,' not in contenidos: #17 Explosión
             subconjunto = _Ex.pop()
-            if subconjunto in latest_response:
-                if ' Ex,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Ex,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Ex,'    
-                break
-        while _Fi: #18 Fuego
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Ex,' not in contenidos:
+                        contenidos += ' Ex,'
+                    elif contenidos == '':
+                        contenidos = ' Ex,'    
+        
+        while _Fi and ' Fi,' not in contenidos: #18 Fuego
             subconjunto = _Fi.pop()
-            if subconjunto in latest_response:
-                if ' Fi,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Fi,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Fi,'    
-                break
-        while _Fd: #19 Comida
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Fi,' not in contenidos:
+                        contenidos += ' Fi,'
+                    elif contenidos == '':
+                        contenidos = ' Fi,'    
+            
+        while _Fd and ' Fd,' not in contenidos: #19 Comida
             subconjunto = _Fd.pop()
-            if subconjunto in latest_response:
-                if ' Fd,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Fd,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Fd,'    
-                break
-        while _Ge: #20 Geografía
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Fd,' not in contenidos:
+                        contenidos += ' Fd,'
+                    elif contenidos == '':
+                        contenidos = ' Fd,'    
+            
+        while _Ge and ' Ge,' not in contenidos: #20 Geografía
             subconjunto = _Ge.pop()
-            if subconjunto in latest_response:
-                if ' Ge,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Ge,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Ge,'    
-                break
-        while _Hh: #21 Hogar
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Ge,' not in contenidos:
+                        contenidos += ' Ge,'
+                    elif contenidos == '':
+                        contenidos = ' Ge,'    
+            
+        while _Hh and ' Hh,' not in contenidos: #21 Hogar
             subconjunto = _Hh.pop()
-            if subconjunto in latest_response:
-                if ' Hh,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Hh,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Hh,'    
-                break
-        while _Ls: #21 Paisaje
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Hh,' not in contenidos:
+                        contenidos += ' Hh,'
+                    elif contenidos == '':
+                        contenidos = ' Hh,'    
+            
+        while _Ls and ' Ls,' not in contenidos: #22 Paisaje
             subconjunto = _Ls.pop()
-            if subconjunto in latest_response:
-                if ' Ls,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Ls,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Ls,'    
-                break
-        while _Na: #23 Naturaleza
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Ls,' not in contenidos:
+                        contenidos += ' Ls,'
+                    elif contenidos == '':
+                        contenidos = ' Ls,'    
+            
+        while _Na and ' Na,' not in contenidos: #23 Naturaleza
             subconjunto = _Na.pop()
-            if subconjunto in latest_response:
-                if ' Na,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Na,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Na,'    
-                break
-        while _Sc: #24 Ciencia
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Na,' not in contenidos:
+                        contenidos += ' Na,'
+                    elif contenidos == '':
+                        contenidos = ' Na,'    
+            
+        while _Sc and ' Sc,' not in contenidos: #24 Ciencia
             subconjunto = _Sc.pop()
-            if subconjunto in latest_response:
-                if ' Sc,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Sc,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Sc,'    
-                break
-        while _Sx: #25 sexo
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Sc,' not in contenidos:
+                        contenidos += ' Sc,'
+                    elif contenidos == '':
+                        contenidos = ' Sc,'    
+            
+        while _Sx and ' Sx,' not in contenidos: #25 sexo
             subconjunto = _Sx.pop()
-            if subconjunto in latest_response:
-                if ' Sx,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Sx,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Sx,'    
-                break
-        while _Xy: #26 Radiografía
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Sx,' not in contenidos:
+                        contenidos += ' Sx,'
+                    elif contenidos == '':
+                        contenidos = ' Sx,'    
+            
+        while _Xy and ' Xy,' not in contenidos: #26 Radiografía
             subconjunto = _Xy.pop()
-            if subconjunto in latest_response:
-                if ' Xy,' not in self._contenidos[index]:
-                    self._contenidos[index] += ' Xy,'
-                elif self._contenidos[index] == '':
-                    self._contenidos[index] = ' Xy,'    
-                break
-        ##todo lo que no entra en un conjunto es contenido ideográfico "Id"
+            for i in respuesta:
+                if subconjunto == i:
+                    if ' Xy,' not in contenidos:
+                        contenidos += ' Xy,'
+                    elif contenidos == '':
+                        contenidos = ' Xy,'    
+
+        if state == 1:
+            self._contenidos[index].append(contenidos)
+        else:
+            self._contenidos[index][rta] += contenidos
+            # Todo lo que no entra en un conjunto es contenido ideográfico "Id"
+            if self._contenidos[index][rta] == '':
+                self._contenidos[index][rta] = "Id"
         
 
     
-    def process_determinants(self, tracker, index):
+    def process_determinants(self, tracker, index, state, rta):
+
+        if state == 1:
+            determinantes = '?'
+            par = 'no'
+        else:
+            determinantes = self._determinantes[index][rta]
+            par = self._par[index][rta]
+
+        forma = 'None'
 
         ###### Determinantes #####
         slot_paridad = tracker.get_slot("par")
@@ -292,72 +343,73 @@ class DataProccesor():
         slot_reflejo = tracker.get_slot("reflejo") 
         slot_sombreado = tracker.get_slot("sombreado")    
 
-        # print(slot_paridad)  
-        # print(slot_vista)
-        # print(slot_ccromatico)
-        # print(slot_cacromatico) 
-        # print(slot_forma)
-        # print(slot_movimiento)
-        # print(slot_textura)
-        # print(slot_reflejo) 
-        # print(slot_sombreado)    
-        
         if slot_paridad == "true":
-            self._par[index] = '2'
+            par = 'si'
 
         if slot_vista == "true":
-            if self._determinantes[index] == '?':
-                self._determinantes[index] = ' V,'
-            elif ' V,' not in self._determinantes[index]:
-                self._determinantes[index] += ', V,'
+            if determinantes == '?':
+                determinantes = ' V,'
+            elif ' V,' not in determinantes:
+                determinantes += ', V,'
 
         if slot_ccromatico == "true":
-            if self._determinantes[index] == '?':
-                self._determinantes[index] = ' C,'
-            elif ' C,' not in self._determinantes[index]:
-                self._determinantes[index] += ' C,'
+            if determinantes == '?':
+                determinantes = ' C,'
+            elif ' C,' not in determinantes:
+                determinantes += ' C,'
 
         if slot_cacromatico == "true":
-            if self._determinantes[index] == '?':
-                self._determinantes[index] = ' C\','
-            elif ' C\',' not in self._determinantes[index]:
-                self._determinantes[index] += ' C\','
+            if determinantes == '?':
+                determinantes = ' C\','
+            elif ' C\',' not in determinantes:
+                determinantes += ' C\','
         if ((slot_forma == "humana") or (slot_forma == "animal") or (slot_forma == "inanimada")):
-            if self._determinantes[index] == '?':
-                self._determinantes[index] = ' F,'
-            elif ' F,' not in self._determinantes[index]:           #and' F,' in ws['F'+ str(lamina)].value: 
-                self._determinantes[index] += ' F,'
+            if determinantes == '?':
+                determinantes = ' F,'
+            elif ' F,' not in determinantes:          
+                determinantes += ' F,'
+            forma = slot_forma
+            
         if slot_movimiento == "true": 
-            if slot_forma == 'humana':
-                if self._determinantes[index] == '?':
-                    self._determinantes[index] = ' M,'
-                elif ' M,' not in self._determinantes[index]:
-                    self._determinantes[index] += ' M,'
-            elif slot_forma == 'inanimada':
-                if self._determinantes[index] == '?':
-                    self._determinantes[index] = ' m,'
-                elif ' m,' not in self._determinantes[index]: 
-                    self._determinantes[index] += ' m,'
+            if slot_forma == 'humana' or (state == 2 and self._forma[index][rta] == 'humana'):
+                if determinantes == '?':
+                    determinantes = ' M,'
+                elif ' M,' not in determinantes:
+                    determinantes += ' M,'
+            elif slot_forma == 'inanimada' or (state == 2 and self._forma[index][rta] == 'inanimada'):
+                if determinantes == '?':
+                    determinantes = ' m,'
+                elif ' m,' not in determinantes: 
+                    determinantes += ' m,'
             else:
-                if self._determinantes[index] == '?':
-                    self._determinantes[index] = ' ind,'
-                elif ' ind,' not in self._determinantes[index]:
-                    self._determinantes[index] += ' ind,'
+                if determinantes == '?':
+                    determinantes = ' ind,'
+                elif ' ind,' not in determinantes:
+                    determinantes += ' ind,'
+        
         if slot_textura == "true":
-            if self._determinantes[index] == '?':
-                self._determinantes[index] = ' T,'
-            elif ' T,' not in self._determinantes[index]:
-                self._determinantes[index] += ' T,'
+            if determinantes == '?':
+                determinantes = ' T,'
+            elif ' T,' not in determinantes:
+                determinantes += ' T,'
         if slot_reflejo == "true":
-            if self._determinantes[index] == '?':
-                self._determinantes[index] = ' r,'
-            elif ' r,' not in self._determinantes[index]:
-                self._determinantes[index] += ' r,'
+            if determinantes == '?':
+                determinantes = ' r,'
+            elif ' r,' not in determinantes:
+                determinantes += ' r,'
         if slot_sombreado == "true":
-            if self._determinantes[index] == '?':
-                self._determinantes[index] = ' Y,'
-            elif ' Y,' not in self._determinantes[index]:
-                self._determinantes[index] += ' Y,'
+            if determinantes == '?':
+                determinantes = ' Y,'
+            elif ' Y,' not in determinantes:
+                determinantes += ' Y,'
+
+        if state == 1:
+            self._determinantes[index].append(determinantes)
+            self._par[index].append(par)
+            self._forma[index].append(forma)
+        else:
+            self._determinantes[index][rta] = determinantes
+            self._par[index][rta] = par            
         
         tracker.update(SlotSet("par","false"))
         tracker.update(SlotSet("vista","false"))
@@ -371,41 +423,40 @@ class DataProccesor():
 
 
     ########### Preguntar esto como es ############
-    def process_popular(self, lamina, latest_response, index):
+    def process_popular(self, lamina, latest_response, index, state, rta):
         #27 Popular1
         _Po1 = {"escarabajo","escarabajos","bicho","bichos","araña","arañas","cucaracha","cucarachas","mariposa","mariposas","mantis","mosca","mosquito","moscas","mosquitos","insecto","insectos","gusano"}
         #28 Popular3
         _Po3 = {"persona","humano","hombre","mujer","niño","niña","chico","chica","señor","señora","personas","humanos","hombres","mujeres","niños","niñas","chicos","chicas","señores","señoras","payaso","payasos","hada","hadas","bruja","brujas","fantasma","fantasmas","enano","enanos","enana","enanas","demonio","demonios","ángel","ángeles","humanoide","humanoides","caricaturas","caricatura","monstruo","monstruos","duende","duendes"}
-        #IMAGEN 2 NO TIENE latest_responseS POPULARES
+        #IMAGEN 2 NO TIENE RESPUESTAS POPULARES
         
+        popular = 'no'
+
         while _Po1: #27 populares
             subconjunto = _Po1.pop()
             if subconjunto in latest_response:
-                if lamina == 1: #and zona corresponde
-                    self._popular[index] = 'Po1'  # hay que revisar si coincide con sector de la imagen
-                    break
-                else: 
-                    self._popular[index] = '?'            
+                if lamina == 1: # and zona corresponde
+                    popular = 'si'  # hay que revisar si coincide con sector de la imagen        
 
         # IMAGEN 2 NO TIENE RESPUESTAS POPULARES
 
         while _Po3: #28 populares
             subconjunto = _Po3.pop()
             if subconjunto in latest_response:
-                if lamina == 3: #and zona corresponde
-                    self._popular[index] = 'Po3'       
-                    break
-                else: self._popular[index] ='?'
+                if lamina == 3: # and zona corresponde
+                    popular = 'si'       
+
+        if state == 1:
+            self._popular[index].append(popular)
+        else:
+            if popular != 'no': self._popular[index][rta] = popular        
 
     def process_developmental_quality(self, intent_name, index):
         if intent_name == "respuestasv":
-            self._dq[index] = "v"
+            self._dq[index].append("v")
         elif intent_name == "respuestasvmas":
-            self._dq[index] = "v/+"
+            self._dq[index].append("v/+")
         elif intent_name == "respuestaso":
-            self._dq[index] = "o"
+            self._dq[index].append("o")
         elif intent_name == "respuestas+":
-            self._dq[index] = "+"
-        
-
-
+            self._dq[index].append("+") 

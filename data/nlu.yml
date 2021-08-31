@@ -419,6 +419,7 @@ nlu:
     - [dos]{"entity":"par","value": "true"} [pajaros]{"entity":"forma","value": "animal"}
     - También es parecido a un [escarabajo]{"entity":"forma","value": "animal"} o a una [mosca]{"entity":"forma","value": "animal"} y muchos otros [insectos]{"entity":"forma","value": "animal"}
     - [Insecto]{"entity":"forma","value": "animal"} venenoso
+    - un [futbolista]{"entity":"forma","value": "humana"}
 
 - intent: respuestas+
   examples: |
@@ -712,7 +713,11 @@ nlu:
     - [dos]{"entity":"par","value": "true"} [jugadores]{"entity":"forma","value": "humana"} de futbol [pegándole]{"entity":"movimiento","value": "true"} a [dos]{"entity":"par","value": "true"} pelotas a la vez
     - [dos]{"entity":"par","value": "true"} [fieras]{"entity":"forma","value": "animal"} [peleando]{"entity":"movimiento","value": "true"}
     - Piel de [animal]{"entity":"forma","value": "animal"}
-    - [dos]{"entity":"par","value": "true"} [jugadores]{"entity":"forma","value": "humana"} [corriendo]{"entity":"movimiento","value": "true"} la pelota    
+    - [dos]{"entity":"par","value": "true"} [jugadores]{"entity":"forma","value": "humana"} [corriendo]{"entity":"movimiento","value": "true"} la pelota
+    - [dos]{"entity":"par","value": "true"} [futbolistas]{"entity":"forma","value": "humana"} [pateando]{"entity":"movimiento","value": "true"} la pelota
+    - [dos]{"entity":"par","value": "true"} [futbolistas]{"entity":"forma","value": "humana"}
+    - [dos]{"entity":"par","value": "true"} [futbolistas]{"entity":"forma","value": "humana"} [corriendo]{"entity":"movimiento","value": "true"}
+    - [futbolistas]{"entity":"forma","value": "humana"}  [jugando]{"entity":"movimiento","value": "true"} un partido    
     
 - intent: ok
   examples: |

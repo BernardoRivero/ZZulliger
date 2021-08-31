@@ -39,22 +39,25 @@ class ExcelHandler():
     def upload_data(self, determinantes, contenidos, par, popular, dq, responses, reasons) -> str:
         wb = op.load_workbook(self._file_root)
         ws = wb.get_sheet_by_name('Hoja de datos')
+        row = 2
         for lamina in range(3):
-            row = str(lamina+2)
-            ws['A' + row]=lamina+1
-            ws['B' + row]='1'      # Número de respuesta (solo hay una)
-            ws['C' + row]='?'
-            ws['D' + row]='?'
-            ws['E' + row]=dq[lamina]
-            ws['F' + row]=(determinantes[lamina])[:-1]
-            ws['G' + row]='?'
-            ws['H' + row]=par[lamina]
-            ws['I' + row]=(contenidos[lamina])[:-1]
-            ws['J' + row]=popular[lamina]
-            ws['K' + row]='?'
-            ws['L' + row]='?'
-            ws['M' + row]=responses[lamina]
-            ws['N' + row]=reasons[lamina]
+            rta = 0      
+            for rta in range(len(responses[lamina])):
+                ws['A' + str(row)]=lamina+1
+                ws['B' + str(row)]=rta+1      # Número de respuesta 
+                ws['C' + str(row)]='?'
+                ws['D' + str(row)]='?'
+                ws['E' + str(row)]=dq[lamina][rta]
+                ws['F' + str(row)]=(determinantes[lamina][rta])[:-1]
+                ws['G' + str(row)]='?'
+                ws['H' + str(row)]=par[lamina][rta]
+                ws['I' + str(row)]=(contenidos[lamina][rta])[:-1]
+                ws['J' + str(row)]=popular[lamina][rta]
+                ws['K' + str(row)]='?'
+                ws['L' + str(row)]='?'
+                ws['M' + str(row)]=responses[lamina][rta]
+                ws['N' + str(row)]=reasons[lamina][rta]
+                row += 1      
         
         wb.save(self._file_root)
         wb.close()         
