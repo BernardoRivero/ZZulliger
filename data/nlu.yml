@@ -100,10 +100,11 @@ nlu:
 
 - intent: termine
   examples: |
+    - fin
+    - FIN
     - termine
-    - termin
     - terminado
-    - terminee
+    - terminé
 
 - intent: welcome
   examples: |

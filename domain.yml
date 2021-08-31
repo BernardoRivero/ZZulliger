@@ -110,13 +110,13 @@ responses:
   - text: "I am a bot, powered by Rasa."
 
   utter_welcome:
-  - text: "Se le mostrarán tres manchas, en forma sucesiva, esto es, una a una. Usted deberá mirarlas y responder sólo a la primera pregunta que aparece en el protocolo, es decir, responder a ¿QUÉ PODRÍA SER ESTO?. Debe escribir todo lo que podría ser cada mancha, tratando siempre de dar la mayor cantidad de respuestas posibles. Puede dar todas las respuestas que quiera o que se le ocurran. También puede mirar la mancha en forma total o sólo por partes eso queda a su criterio. Recuerde que la imagen no representa nada preciso y por lo tanto, no existen respuestas malas o buenas, asi que toda respuesta es válida. Pero antes de comenzar, nos vamos a poner de acuerdo en la manera que usted deberá escribir las respuestas. Escribirá la respuesta que considere y presionará la tecla enter. Si comprendió escriba la palabra listo" 
+  - text: "Se le mostrarán tres manchas, en forma sucesiva, esto es, una a una. Usted deberá mirarlas y responder sólo a la primera pregunta que aparece en el protocolo, es decir, responder a ¿QUÉ PODRÍA SER ESTO?. Debe escribir todo lo que podría ser cada mancha, tratando siempre de dar la mayor cantidad de respuestas posibles. Puede dar hasta cinco respuestas. También puede mirar la mancha en forma total o sólo por partes eso queda a su criterio. Recuerde que la imagen no representa nada preciso y por lo tanto, no existen respuestas malas o buenas, asi que toda respuesta es válida. Pero antes de comenzar, nos vamos a poner de acuerdo en la manera que usted deberá escribir las respuestas. Escribirá la respuesta que considere y presionará la tecla enter. Si desea escribir menos de cinco respuestas, escriba la palabra fin cuando haya terminado. Si comprendió escriba la palabra listo" 
 
   utter_nombre:
   - text: "Por favor ingrese su nombre y apellido"
   
   utter_start:
-  - text:   "¿Qué podría ser esto?"
+  - text: "¿Qué podría ser esto?"
     image: "https://i.imgur.com/ScvPxc3.jpeg"
   
   utter_Lamina2:
@@ -144,7 +144,7 @@ responses:
     image: "https://i.imgur.com/9uHtd03.jpeg"
 
   utter_TercerParte:
-  - text: "Bien, usted ya tiene escrita sus respuestas y lo qué hay ahí que hacer que se parezca lo que indicó. Ahora, pasaremos a la TERCERA PARTE de la prueba. Para esto se mostrarán unos esquemas donde aparecen las tres manchas. En éstos, usted deberá marcar un círculo en la zona o lugar donde vieron las respuestas que enumeraron, es decir, encerrar donde está toda la respuesta. Por ejemplo, si hubiera escrito que ve dos cabezas de animales con cuernos que tienen la boca abierta, el dibujo sería el indicado con color rojo. Escriba ok para proseguir"
+  - text: "Bien, usted ya tiene escrita sus respuestas y lo qué hay ahí que hace que se parezca lo que indicó. Ahora, pasaremos a la TERCERA PARTE de la prueba. Para esto se mostrarán unos esquemas donde aparecen las tres manchas. En éstos, usted deberá marcar un círculo en la zona o lugar donde vió las respuestas que enumeró, es decir, encerrar donde está toda la respuesta. Por ejemplo, si hubiera escrito que ve dos cabezas de animales con cuernos que tienen la boca abierta, el dibujo sería el indicado con color rojo. Escriba ok para proseguir"
     image: "https://imgur.com/OoXqWYJ.jpeg"
 
   utter_TercerParteLamina1:
