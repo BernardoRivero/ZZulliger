@@ -32,7 +32,11 @@ class ExcelHandler():
         self._sheet = self._sheet.to_excel(writer, 'Hoja de datos', index=False)
         writer.save()
         writer.close()
-        
+
+    def set_file_root(self, nombre) -> str:
+        self._file_root = str(self.get_project_root()) + \
+            os.path.sep + 'files'+os.path.sep + nombre + '.xlsx'
+
     def get_project_root(self) -> Path:
         return Path(__file__).parent.parent
 
@@ -65,8 +69,9 @@ class ExcelHandler():
 
         planilla = pd.read_excel(self._file_root)
         print(planilla)
-
         os.remove(self._file_root)     
 
+    def remove_file(self):
+        os.remove(self._file_root)
 
     

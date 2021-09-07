@@ -20,6 +20,7 @@ intents:
   - id
   - ok
   - termine
+  - reset
 
 
 entities:

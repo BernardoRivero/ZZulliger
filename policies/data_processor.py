@@ -18,7 +18,7 @@ class DataProccesor():
         self.process_contents( tracker.latest_message.text, lamina-1, state, rta)
         self.process_determinants(tracker, lamina-1, state, rta)
         self.process_popular(lamina, tracker.latest_message.text, lamina-1, state, rta)
-        
+                
         # print('lamina: ' + str(lamina))
         # print('state: ' + str(state))
         # print('rta: ' + str(rta))

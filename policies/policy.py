@@ -9,8 +9,7 @@ from rasa.shared.core.generator import TrackerWithCachedStates
 from rasa.shared.core.trackers import DialogueStateTracker
 from rasa.shared.nlu.interpreter import NaturalLanguageInterpreter
 from rasa.utils.endpoints import *
-from typing import Any, Text, Dict, List
-from rasa.shared.core.events import SlotSet
+from rasa.shared.core.events import AllSlotsReset, SlotSet
 from pathlib import Path
 
 class ZulligerPolicy(Policy):
@@ -57,6 +56,15 @@ class ZulligerPolicy(Policy):
     def get_project_root(self) -> Path:
         return Path(__file__).parent.parent
 
+    def restart_test(self, tracker):
+        self.__init__()
+        user = str(tracker.get_slot("nombre"))
+        if user != 'None':
+            self._excelHandler.set_file_root(str(tracker.get_slot("nombre")))
+            return 'utter_welcome'
+        else:
+            return 'utter_nombre'
+
     def predict_action_probabilities(
             self, 
             tracker: DialogueStateTracker,
@@ -76,13 +84,16 @@ class ZulligerPolicy(Policy):
                 return self._prediction(confidence_scores_for('utter_nombre', 1.0, domain))
 
             # The user enters his name.
-            elif intent["name"] == "id":
+            if intent["name"] == "id":
                 self._excelHandler.create_excel_sheet(str(tracker.get_slot("nombre")))
                 return self._prediction(confidence_scores_for('utter_welcome', 1.0, domain))
 
             # The test starts, the first image is displayed.
-            elif intent["name"] == "start":
+            if intent["name"] == "start":
                 return self._prediction(confidence_scores_for('utter_start', 1.0, domain))
+
+            if intent["name"] == "reset":
+                return self._prediction(confidence_scores_for(self.restart_test(tracker), 1.0, domain))
 
             if intent["name"] == "termine":
                 if self._lamina == 1:
@@ -201,6 +212,7 @@ class ZulligerPolicy(Policy):
                             self._excelHandler.upload_data(self._data_processor._determinantes, self._data_processor._contenidos, self._data_processor._par,
                             self._data_processor._popular, self._data_processor._dq, responses=[self._responses_lamina1, self._responses_lamina2, self._responses_lamina3],
                             reasons=[self._reasons_lamina1, self._reasons_lamina2, self._reasons_lamina3])
+                            tracker.update(AllSlotsReset())
                             return self._prediction(confidence_scores_for("utter_Fin", 1.0, domain))
         
         # If rasa latest action isn't "action_listen", it means the last thing
@@ -218,3 +230,5 @@ class ZulligerPolicy(Policy):
     @classmethod
     def _metadata_filename(cls) -> Text:
         return "zulliger_policy.json"
+
+    

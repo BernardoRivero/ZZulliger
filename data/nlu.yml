@@ -111,6 +111,13 @@ nlu:
     - hola
     - buenas
 
+- intent: reset
+  examples: |
+    - reset
+    - resetear
+    - restart
+    - reiniciar
+
 - intent: respuestasv
   examples: |
     - una [insignia]{"entity":"forma","value": "inanimada"}
