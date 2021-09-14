@@ -1,4 +1,5 @@
 from rasa.shared.core.events import SlotSet
+import cv2
 
 class DataProccesor():
     def __init__(self):        
@@ -9,9 +10,6 @@ class DataProccesor():
         self._par = [[], [], []]
         self._dq = [[], [], []]
         self._forma = [[],[],[]]
-
-        ## modificar para multiples respuestas
-
 
 
     def process(self, lamina, tracker, state, rta):
@@ -460,3 +458,6 @@ class DataProccesor():
             self._dq[index].append("o")
         elif intent_name == "respuestas+":
             self._dq[index].append("+") 
+
+
+

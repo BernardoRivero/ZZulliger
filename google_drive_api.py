@@ -1,3 +1,4 @@
+#from typing_extensions import Required
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 import os
@@ -15,8 +16,7 @@ def login():
     elif gauth.access_token_expired:
         gauth.Refresh()
     else:
-        gauth.Authorize()
-        
+        gauth.Authorize()    
     gauth.SaveCredentialsFile(directorio_credenciales)
     credenciales = GoogleDrive(gauth)
     return credenciales
@@ -30,3 +30,15 @@ def upload_file(file_path, id_folder):
     archivo['title'] = file_path.split(os.path.sep)[-1]
     archivo.SetContentFile(file_path)
     archivo.Upload()
+
+def download_files(name):
+    drive = login() 
+
+    files = drive.ListFile({'q': "'1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl' in parents and trashed=false"}).GetList()
+    
+    for file in files:
+        if name in file['title'] and file['fileExtension']=='png':
+            print('title: %s, id: %s' % (file['title'], file['id']))
+            file.GetContentFile(file['title'])
+
+#download_files('Gabriel Gonzalez')
