@@ -13,7 +13,7 @@ def media(x):
 
 def standard_deviation(x):
     rows = x.shape[0]
-    columns = x.shape[0]
+    columns = x.shape[1]
     assert rows*columns > 0
     med_x = media(x)
     sum = 0
@@ -35,7 +35,6 @@ def covariance(x, y):
     return (sum/(rows_x*columns_x))
 
 def calculate_correlation_coefficient(imageA, imageB):
-    
     # Images must be the same size
     if imageA.size > imageB.size:
         width = int(imageB.shape[1])

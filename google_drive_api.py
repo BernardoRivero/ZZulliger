@@ -1,4 +1,3 @@
-#from typing_extensions import Required
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 import os
@@ -31,14 +30,11 @@ def upload_file(file_path, id_folder):
     archivo.SetContentFile(file_path)
     archivo.Upload()
 
-def download_files(name):
+def download_files(name_file):
     drive = login() 
 
     files = drive.ListFile({'q': "'1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl' in parents and trashed=false"}).GetList()
-    
     for file in files:
-        if name in file['title'] and file['fileExtension']=='png':
-            print('title: %s, id: %s' % (file['title'], file['id']))
+        if name_file in file['title'] and file['fileExtension']=='png':
+            print('Downloading the image: %s' % (file['title']))
             file.GetContentFile(file['title'])
-
-#download_files('Gabriel Gonzalez')

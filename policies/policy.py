@@ -1,5 +1,7 @@
+from policies.location import Location
 from policies.data_processor import DataProccesor
 from policies.excel_handler import ExcelHandler
+
 from typing import Any, List, Dict, Text, Optional
 from rasa.core.featurizers.tracker_featurizers import TrackerFeaturizer
 from rasa.core.policies.policy import PolicyPrediction, confidence_scores_for, \
@@ -41,6 +43,9 @@ class ZulligerPolicy(Policy):
         self._reasons_lamina1 = []
         self._reasons_lamina2 = []
         self._reasons_lamina3 = []
+
+        # Etapa 3: locacion de las respuestas
+        self._location = Location()
 
         self._counter = 0
         
@@ -184,6 +189,7 @@ class ZulligerPolicy(Policy):
                             return self._prediction(confidence_scores_for("utter_TercerParteLamina1", 1.0, domain))
                         else:
                             self._counter = 0
+                            self._location.process_response_location(str(tracker.get_slot("nombre")), self._responses_lamina1, self._lamina)
                             self._lamina += 1
                             tracker.update(SlotSet("respuestaLamina2", self._responses_lamina2[self._counter]))
                             return self._prediction(confidence_scores_for("utter_TercerParteLamina2", 1.0, domain))
@@ -195,6 +201,7 @@ class ZulligerPolicy(Policy):
                             return self._prediction(confidence_scores_for("utter_TercerParteLamina2", 1.0, domain))
                         else:
                             self._counter = 0
+                            self._location.process_response_location(str(tracker.get_slot("nombre")), self._responses_lamina2, self._lamina)
                             self._lamina += 1
                             tracker.update(SlotSet("respuestaLamina3", self._responses_lamina3[self._counter]))
                             return self._prediction(confidence_scores_for("utter_TercerParteLamina3", 1.0, domain))
@@ -205,7 +212,8 @@ class ZulligerPolicy(Policy):
                             tracker.update(SlotSet("respuestaLamina3", self._responses_lamina3[self._counter]))
                             return self._prediction(confidence_scores_for("utter_TercerParteLamina3", 1.0, domain))
                         
-                        else:       ## Final 
+                        else:       ## Final
+                            self._location.process_response_location(str(tracker.get_slot("nombre")), self._responses_lamina3, self._lamina) 
                             self._state = 1
                             self._lamina = 1
                             self._counter = 0                                                        

@@ -71,7 +71,10 @@ class ExcelHandler():
         print(planilla)
         os.remove(self._file_root)     
 
-    def remove_file(self):
-        os.remove(self._file_root)
+    # def remove_file(self):
+    #     os.remove(self._file_root)
+
+    # def subir(self):
+    #     upload_file(self._file_root, "1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl")
 
     
