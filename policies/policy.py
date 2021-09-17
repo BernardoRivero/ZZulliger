@@ -218,8 +218,7 @@ class ZulligerPolicy(Policy):
                             self._lamina = 1
                             self._counter = 0                                                        
                             self._excelHandler.upload_data(self._data_processor._determinantes, self._data_processor._contenidos, self._data_processor._par,
-                            self._data_processor._popular, self._data_processor._dq, responses=[self._responses_lamina1, self._responses_lamina2, self._responses_lamina3],
-                            reasons=[self._reasons_lamina1, self._reasons_lamina2, self._reasons_lamina3])
+                            self._data_processor._popular, self._data_processor._dq, self._location._location, responses=[self._responses_lamina1, self._responses_lamina2, self._responses_lamina3], reasons=[self._reasons_lamina1, self._reasons_lamina2, self._reasons_lamina3])
                             tracker.update(AllSlotsReset())
                             return self._prediction(confidence_scores_for("utter_Fin", 1.0, domain))
         

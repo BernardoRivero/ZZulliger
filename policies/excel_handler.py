@@ -40,7 +40,7 @@ class ExcelHandler():
     def get_project_root(self) -> Path:
         return Path(__file__).parent.parent
 
-    def upload_data(self, determinantes, contenidos, par, popular, dq, responses, reasons) -> str:
+    def upload_data(self, determinantes, contenidos, par, popular, dq, location, responses, reasons) -> str:
         wb = op.load_workbook(self._file_root)
         ws = wb.get_sheet_by_name('Hoja de datos')
         row = 2
@@ -50,7 +50,7 @@ class ExcelHandler():
                 ws['A' + str(row)]=lamina+1
                 ws['B' + str(row)]=rta+1      # Número de respuesta 
                 ws['C' + str(row)]='?'
-                ws['D' + str(row)]='?'
+                ws['D' + str(row)]=location[lamina][rta]
                 ws['E' + str(row)]=dq[lamina][rta]
                 ws['F' + str(row)]=(determinantes[lamina][rta])[:-1]
                 ws['G' + str(row)]='?'
@@ -69,12 +69,4 @@ class ExcelHandler():
 
         planilla = pd.read_excel(self._file_root)
         print(planilla)
-        os.remove(self._file_root)     
-
-    # def remove_file(self):
-    #     os.remove(self._file_root)
-
-    # def subir(self):
-    #     upload_file(self._file_root, "1EQ4h-Blfc3PqySXRvViSVrq2ZhCmq2rl")
-
-    
+        os.remove(self._file_root)       

@@ -48,7 +48,7 @@ class Location():
                     files = os.listdir(path_global)
                     for file in files:
                         img = cv2.imread(path_global + file)
-                        print('Comparando con la imagen: ' + file)
+                        print('Comparando con la imagen: ' + path_global + file)
                         correlation = calculate_correlation_coefficient(img, cuts[0])
                         print('correlacion global: ', correlation)
                         if correlation > 0.7:
@@ -76,7 +76,7 @@ class Location():
                             images_file = usual_images[index]
                             for file in images_file:
                                 img = cv2.imread(path_usual + file)
-                                print('Comparando con la imagen: ' + file)
+                                print('Comparando con la imagen: ' + path_usual + file)
                                 for cutout in cuts: 
                                     correlation = calculate_correlation_coefficient(img, cutout)
                                     print('correlacion usual: ', correlation)
@@ -86,7 +86,7 @@ class Location():
                                     else: usual_correlation = max(usual_correlation, correlation)
                                 if location != '': break
                         if location != '': break
-                        
+
 
             # # Verifico si el recorte tiene partes blancas
             # path_white = "./files/images/blanco/"
