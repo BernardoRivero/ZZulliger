@@ -1,6 +1,5 @@
 import cv2
 import imutils
-import numpy as np
 import os
 from google_drive_api import *
 from correlation import *
@@ -32,55 +31,89 @@ class Location():
         download_files(user_name + "_" + str(lamina))
 
         for i in range(1, len(responses)+1):
+            
+            global_correlation = 0
+            usual_correlation = 0
+            location = ''
+
             print('Respuesta del usuario: ' + responses[i-1])
             marked_image = cv2.imread(user_name + "_" + str(lamina) + "_" + str(i) + ".png")
             cuts = self.cut_contour(marked_image, './files/images/lamina' + str(lamina))
             print('Image: ' + user_name + "_" + str(lamina) + "_" + str(i) + ".png")
                 
-            # verifico si el recorte es global, el usuario marcó la imagen entera.
-            if len(cuts) == 1:
-                path_global = "./files/images/lamina"+str(lamina)+"/global/"
-                files = os.listdir(path_global)
-                for file in files:
-                    img = cv2.imread(path_global + file)
-                    print('Comparando con la imagen: ' + file)
-                    print('correlacion global: ', calculate_correlation_coefficient(img, cuts[0]))
+            if location == '':    
+                # verifico si el recorte es global, el usuario marcó la imagen entera.
+                if len(cuts) == 1:
+                    path_global = "./files/images/lamina"+str(lamina)+"/global/"
+                    files = os.listdir(path_global)
+                    for file in files:
+                        img = cv2.imread(path_global + file)
+                        print('Comparando con la imagen: ' + file)
+                        correlation = calculate_correlation_coefficient(img, cuts[0])
+                        print('correlacion global: ', correlation)
+                        if correlation > 0.7:
+                            location = 'W'
+                        else: global_correlation = max(global_correlation, correlation)
 
-            # verifico si el recorte es de detalle usual
-            path_usual = "./files/images/lamina"+str(lamina)+"/usual/"
-            if lamina == 1: 
-                usual = self._usual_lamina1
-                usual_images = self._image_usual_lamina1
-            elif lamina == 2: 
-                usual = self._usual_lamina2
-                usual_images = self._image_usual_lamina2
-            else: 
-                usual = self._usual_lamina3
-                usual_images = self._image_usual_lamina3
+            if location == '':
+                # verifico si el recorte es de detalle usual
+                path_usual = "./files/images/lamina"+str(lamina)+"/usual/"
+                if lamina == 1: 
+                    usual = self._usual_lamina1
+                    usual_images = self._image_usual_lamina1
+                elif lamina == 2: 
+                    usual = self._usual_lamina2
+                    usual_images = self._image_usual_lamina2
+                else: 
+                    usual = self._usual_lamina3
+                    usual_images = self._image_usual_lamina3
 
-            for index in range(len(usual)):
-                for word in usual[index]:
-                    # Si la respuesta del usuario es usual, verifico si lo que marco coincide con la zona usual.
-                    if word in responses[i-1]:
-                        print('Reconocio la palabra: ' + word)
-                        images_file = usual_images[index]
-                        for file in images_file:
-                            img = cv2.imread(path_usual + file)
-                            print('Comparando con la imagen: ' + file)
-                            for cutout in cuts: 
-                                print('correlacion usual: ', calculate_correlation_coefficient(img, cutout))
+                for index in range(len(usual)):
+                    for word in usual[index]:
+                        # Si la respuesta del usuario es usual, verifico si lo que marco coincide con la zona usual.
+                        if word in responses[i-1]:
+                            print('Reconocio la palabra: ' + word)
+                            images_file = usual_images[index]
+                            for file in images_file:
+                                img = cv2.imread(path_usual + file)
+                                print('Comparando con la imagen: ' + file)
+                                for cutout in cuts: 
+                                    correlation = calculate_correlation_coefficient(img, cutout)
+                                    print('correlacion usual: ', correlation)
+                                    if correlation > 0.7:
+                                        location = 'D'
+                                        break
+                                    else: usual_correlation = max(usual_correlation, correlation)
+                                if location != '': break
+                        if location != '': break
+                        
 
-            # Verifico si el recorte tiene partes blancas
-            path_white = "./files/images/blanco/"
-            files = os.listdir(path_white)
-            for file in files:
-                img = cv2.imread(path_white + file)
-                print('Comparando con la imagen: ' + file)
-                for cutout in cuts:                    
-                    print('correlacion blanco: ', calculate_correlation_coefficient(img, cutout))
+            # # Verifico si el recorte tiene partes blancas
+            # path_white = "./files/images/blanco/"
+            # files = os.listdir(path_white)
+            # for file in files:
+            #     img = cv2.imread(path_white + file)
+            #     print('Comparando con la imagen: ' + file)
+            #     for cutout in cuts:                    
+            #         print('correlacion blanco: ', calculate_correlation_coefficient(img, cutout))
             
+            if location == '':
+                if global_correlation > usual_correlation and global_correlation > 0.5:
+                    location = 'W'
+                elif global_correlation < usual_correlation and usual_correlation > 0.5:
+                    location = 'D'
+                else:
+                    location = 'Dd' 
+            
+            print('localización: ' + location)
+            self._location[lamina-1].append(location)
+
             print('Deleting the image: ' + user_name + "_" + str(lamina) + "_" + str(i) + ".png")
             os.remove(user_name + "_" + str(lamina) + "_" + str(i)+ ".png")
+            
+
+        print(self._location)
+    
 
         
     def cut_contour(self, image, path):    
