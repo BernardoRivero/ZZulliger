@@ -10,7 +10,6 @@ class ExcelHandler():
     def __init__(self):
         self._sheet = pd.DataFrame({'Lám': [''],
                                     'N°Rta': [''],
-                                    'N°Loc': [''],
                                     'Loc': [''],
                                     'DQ': [''],
                                     'Det': [''],
@@ -22,7 +21,7 @@ class ExcelHandler():
                                     'CCEE': [''],
                                     'respuesta': [''],
                                     'razon': ['']})
-        self._sheet = self._sheet[['Lám', 'N°Rta', 'N°Loc', 'Loc', 'DQ', 'Det', 'FQ', '(2)', 'Cont', 'Pop', 'Pje Z', 'CCEE', 'respuesta', 'razon']]
+        self._sheet = self._sheet[['Lám', 'N°Rta', 'Loc', 'DQ', 'Det', 'FQ', '(2)', 'Cont', 'Pop', 'Pje Z', 'CCEE', 'respuesta', 'razon']]
         self._file_root = None
 
     def create_excel_sheet(self, nombre: str) -> str:
@@ -40,7 +39,7 @@ class ExcelHandler():
     def get_project_root(self) -> Path:
         return Path(__file__).parent.parent
 
-    def upload_data(self, determinantes, contenidos, par, popular, dq, location, responses, reasons) -> str:
+    def upload_data(self, determinantes, contenidos, par, popular, dq, location, zscore, responses, reasons) -> str:
         wb = op.load_workbook(self._file_root)
         ws = wb.get_sheet_by_name('Hoja de datos')
         row = 2
@@ -49,18 +48,19 @@ class ExcelHandler():
             for rta in range(len(responses[lamina])):
                 ws['A' + str(row)]=lamina+1
                 ws['B' + str(row)]=rta+1      # Número de respuesta 
-                ws['C' + str(row)]='?'
-                ws['D' + str(row)]=location[lamina][rta]
-                ws['E' + str(row)]=dq[lamina][rta]
-                ws['F' + str(row)]=(determinantes[lamina][rta])[:-1]
-                ws['G' + str(row)]='?'
-                ws['H' + str(row)]=par[lamina][rta]
-                ws['I' + str(row)]=(contenidos[lamina][rta])[:-1]
-                ws['J' + str(row)]=popular[lamina][rta]
+                if 'D' in location[lamina][rta] and 'Dd' != location[lamina][rta]:
+                    ws['C' + str(row)]=(location[lamina][rta])[:-1]
+                else: ws['C' + str(row)]=location[lamina][rta]
+                ws['D' + str(row)]=dq[lamina][rta]
+                ws['E' + str(row)]=(determinantes[lamina][rta])[:-1]
+                ws['F' + str(row)]='?'
+                ws['G' + str(row)]=par[lamina][rta]
+                ws['H' + str(row)]=(contenidos[lamina][rta])[:-1]
+                ws['I' + str(row)]=popular[lamina][rta]
+                ws['J' + str(row)]=zscore[lamina][rta]
                 ws['K' + str(row)]='?'
-                ws['L' + str(row)]='?'
-                ws['M' + str(row)]=responses[lamina][rta]
-                ws['N' + str(row)]=reasons[lamina][rta]
+                ws['L' + str(row)]=responses[lamina][rta]
+                ws['M' + str(row)]=reasons[lamina][rta]
                 row += 1      
         
         wb.save(self._file_root)

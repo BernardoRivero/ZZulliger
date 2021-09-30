@@ -1,4 +1,3 @@
-from policies.location import Location
 from policies.data_processor import DataProccesor
 from policies.excel_handler import ExcelHandler
 
@@ -11,7 +10,7 @@ from rasa.shared.core.generator import TrackerWithCachedStates
 from rasa.shared.core.trackers import DialogueStateTracker
 from rasa.shared.nlu.interpreter import NaturalLanguageInterpreter
 from rasa.utils.endpoints import *
-from rasa.shared.core.events import AllSlotsReset, SlotSet
+from rasa.shared.core.events import SlotSet
 from pathlib import Path
 
 class ZulligerPolicy(Policy):
@@ -43,9 +42,6 @@ class ZulligerPolicy(Policy):
         self._reasons_lamina1 = []
         self._reasons_lamina2 = []
         self._reasons_lamina3 = []
-
-        # Etapa 3: locacion de las respuestas
-        self._location = Location()
 
         self._counter = 0
         
@@ -79,7 +75,7 @@ class ZulligerPolicy(Policy):
             
     ) -> "PolicyPrediction":
         intent = tracker.latest_message.intent
-        
+
         # If the last thing rasa did was listen to a user message, we need to
         # send back a response.    
         if tracker.latest_action_name == "action_listen":
@@ -180,7 +176,7 @@ class ZulligerPolicy(Policy):
                             return self._prediction(confidence_scores_for("utter_TercerParte", 1.0, domain))
                                    
             if intent["name"] == "ok":
-                if self._state == 3:    ## Etapa de dibujo
+                if self._state == 3:    ## Etapa de dibujo                    
                     
                     if self._lamina == 1:
                         if self._counter < len(self._responses_lamina1):
@@ -189,7 +185,6 @@ class ZulligerPolicy(Policy):
                             return self._prediction(confidence_scores_for("utter_TercerParteLamina1", 1.0, domain))
                         else:
                             self._counter = 0
-                            self._location.process_response_location(str(tracker.get_slot("nombre")), self._responses_lamina1, self._lamina)
                             self._lamina += 1
                             tracker.update(SlotSet("respuestaLamina2", self._responses_lamina2[self._counter]))
                             return self._prediction(confidence_scores_for("utter_TercerParteLamina2", 1.0, domain))
@@ -197,11 +192,10 @@ class ZulligerPolicy(Policy):
                     elif self._lamina == 2:
                         self._counter += 1
                         if self._counter < len(self._responses_lamina2):                            
-                            tracker.update(SlotSet("respuestaLamina2", self._responses_lamina2[self._counter]))                            
+                            tracker.update(SlotSet("respuestaLamina2", self._responses_lamina2[self._counter]))       
                             return self._prediction(confidence_scores_for("utter_TercerParteLamina2", 1.0, domain))
                         else:
                             self._counter = 0
-                            self._location.process_response_location(str(tracker.get_slot("nombre")), self._responses_lamina2, self._lamina)
                             self._lamina += 1
                             tracker.update(SlotSet("respuestaLamina3", self._responses_lamina3[self._counter]))
                             return self._prediction(confidence_scores_for("utter_TercerParteLamina3", 1.0, domain))
@@ -210,24 +204,24 @@ class ZulligerPolicy(Policy):
                         self._counter += 1
                         if self._counter < len(self._responses_lamina3):
                             tracker.update(SlotSet("respuestaLamina3", self._responses_lamina3[self._counter]))
-                            return self._prediction(confidence_scores_for("utter_TercerParteLamina3", 1.0, domain))
-                        
+                            return self._prediction(confidence_scores_for("utter_TercerParteLamina3", 1.0, domain))                
                         else:       ## Final
-                            self._location.process_response_location(str(tracker.get_slot("nombre")), self._responses_lamina3, self._lamina) 
-                            self._state = 1
-                            self._lamina = 1
-                            self._counter = 0                                                        
+                            self._data_processor.process_location(str(tracker.get_slot("nombre")), responses=[self._responses_lamina1, self._responses_lamina2, self._responses_lamina3])
                             self._excelHandler.upload_data(self._data_processor._determinantes, self._data_processor._contenidos, self._data_processor._par,
-                            self._data_processor._popular, self._data_processor._dq, self._location._location, responses=[self._responses_lamina1, self._responses_lamina2, self._responses_lamina3], reasons=[self._reasons_lamina1, self._reasons_lamina2, self._reasons_lamina3])
-                            tracker.update(AllSlotsReset())
+                            self._data_processor._popular, self._data_processor._dq, self._data_processor._location, self._data_processor._zscore,
+                            responses=[self._responses_lamina1, self._responses_lamina2, self._responses_lamina3], 
+                            reasons=[self._reasons_lamina1, self._reasons_lamina2, self._reasons_lamina3])
+                            self.__init__()                 
                             return self._prediction(confidence_scores_for("utter_Fin", 1.0, domain))
-        
+              
         # If rasa latest action isn't "action_listen", it means the last thing
         # rasa did was send a response, so now we need to listen again so the
         # user can talk to us.
         return self._prediction(confidence_scores_for(
             "action_listen", 1.0, domain
         ))
+        
+        
 
     def _metadata(self) -> Dict[Text, Any]:
         return {
