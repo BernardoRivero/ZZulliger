@@ -48,9 +48,7 @@ class ExcelHandler():
             for rta in range(len(responses[lamina])):
                 ws['A' + str(row)]=lamina+1
                 ws['B' + str(row)]=rta+1      # Número de respuesta 
-                if 'D' in location[lamina][rta] and 'Dd' != location[lamina][rta]:
-                    ws['C' + str(row)]=(location[lamina][rta])[:-1]
-                else: ws['C' + str(row)]=location[lamina][rta]
+                ws['C' + str(row)]=''.join([i for i in location[lamina][rta] if not i.isdigit()])   # Elimina los numeros de location
                 ws['D' + str(row)]=dq[lamina][rta]
                 ws['E' + str(row)]=(determinantes[lamina][rta])[:-1]
                 ws['F' + str(row)]='?'

@@ -458,21 +458,22 @@ class DataProccesor():
         # 28 Popular3
         _Po3 = {"persona", "humano", "hombre", "mujer", "niño", "niña", "chico", "chica", "señor", "señora", "personas", "humanos", "hombres", "mujeres", "niños", "niñas", "chicos", "chicas", "señores", "señoras", "payaso", "payasos", "hada",
                 "hadas", "bruja", "brujas", "fantasma", "fantasmas", "enano", "enanos", "enana", "enanas", "demonio", "demonios", "ángel", "ángeles", "humanoide", "humanoides", "caricaturas", "caricatura", "monstruo", "monstruos", "duende", "duendes"}
+        
         popular = 'no'
 
-        while _Po1:  # 27 populares
-            subconjunto = _Po1.pop()
-            if subconjunto in response:
-                if lamina == 1 and self._location[lamina-1][response_number] == 'W': 
-                    popular = 'si' 
+        if lamina == 1 and self._location[lamina-1][response_number] == 'W':
+            while _Po1 and popular == 'no':  # 27 populares
+                subconjunto = _Po1.pop()
+                if subconjunto in response:
+                        popular = 'si'
 
         # La imagen 2 no tiene respuestas populares
 
-        while _Po3:  # 28 populares
-            subconjunto = _Po3.pop()
-            if subconjunto in response:
-                if lamina == 3 and (self._location[lamina-1][response_number] == 'W' or self._location[lamina-1][response_number] == 'D2'):  
-                    popular = 'si'
+        if lamina == 3 and (self._location[lamina-1][response_number] == 'W' or self._location[lamina-1][response_number] == 'D2'):
+            while _Po3 and popular == 'no':  # 28 populares
+                subconjunto = _Po3.pop()
+                if subconjunto in response:
+                        popular = 'si'
 
         self._popular[lamina-1].append(popular)
         
