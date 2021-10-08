@@ -94,6 +94,11 @@ responses:
   utter_greet:
   - text: "Hey! How are you?"
 
+  utter_default:
+  - text: "No entiendo lo que estás diciendo, ¿podrías repetirlo?"
+  - text: "No te entiendo, ¿podrías repetirlo?"
+  - text: "Disculpa, no entendí. ¿Podrías repetir lo que dijiste?"
+
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
     image: "https://i.imgur.com/nGF1K8f.jpg"

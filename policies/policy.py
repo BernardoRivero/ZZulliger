@@ -79,6 +79,9 @@ class ZulligerPolicy(Policy):
         # If the last thing rasa did was listen to a user message, we need to
         # send back a response.    
         if tracker.latest_action_name == "action_listen":
+            
+            if intent["name"] == "nlu_fallback":
+                return self._prediction(confidence_scores_for('utter_default' , 1.0, domain))
 
             # The user starts the conversation.
             if intent["name"] == "welcome":
