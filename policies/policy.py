@@ -87,6 +87,7 @@ class ZulligerPolicy(Policy):
                 return self._prediction(confidence_scores_for('utter_start', 1.0, domain))
 
             if intent["name"] == "reset":
+                self.__init__()
                 return self._prediction(confidence_scores_for("utter_welcome", 1.0, domain))
 
             if intent["name"] == "termine":
