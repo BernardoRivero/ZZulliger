@@ -32,10 +32,6 @@ class ExcelHandler():
         writer.save()
         writer.close()
 
-    def set_file_root(self, nombre) -> str:
-        self._file_root = str(self.get_project_root()) + \
-            os.path.sep + 'files'+os.path.sep + nombre + '.xlsx'
-
     def get_project_root(self) -> Path:
         return Path(__file__).parent.parent
 

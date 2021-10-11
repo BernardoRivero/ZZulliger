@@ -57,15 +57,6 @@ class ZulligerPolicy(Policy):
     def get_project_root(self) -> Path:
         return Path(__file__).parent.parent
 
-    def restart_test(self, tracker):
-        self.__init__()
-        user = str(tracker.get_slot("nombre"))
-        if user != 'None':
-            self._excelHandler.set_file_root(str(tracker.get_slot("nombre")))
-            return 'utter_welcome'
-        else:
-            return 'utter_nombre'
-
     def predict_action_probabilities(
             self, 
             tracker: DialogueStateTracker,
@@ -89,7 +80,6 @@ class ZulligerPolicy(Policy):
 
             # The user enters his name.
             if intent["name"] == "id":
-                self._excelHandler.create_excel_sheet(str(tracker.get_slot("nombre")))
                 return self._prediction(confidence_scores_for('utter_welcome', 1.0, domain))
 
             # The test starts, the first image is displayed.
@@ -97,7 +87,7 @@ class ZulligerPolicy(Policy):
                 return self._prediction(confidence_scores_for('utter_start', 1.0, domain))
 
             if intent["name"] == "reset":
-                return self._prediction(confidence_scores_for(self.restart_test(tracker), 1.0, domain))
+                return self._prediction(confidence_scores_for("utter_welcome", 1.0, domain))
 
             if intent["name"] == "termine":
                 if self._lamina == 1:
@@ -210,6 +200,7 @@ class ZulligerPolicy(Policy):
                             return self._prediction(confidence_scores_for("utter_TercerParteLamina3", 1.0, domain))                
                         else:       ## Final
                             self._data_processor.process_location(str(tracker.get_slot("nombre")), responses=[self._responses_lamina1, self._responses_lamina2, self._responses_lamina3])
+                            self._excelHandler.create_excel_sheet(str(tracker.get_slot("nombre")))
                             self._excelHandler.upload_data(self._data_processor._determinantes, self._data_processor._contenidos, self._data_processor._par,
                             self._data_processor._popular, self._data_processor._dq, self._data_processor._location, self._data_processor._zscore,
                             responses=[self._responses_lamina1, self._responses_lamina2, self._responses_lamina3], 
