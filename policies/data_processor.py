@@ -110,7 +110,12 @@ class DataProccesor():
         _Xy = {"radiografía", "radiografia", "placa", "placas", "rayos x",
                "tomografía", "ecografía", "tomografía", "ultrasonido", "resonancia"}
 
-        contenidos = ''
+        if state == 1:
+            contenidos = ''
+        else:
+            contenidos = self._contenidos[index][rta]
+
+        print(contenidos)
 
         respuesta = latest_response.split()
 
@@ -342,6 +347,7 @@ class DataProccesor():
                     elif contenidos == '':
                         contenidos = ' Xy,'
 
+        print(contenidos)
         if state == 1:
             self._contenidos[index].append(contenidos)
         else:

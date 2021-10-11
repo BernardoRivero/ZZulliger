@@ -177,7 +177,7 @@ class LocationProcessor():
                     if location != '': break
                   
         if location == '':
-            if global_correlation > usual_correlation and global_correlation > 0.5:
+            if global_correlation > usual_correlation and global_correlation > 0.65:
                 location = 'W'
             elif global_correlation < usual_correlation and usual_correlation > 0.5:
                 location = 'D'+area
