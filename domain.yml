@@ -85,11 +85,6 @@ slots:
   contador2:
     type: text
 
-actions:
-  - action_imprimir_determinantes
-  - action_TerceraParte
-  # - action_upload
-
 responses:
   utter_greet:
   - text: "Hey! How are you?"

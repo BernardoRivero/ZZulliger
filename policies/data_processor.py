@@ -23,7 +23,6 @@ class DataProccesor():
         
         # self.process_popular(
         #     lamina, tracker.latest_message.text, lamina-1, state, rta)
-
         # print('lamina: ' + str(lamina))
         # print('state: ' + str(state))
         # print('rta: ' + str(rta))
@@ -109,13 +108,11 @@ class DataProccesor():
         # 26 Radiografía
         _Xy = {"radiografía", "radiografia", "placa", "placas", "rayos x",
                "tomografía", "ecografía", "tomografía", "ultrasonido", "resonancia"}
-
+        
         if state == 1:
-            contenidos = ''
+            contenidos = ""
         else:
             contenidos = self._contenidos[index][rta]
-
-        print(contenidos)
 
         respuesta = latest_response.split()
 
@@ -166,11 +163,11 @@ class DataProccesor():
                     elif contenidos == '':
                         contenidos = ' Hx,'
 
-        while _A and ' A,' not in contenidos:  # 6 Figura animal completa
+        while _A and 'A,' not in contenidos:  # 6 Figura animal completa
             subconjunto = _A.pop()
             for i in respuesta:
                 if subconjunto == i:
-                    if ' A,' not in contenidos:
+                    if 'A,' not in contenidos:
                         contenidos += ' A,'
                     elif contenidos == '':
                         contenidos = ' A,'
@@ -347,11 +344,13 @@ class DataProccesor():
                     elif contenidos == '':
                         contenidos = ' Xy,'
 
-        print(contenidos)
         if state == 1:
             self._contenidos[index].append(contenidos)
         else:
-            self._contenidos[index][rta] += contenidos
+            contenidos = contenidos.split(",")[:-1]
+            for contenido in contenidos:
+                if contenido not in self._contenidos[index][rta]:
+                    self._contenidos[index][rta] += contenido + ","
             # Todo lo que no entra en un conjunto es contenido ideográfico "Id"
             if self._contenidos[index][rta] == '':
                 self._contenidos[index][rta] = "Id"
